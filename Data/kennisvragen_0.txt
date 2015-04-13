@@ -1,0 +1,12 @@
+Wat is de hoofdstad van België?-Londen$Brussel$Amsterdam$Leuven$1
+Wat zijn de buurlanden van België?-Luxemburg, Nederland, Duitsland, Frankrijk $Luxemburg, Nederland, Duitsland, Oostenrijk $ Zwitserland, Duitsland, Luxemburg, Frankrijk$0
+Waar staat het Atomium?-Amsterdam$Brussel$Frankrijk$Spanje$1
+Wat is het grootste continent ter wereld?-Azië$Australië$Afrika$Amerika$0
+Welke munteenheid gebruikt men in Japan?-euro$won$Yen$dinar$2
+Weegt een kilo snoep even veel als een kilo goud?-Ja$Nee$0
+Welke medailles kan je winnen op de olympische spelen?-goud, zilver, brons en koper$goud, zilver en brons $goud, zilver, koper en diamant$1
+Uit hoeveel letters bestaat het alfabet?-25$26$28$30$1
+Hoeveel koekjes kan je eten op een lege maag?-1$2$3$zeer veel$0
+Welke hoofdtalen spreekt men in België?-Nederlands, Deens en Duits$Nederlands, Duits en Engels$Nederlands, Frans en Duits$2
+Hoeveel bollen heeft het Atomium?-5$12$9$2
+Hoeveel planeten zitten er in ons zonnestelsel?-9$8$7$6$1

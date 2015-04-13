@@ -1,0 +1,24 @@
+﻿<Window x:Class="leren.Student"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Student" Height="768" Width="1024" Closing="Window_Closing" WindowState="Maximized" Icon="/leren;component/images/favicon.ico">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="450"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="270"/>
+            <RowDefinition Height="270"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Image Name="wiskunde" Grid.Column="0" Grid.Row="0" Source ="../images/wiskunde.jpg" MouseDown="Image_MouseDown"  />
+        <Image Name="talen" Grid.Column="0" Grid.Row="1" Source ="../images/talen.jpg" MouseDown="Image_MouseDown"   />
+        <Image Name="kennis" Grid.Column="1" Grid.Row="0" Source ="../images/algemeen.jpg" MouseDown="Image_MouseDown"   />
+        <Button Name="spel" Grid.Column="1" Grid.Row="1" Content="Spel" Background="Aquamarine" FontSize="48" Height="200" Width="360" Click="spel_Click" />
+        <Button Grid.Column="0" Grid.Row="2" Content="Resultaten Overzicht" Background="DarkCyan" Width="200" Height="100"   />
+        <Button Grid.Column="1" Grid.Row="2" Content="Afsluiten" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="AliceBlue" Width="96" Height="41" Click="Button_Click" />
+
+
+    </Grid>
+</Window>
