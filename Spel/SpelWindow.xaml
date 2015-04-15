@@ -1,9 +1,8 @@
 ﻿<Window x:Class="leren.SpelWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SpelWindow" Height="300" Width="300" Icon="/leren;component/images/favicon.ico" >
+        Title="SpelWindow" Height="764" Width="1024" Icon="/leren;component/images/favicon.ico" >
     <Grid>
-        <Canvas Name="ballenSpel" HorizontalAlignment="Left" Height="249" Margin="10,10,0,0" VerticalAlignment="Top" Width="272"/>
-
+        <Canvas Name="ballenSpel" Height="764" Width="1024"/>
     </Grid>
 </Window>

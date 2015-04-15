@@ -10,7 +10,7 @@
         <PasswordBox Name="wachtwoordPasswordBox" HorizontalAlignment="Left" Margin="278,0,0,115" VerticalAlignment="Bottom" Width="120" Height="20"/>
         <Button Background="AliceBlue" IsDefault="True" Name="loginButton" Content="Log in" HorizontalAlignment="Left" Margin="278,267,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" />
         <TextBlock TextWrapping="WrapWithOverflow"  Name="errorLabel" HorizontalAlignment="Left" Margin="10,267,0,0" VerticalAlignment="Top" Width="194" Height="42" FontWeight="Bold" FontStyle="Italic" Background="OrangeRed" Visibility="Hidden"/>                
-        <RadioButton Content="Leerkracht"  VerticalAlignment="Top" Margin="10,30,394,0"/>
-        <RadioButton Content="Student" VerticalAlignment="Top" IsChecked="True" Margin="10,10,409,0"/>
+        <RadioButton Name="leekrachtRadioButton" Content="Leerkracht"  VerticalAlignment="Top" Margin="10,30,394,0"/>
+        <RadioButton Name="studentRadioButton" Content="Student" VerticalAlignment="Top" IsChecked="True" Margin="10,10,409,0"/>
     </Grid>
 </Window>

@@ -157,10 +157,13 @@
     <Resource Include="Data\kennisvragen_1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\logins.txt" />
+    <Resource Include="Data\studentlogins.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\leerkrachtlogins.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

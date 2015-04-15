@@ -1,5 +1,5 @@
 ﻿samy$coenen
 tom$jerry
-ik$pass
+ik$ik
 wachtwoord$wachtwoord
 ps$ps

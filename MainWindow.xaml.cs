@@ -31,14 +31,24 @@ namespace leren
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GebruikersLijst gebruikers = new GebruikersLijst();
+            string gebruiker;
+            
+            if (studentRadioButton.IsChecked==true)
+            {
+                gebruiker = "student";
+            }
+            else
+            {
+                gebruiker = "leerkracht";
+            }
+            GebruikersLijst gebruikers = new GebruikersLijst(gebruiker);
             //Controleren of de velden "naam" en "wachtwoord" ingevuld zijn.
             if (naamTextBox.Text.Length == 0||wachtwoordPasswordBox.Password.Length==0)
             {
                 errorLabel.Visibility = System.Windows.Visibility.Visible;
                 errorLabel.Text = "U moet een naam en wachtwoord ingeven";
             }
-            //controleren de credentials juist zijn en vervolgens juiste window tonen.
+            //controleren of de credentials juist zijn en vervolgens juiste window tonen.
             else if(gebruikers.Controle(naamTextBox.Text,wachtwoordPasswordBox.Password))
             {
                 this.Hide();

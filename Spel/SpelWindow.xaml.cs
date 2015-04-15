@@ -22,6 +22,7 @@ namespace leren
         public SpelWindow()
         {
             InitializeComponent();
+            ComputerSpeler cs = new ComputerSpeler(ballenSpel);
         }
     }
 }

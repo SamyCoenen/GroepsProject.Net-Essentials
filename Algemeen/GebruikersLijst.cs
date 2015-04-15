@@ -11,9 +11,9 @@ namespace leren.Algemeen
     {
         private List<string> naam;
         private List<string> wachtwoord;
-        public GebruikersLijst()
+        public GebruikersLijst(string gebruiker)
         {
-            string[] lines = File.ReadAllLines("../../Data/Logins.txt");
+            string[] lines = File.ReadAllLines("../../Data/"+gebruiker+"logins.txt");
             naam = new List<string>();
             wachtwoord = new List<string>();
             foreach (string line in lines)
