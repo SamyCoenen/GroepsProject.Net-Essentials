@@ -14,15 +14,17 @@ namespace leren
     {
         //Aanmaak van een blokje dat de gebruiker kan besturen
         //Date: 15/04/2014 23:03
-        //Author: Samy Coenen
-       
-        public MensSpeler(Canvas spelCanvas)
+        //Author: Samy Coenen           
+        public MensSpeler()
         {
-            Rectangle ms = new Rectangle();
-            ms.Height=25;
-            ms.Width = 25;            
-            ms.Fill = new SolidColorBrush(Colors.Black);
-            spelCanvas.Children.Add(ms);
+
+        }
+        public void Beweeg(){
+
+        }
+        public void Maakvrij()
+        {
+
         }
     }
 }

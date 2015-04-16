@@ -11,7 +11,7 @@ namespace leren.Spel
     //Author: Samy Coenen
     interface IBeweegbaar
     {
-        void Beweeg;
-        void Maakvrij;
+        void Beweeg();
+        void Maakvrij();
     }
 }

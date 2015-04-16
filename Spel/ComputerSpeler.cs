@@ -16,13 +16,17 @@ namespace leren
         //Date: 15/04/2014 23:08
         //Author: Samy Coenen
         
-        public ComputerSpeler(Canvas spelCanvas)
+         public ComputerSpeler()
         {
-        Rectangle cs = new Rectangle();
-        cs.Height = 25;
-        cs.Width = 25;
-        cs.Fill=new SolidColorBrush(Colors.Red);
-        spelCanvas.Children.Add(cs);
+            
+        }
+        public void Beweeg()
+        {
+
+        }
+        public void Maakvrij()
+        {
+
         }
     }
 }
