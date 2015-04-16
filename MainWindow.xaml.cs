@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 using leren.Algemeen;
 namespace leren
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         //Dit is het inlogscherm
