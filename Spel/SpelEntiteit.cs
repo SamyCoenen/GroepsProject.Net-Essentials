@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
@@ -23,7 +24,7 @@ namespace leren
             spelKlok.Interval = new TimeSpan(0, 0, 0, 0, snelheid*100);
             spelKlok.Tick += spelKlok_Tick;
             spelKlok.Start();
-            Rectangle cs = new Rectangle();
+            cs = new Rectangle();
             cs.Height = 25;
             cs.Width = 25;           
     }
@@ -47,7 +48,16 @@ namespace leren
             }
         }
         public bool Geraakt { get; set; }
-        public Point Positie { get; set; }
-        public string Kleur { get; set; }
+        public Point Positie { get; set; }     
+        public string kleur
+        {
+            get 
+            { 
+                return cs.; 
+            }
+            set 
+            { 
+                              
+                cs.Fill = new SolidColorBrush(Colors.value); 
     }
 }
