@@ -1,4 +1,5 @@
-﻿using System;
+﻿using leren.Spel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,12 @@ using System.Windows.Shapes;
 
 namespace leren
 {
-    class ComputerSpeler
+    class ComputerSpeler: SpelEntiteit, IBeweegbaar
     {
         //Aanmaak van een blokje dat de gebruiker kan besturen
-        //Date: 16/04/2014 23:08
+        //Date: 15/04/2014 23:08
         //Author: Samy Coenen
-        private int snelheid=1;
+        
         public ComputerSpeler(Canvas spelCanvas)
         {
         Rectangle cs = new Rectangle();

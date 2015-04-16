@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using leren.Spel;
 
 namespace leren
 {
-    class MensSpeler
+    class MensSpeler: SpelEntiteit,IBeweegbaar
     {
         //Aanmaak van een blokje dat de gebruiker kan besturen
-        //Date: 16/04/2014 23:03
+        //Date: 15/04/2014 23:03
         //Author: Samy Coenen
-
-        private int snelheid=1;
+       
         public MensSpeler(Canvas spelCanvas)
         {
             Rectangle ms = new Rectangle();

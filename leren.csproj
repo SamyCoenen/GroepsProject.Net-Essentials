@@ -58,7 +58,6 @@
     </ApplicationDefinition>
     <Compile Include="Algemeen\GebruikersLijst.cs" />
     <Compile Include="Spel\ComputerSpeler.cs" />
-    <Compile Include="Spel\IBeweegbaar.cs" />
     <Compile Include="Algemeen\IODatabase.cs" />
     <Compile Include="Kennis\Kennis.xaml.cs">
       <DependentUpon>Kennis.xaml</DependentUpon>
@@ -68,6 +67,7 @@
     </Compile>
     <Compile Include="Kennis\KeuzeAntwoord.cs" />
     <Compile Include="Kennis\KeuzeVraag.cs" />
+    <Compile Include="Spel\IBeweegbaar.cs" />
     <Compile Include="Spel\MensSpeler.cs" />
     <Compile Include="Algemeen\Resultaat.xaml.cs">
       <DependentUpon>Resultaat.xaml</DependentUpon>

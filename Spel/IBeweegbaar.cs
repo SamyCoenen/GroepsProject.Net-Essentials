@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace leren
+namespace leren.Spel
 {
-    class IBeweegbaar
+    //Een interface dient om andere classen te verplichten methodes the implementeren
+    //Date: 16/04/2014 20:55
+    //Author: Samy Coenen
+    interface IBeweegbaar
     {
+        void Beweeg;
+        void Maakvrij;
     }
 }
