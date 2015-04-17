@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Aarderijkskunde" Height="659" Width="1000">
     <Grid>
-        <Label Content="Sleep de landen naar het juiste vak" HorizontalAlignment="Left" Margin="787,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Plaats de landen op de kaart" HorizontalAlignment="Left" Margin="787,10,0,0" VerticalAlignment="Top"/>
         <Image Source="../images/europe_map_hulp.jpg" HorizontalAlignment="Left" VerticalAlignment="Top" Width="782" Height="638"/>
         <ListBox Name="landen" HorizontalAlignment="Left" Height="240" Margin="787,33,0,0" VerticalAlignment="Top" Width="195" PreviewMouseDown="landen_PreviewMouseDown"/>
         <ListBox Name="land1box" Loaded="landlbl_Loaded" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="152,369,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
