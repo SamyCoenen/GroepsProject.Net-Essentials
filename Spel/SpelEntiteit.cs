@@ -53,11 +53,13 @@ namespace leren
         {
             get 
             { 
-                return cs.; 
+                return kleur; 
             }
             set 
             { 
                               
                 cs.Fill = new SolidColorBrush(Colors.value); 
-    }
+            }
 }
+}
+   
