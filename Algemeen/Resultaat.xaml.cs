@@ -22,7 +22,6 @@ namespace leren
     {
         private List<KeuzeVraag> vragen = new List<KeuzeVraag>();
         private List<KeuzeAntwoord> antwoorden = new List<KeuzeAntwoord>();
-        private Kennis kennisWindow;
         private int punten;
 
         public Resultaat()
@@ -92,7 +91,7 @@ namespace leren
 
         private void CloseWindows()
         {
-            for (int intCounter = App.Current.Windows.Count - 1; intCounter > 0; intCounter--)
+            for (int intCounter = App.Current.Windows.Count - 1; intCounter > 1; intCounter--)
                 App.Current.Windows[intCounter].Close();
         }
     }
