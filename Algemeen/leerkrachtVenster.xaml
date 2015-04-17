@@ -1,0 +1,15 @@
+﻿<Window x:Class="project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="184.03" Width="480.821">
+    <Grid Margin="0,0,3.4,0.4">
+        <ComboBox x:Name="Combobox1" HorizontalAlignment="Left" Margin="48,45,0,0" VerticalAlignment="Top" Width="333"  SelectionChanged="ComboBox_SelectionChanged" Height="29" Background="Black" Loaded="combobox1">
+
+            <ComboBoxItem Content="leerling1"/>
+            <ComboBoxItem Content="leerling2"/>
+        </ComboBox>
+        <Button Content="Geef punten weer" HorizontalAlignment="Left" Margin="48,107,0,0" VerticalAlignment="Top" Width="128" Height="22" Click="Button_Click"/>
+        <Label Content="Selecteer leerling" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top" Width="333" FontSize="15"/>
+
+    </Grid>
+</Window>
