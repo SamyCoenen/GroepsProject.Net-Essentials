@@ -1,7 +1,7 @@
 ﻿<Window x:Class="leren.SpelWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SpelWindow" Height="764" Width="1024" Icon="/leren;component/images/favicon.ico" >
+        Title="Game" Height="764" Width="1024" Icon="/leren;component/images/favicon.ico" >
     <Grid>
         <Canvas Name="ballenSpel" Height="764" Width="1024"/>
     </Grid>
