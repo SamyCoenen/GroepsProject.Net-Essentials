@@ -10,6 +10,8 @@ namespace leren.Algemeen
     class GebruikersLijst
     {
         private List<string> naam;
+
+       
         private List<string> wachtwoord;
         public GebruikersLijst(string gebruiker)
         {
@@ -35,6 +37,12 @@ namespace leren.Algemeen
                 return false;
             }
                    
+        } 
+        // Marnic
+        public List<string> Naam
+        {
+            get { return naam; }
+            set { naam = value; }
         }
     }
 }
