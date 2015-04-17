@@ -39,24 +39,24 @@ namespace project
 
         private void combobox1(object sender, RoutedEventArgs e)
         {
-            try
-            {
+        //    try
+        //    {
                
-              StreamReader sr = new StreamReader ("C:\Users\11400126\Desktop");
+        //      StreamReader sr = new StreamReader ("C:\Users\11400126\Desktop");
 
-                string line = sr.ReadLine();
+        //        string line = sr.ReadLine();
 
-                while (line != null)
-                {
-                    Console.WriteLine(line);
-                }
-            }
+        //        while (line != null)
+        //        {
+        //            Console.WriteLine(line);
+        //        }
+        //    }
                 
                
-                catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
+        //        catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error: " + ex.Message);
+        //    }
 
         }
     }
