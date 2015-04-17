@@ -21,10 +21,7 @@ namespace leren
         private Rectangle cs;
         public SpelEntiteit()
         {
-            DispatcherTimer spelKlok = new DispatcherTimer();
-            spelKlok.Interval = new TimeSpan(0, 0, 0, 0, snelheid * 100);
-            spelKlok.Tick += spelKlok_Tick;
-            spelKlok.Start();
+            
             cs = new Rectangle();
             cs.Height = 25;
             cs.Width = 25;
