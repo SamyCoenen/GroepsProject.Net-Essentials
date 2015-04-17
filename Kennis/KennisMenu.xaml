@@ -4,13 +4,12 @@
         Title="Algemene kennis" Height="700" Width="500" Icon="/leren;component/images/favicon.ico"  >
     <Grid>
         <Label Content="Test je algemene kennis" HorizontalAlignment="Left" FontSize="22" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Image Source="../images/algemene_kennis_quiz.jpg" Height="106" Width="139" Margin="29,113,324,450" MouseDown="Image_MouseDown"/>
-        <Image Source="../images/World.png" Height="106" Width="139" Margin="257,113,96,450"/>              
+        <Image Source="../images/algemene_kennis_quiz.jpg" Name="kennis" Height="106" Width="139" Margin="29,113,324,450" MouseDown="Image_MouseDown"/>
+        <Image Source="../images/World.png" Height="106" Name="aarde" Width="139" Margin="257,113,96,450"/>              
         <Slider HorizontalAlignment="Left" Margin="170,330,0,0" Minimum="0" Maximum="1" VerticalAlignment="Top" Width="60" Name="graadSlider"/>
         <Label Content="Makkelijk" HorizontalAlignment="Left" FontSize="10" Margin="107,325,0,0" VerticalAlignment="Top" Width="61"/>
         <Label Content="Moeilijk" HorizontalAlignment="Left" FontSize="10" Margin="233,325,0,0" VerticalAlignment="Top"/>
         <Label Content="Algemene kennis quiz" HorizontalAlignment="Left" Margin="24,228,0,0" VerticalAlignment="Top" Height="28" Width="144"/>
         <Label Content="Ontdek de wereld" HorizontalAlignment="Left" Margin="212,230,0,0" VerticalAlignment="Top" Width="142"/>
-        <Image  Height="106" Width="139"    HorizontalAlignment="Left"  Margin="71,384,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

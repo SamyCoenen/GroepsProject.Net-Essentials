@@ -57,6 +57,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Algemeen\GebruikersLijst.cs" />
+    <Compile Include="Kennis\Aarderijkskunde.xaml.cs">
+      <DependentUpon>Aarderijkskunde.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Spel\ComputerSpeler.cs" />
     <Compile Include="Algemeen\IODatabase.cs" />
     <Compile Include="Kennis\Kennis.xaml.cs">
@@ -79,6 +82,10 @@
     <Compile Include="Algemeen\Student.xaml.cs">
       <DependentUpon>Student.xaml</DependentUpon>
     </Compile>
+    <Page Include="Kennis\Aarderijkskunde.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Kennis\Kennis.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -164,6 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\leerkrachtlogins.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\europe_map_hulp.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

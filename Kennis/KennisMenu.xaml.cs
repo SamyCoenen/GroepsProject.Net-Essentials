@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace leren
 {
     // KennisMenu window
-    // Date: 03/04/15 - Last edit: 06/04/15
+    // Date: 03/04/15 - Last edit: 08/04/15
     // Author: Timothy Vanderaerden
 
     public partial class KennisMenu : Window
@@ -25,14 +25,23 @@ namespace leren
             InitializeComponent();
         }
 
-        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Image_MouseDown(object sender, RoutedEventArgs e)
         {
-            Kennis kennisWindow = new Kennis();
-            kennisWindow.Graad = (int)graadSlider.Value;
-            kennisWindow.Show();
+            int graad = (int)graadSlider.Value;
+            switch (((Image)sender).Name)
+            {
+                case "kennis":
+                    Kennis kennisWindow = new Kennis();
+                    kennisWindow.Graad = (int)graadSlider.Value;
+                    kennisWindow.Show();
+                    break;
+                case "aarde":
+                    Aarderijkskunde aarderijkskundeWindow = new Aarderijkskunde();
+                    aarderijkskundeWindow.Graad = (int)graadSlider.Value;
+                    aarderijkskundeWindow.Show();
+                    break;
+            }
         }
-
-       
 
     }
 }
