@@ -27,10 +27,7 @@ namespace leren
             cs.Width = 25;
         }
 
-        void spelKlok_Tick(object sender, EventArgs e)
-        {
-
-        }
+        
         public void Teken(Canvas spelCanvas)
         {
             spelCanvas.Children.Add(cs);
@@ -48,16 +45,6 @@ namespace leren
         }
         public bool Geraakt { get; set; }
         public Point Positie { get; set; }
-        //    public string kleur
-        //    {
-        //        get 
-        //        { 
-        //            return cs.; 
-        //        }
-        //        set 
-        //        { 
-
-        //            cs.Fill = new SolidColorBrush(Colors.value); 
-        //}
+        
     }
 }

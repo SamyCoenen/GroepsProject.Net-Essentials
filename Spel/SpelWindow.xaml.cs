@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace leren
 {
@@ -19,11 +20,20 @@ namespace leren
     /// </summary>
     public partial class SpelWindow : Window
     {
+        private List<ComputerSpeler> cs;
         public SpelWindow()
         {
             InitializeComponent();
             ComputerSpeler cs = new ComputerSpeler();
             cs.Teken(ballenSpel);
+            this.cs.Add(cs);
+            DispatcherTimer spelKlok = new DispatcherTimer();
+            spelKlok.Tick+=spelKlok_Tick;
+            spelKlok.Interval = new TimeSpan(0, 0, 0, 0, 500);
+        }
+        void spelKlok_Tick(object sender, EventArgs e)
+        {
+            
         }
     }
 }
