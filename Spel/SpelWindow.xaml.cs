@@ -21,7 +21,8 @@ namespace leren
     /// </summary>
     public partial class SpelWindow : Window
     {
-        private List<ComputerSpeler> cs;
+        private List<ComputerSpeler> cs = new List<ComputerSpeler>();
+        private SoundPlayer sp = new SoundPlayer("../../Kernkraft.wav");
         public SpelWindow()
         {
             InitializeComponent();
@@ -31,18 +32,21 @@ namespace leren
             DispatcherTimer spelKlok = new DispatcherTimer();
             spelKlok.Tick+=spelKlok_Tick;
             spelKlok.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            sp.Play();
         }
         void spelKlok_Tick(object sender, EventArgs e)
         {
             
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SoundPlayer sp = new SoundPlayer("../../Kernkraft.wav");
-           
-            sp.Play();
-            
+            sp.Stop();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
