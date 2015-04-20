@@ -49,8 +49,19 @@ namespace leren
             else if(gebruikers.Controle(naamTextBox.Text,wachtwoordPasswordBox.Password))
             {
                 this.Hide();
-                Student leerling = new Student();
-                leerling.Show();
+                if (gebruiker.Equals("student"))
+                {
+                    Student leerling = new Student();
+                    leerling.Show();
+                }
+                else
+                {
+                    leerkrachtVenster leerkracht = new leerkrachtVenster();
+                    leerkracht.Show();
+                    
+                }
+                
+                
                 
             }
             else

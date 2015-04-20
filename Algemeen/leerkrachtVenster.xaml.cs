@@ -13,23 +13,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
-namespace project
+using leren.Algemeen;
+namespace leren
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class leerkrachtVenster : Window
     {
-        public MainWindow()
+        public leerkrachtVenster()
         {
             InitializeComponent();
-            // testerdetest test test
-            //test test
+            GebruikersLijst lijst = new GebruikersLijst("student");           
+            Combobox1.ItemsSource = lijst.Naam;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -57,7 +58,7 @@ namespace project
         //    {
         //        MessageBox.Show("Error: " + ex.Message);
         //    }
-
+            
         }
     }
 }
