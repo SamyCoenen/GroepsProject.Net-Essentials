@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,6 +34,14 @@ namespace leren
         }
         void spelKlok_Tick(object sender, EventArgs e)
         {
+            
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SoundPlayer sp = new SoundPlayer("../../Kernkraft.wav");
+           
+            sp.Play();
             
         }
     }
