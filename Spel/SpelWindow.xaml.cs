@@ -23,20 +23,21 @@ namespace leren
     {
         private List<ComputerSpeler> cs = new List<ComputerSpeler>();
         private SoundPlayer sp = new SoundPlayer("../../Kernkraft.wav");
+        private DispatcherTimer spelKlok = new DispatcherTimer();
         public SpelWindow()
         {
             InitializeComponent();
             ComputerSpeler cs = new ComputerSpeler();
-            cs.Teken(ballenSpel);
-            this.cs.Add(cs);
-            DispatcherTimer spelKlok = new DispatcherTimer();
+            cs.Teken(ballenSpel);            
+            this.cs.Add(cs);   
             spelKlok.Tick+=spelKlok_Tick;
-            spelKlok.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            spelKlok.Interval = new TimeSpan(0, 0, 0, 0, 50);
             sp.Play();
         }
         void spelKlok_Tick(object sender, EventArgs e)
         {
-            
+            Canvas.SetLeft(ballenSpel.Children[0], cs[0].Positie.X + 20);
+            cs[0].Positie = new Point(Canvas.GetLeft(ballenSpel.Children[0]),Canvas.GetTop(ballenSpel.Children[0]));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -46,7 +47,21 @@ namespace leren
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            if (spelKlok.IsEnabled == false)
+            {
+                spelKlok.Start();
+            }
+            else
+            {
+                spelKlok.Stop();
+            }
+           
+        }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {                     
+            base.Show();
+            this.Close();
         }
     }
 }
