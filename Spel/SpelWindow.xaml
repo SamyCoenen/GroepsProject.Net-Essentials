@@ -1,11 +1,11 @@
 ﻿<Window x:Class="leren.SpelWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Game" Height="764" Width="1024" Icon="/leren;component/images/favicon.ico" >
+        Title="Game" Height="764" Width="1024" Icon="/leren;component/images/favicon.ico" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Canvas Name="ballenSpel" Width="1024" Margin="0,0,-8,89"/>
         <Button Content="Start/Stop" HorizontalAlignment="Left" Margin="40,670,0,0" VerticalAlignment="Top" Width="188" Height="53" Click="Button_Click_1"/>
         <Button Content="Mute" HorizontalAlignment="Left" Margin="826,685,0,0" VerticalAlignment="Top" Width="80" Height="38" Click="Button_Click"/>
-        <Button Content="Menu" HorizontalAlignment="Left" Margin="924,685,0,0" VerticalAlignment="Top" Width="80" Height="38"/>
+        <Button Content="Menu" HorizontalAlignment="Left" Margin="924,685,0,0" VerticalAlignment="Top" Width="80" Height="38" Click="Button_Click_2"/>
     </Grid>
 </Window>

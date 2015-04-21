@@ -23,11 +23,13 @@ namespace leren
         }
         public void Beweeg()
         {
-            MessageBox.Show(Convert.ToString(Positie));
+
+            Positie = Point.Add(Positie, new Vector(40, 40));    
+       
         }
         public void Maakvrij()
         {
-
+          
         }
     }
 }

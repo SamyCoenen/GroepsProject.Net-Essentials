@@ -18,19 +18,19 @@ namespace leren
     abstract class SpelEntiteit
     {
         private int snelheid = 1;
-        private Rectangle cs;
+        private Rectangle se;
         public SpelEntiteit()
         {
-            
-            cs = new Rectangle();
-            cs.Height = 25;
-            cs.Width = 25;
+            se = new Rectangle();
+            se.Height = 25;
+            se.Width = 25;
+            se.Fill = new SolidColorBrush(Colors.Red);
         }
 
         
         public void Teken(Canvas spelCanvas)
         {
-            spelCanvas.Children.Add(cs);
+            spelCanvas.Children.Add(se);
         }
         public int Snelheid
         {
