@@ -17,7 +17,7 @@ namespace leren
     //Author: Samy Coenen
     abstract class SpelEntiteit
     {
-        private int snelheid = 1;
+        private int snelheid = 10;
         private Rectangle se;
         public SpelEntiteit()
         {
@@ -45,6 +45,5 @@ namespace leren
         }
         public bool Geraakt { get; set; }
         public Point Positie { get; set; }
-        
     }
 }

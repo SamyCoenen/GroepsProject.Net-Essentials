@@ -72,5 +72,12 @@ namespace leren
             }
 
         }
+
+        private void studentRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            naamTextBox.Focus();
+        }
+
+       
     }
 }
