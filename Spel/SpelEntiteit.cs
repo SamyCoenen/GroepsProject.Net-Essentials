@@ -17,23 +17,20 @@ namespace leren
     //Author: Samy Coenen
     abstract class SpelEntiteit
     {
-        private int snelheid = 1;
-        private Rectangle cs;
+        private int snelheid = 10;
+        private Rectangle se;
         public SpelEntiteit()
         {
-            
-            cs = new Rectangle();
-            cs.Height = 25;
-            cs.Width = 25;
+            se = new Rectangle();
+            se.Height = 25;
+            se.Width = 25;
+            se.Fill = new SolidColorBrush(Colors.Red);
         }
 
-        void spelKlok_Tick(object sender, EventArgs e)
-        {
-
-        }
+        
         public void Teken(Canvas spelCanvas)
         {
-            spelCanvas.Children.Add(cs);
+            spelCanvas.Children.Add(se);
         }
         public int Snelheid
         {
@@ -48,16 +45,5 @@ namespace leren
         }
         public bool Geraakt { get; set; }
         public Point Positie { get; set; }
-        //    public string kleur
-        //    {
-        //        get 
-        //        { 
-        //            return cs.; 
-        //        }
-        //        set 
-        //        { 
-
-        //            cs.Fill = new SolidColorBrush(Colors.value); 
-        //}
     }
 }
