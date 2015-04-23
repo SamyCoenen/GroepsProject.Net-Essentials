@@ -34,15 +34,11 @@ namespace leren
             spelKlok.Interval = new TimeSpan(0, 0, 0, 0, 1000/60);
             sp.Play();
         }
+
         void spelKlok_Tick(object sender, EventArgs e)
         {
-            Console.WriteLine(cs[0].Positie.X + " " + ballenSpel.Width);
-            if (cs[0].Positie.X > ballenSpel.Width-25 || cs[0].Positie.X < 0)
-            {
-                cs[0].Snelheid = cs[0].Snelheid*(-1);
-            }
-            Canvas.SetLeft(ballenSpel.Children[0], cs[0].Positie.X + cs[0].Snelheid);
-            cs[0].Positie = new Point(Canvas.GetLeft(ballenSpel.Children[0]),Canvas.GetTop(ballenSpel.Children[0]));
+            cs[0].Beweeg(ballenSpel,0);
+           
 
         }
 

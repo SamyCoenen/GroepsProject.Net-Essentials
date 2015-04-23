@@ -21,11 +21,14 @@ namespace leren
         {
             
         }
-        public void Beweeg()
+        public void Beweeg(Canvas spelCanvas, int index)
         {
-
-            Positie = Point.Add(Positie, new Vector(40, 40));    
-       
+            if (Positie.X > spelCanvas.Width - 25 || Positie.X < 0)
+            {
+                Snelheid = Snelheid * (-1);
+            }
+            Canvas.SetLeft(spelCanvas.Children[0], Positie.X + Snelheid);
+            Positie = new Point(Canvas.GetLeft(spelCanvas.Children[index]), Canvas.GetTop(spelCanvas.Children[index]));       
         }
         public void Maakvrij()
         {

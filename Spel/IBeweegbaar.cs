@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace leren.Spel
 {
@@ -11,7 +12,7 @@ namespace leren.Spel
     //Author: Samy Coenen
     interface IBeweegbaar
     {
-        void Beweeg();
+        void Beweeg(Canvas spelCanvas,int index);
         void Maakvrij();
     }
 }

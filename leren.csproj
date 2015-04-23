@@ -60,6 +60,9 @@
     <Compile Include="Algemeen\leerkrachtVenster.xaml.cs">
       <DependentUpon>leerkrachtVenster.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Algemeen\StudentenPunten.xaml.cs">
+      <DependentUpon>StudentenPunten.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Kennis\Aarderijkskunde.xaml.cs">
       <DependentUpon>Aarderijkskunde.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
     <Page Include="Algemeen\leerkrachtVenster.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Algemeen\StudentenPunten.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Kennis\Aarderijkskunde.xaml">
       <Generator>MSBuild:Compile</Generator>

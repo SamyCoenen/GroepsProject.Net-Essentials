@@ -59,21 +59,24 @@ namespace leren
                     break;
             }
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-                Application.Current.Shutdown();
-        }
+            switch (((Button)sender).Name)
+            {
+                case "spel":
+                    SpelWindow spel = new SpelWindow();
+                    spel.Show();
+                    break;
+                case "Resultaten":
 
-        private void spel_Click(object sender, RoutedEventArgs e)
-        {
-            SpelWindow spel = new SpelWindow();
-            spel.Show();
+                    break;
+                case "Afsluiten":
+                    Application.Current.Shutdown();
+                    break;
+            }
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
        
     }

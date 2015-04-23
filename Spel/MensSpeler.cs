@@ -19,7 +19,7 @@ namespace leren
         {
 
         }
-        public void Beweeg(){
+        public void Beweeg(Canvas spelCanvas, int index){
 
         }
         public void Maakvrij()

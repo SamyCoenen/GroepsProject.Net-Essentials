@@ -15,9 +15,9 @@
         <Image Name="wiskunde" Grid.Column="0" Grid.Row="0" Source ="../images/wiskunde.jpg" MouseDown="Image_MouseDown"  />
         <Image Name="talen" Grid.Column="0" Grid.Row="1" Source ="../images/talen.jpg" MouseDown="Image_MouseDown"   />
         <Image Name="kennis" Grid.Column="1" Grid.Row="0" Source ="../images/algemeen.jpg" MouseDown="Image_MouseDown"   />
-        <Button Name="spel" Grid.Column="1" Grid.Row="1" Content="Spel" Background="Aquamarine" FontSize="48" Height="200" Width="360" Click="spel_Click" />
-        <Button Grid.Column="0" Grid.Row="2" Content="Resultaten Overzicht" Background="DarkCyan" Width="200" Height="100" Click="Button_Click_1"    />
-        <Button Grid.Column="1" Grid.Row="2" Content="Afsluiten" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="AliceBlue" Width="96" Height="41" Click="Button_Click" />
+        <Button Name="spel" Grid.Column="1" Grid.Row="1" Content="Spel" Background="Aquamarine" FontSize="48" Height="200" Width="360" Click="Button_Click" />
+        <Button Name="Resultaten" Grid.Column="0" Grid.Row="2" Content="Resultaten Overzicht" Background="DarkCyan" Width="200" Height="100" Click="Button_Click"    />
+        <Button Name="Afsluiten" Grid.Column="1" Grid.Row="2" Content="Afsluiten" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="AliceBlue" Width="96" Height="41" Click="Button_Click" />
 
 
     </Grid>
