@@ -36,9 +36,9 @@ namespace leren
                     kennisWindow.Show();
                     break;
                 case "aarde":
-                    Aarderijkskunde aarderijkskundeWindow = new Aarderijkskunde();
-                    aarderijkskundeWindow.Graad = (int)graadSlider.Value;
-                    aarderijkskundeWindow.Show();
+                    Aardrijkskunde aardrijkskundeWindow = new Aardrijkskunde();
+                    aardrijkskundeWindow.Graad = (int)graadSlider.Value;
+                    aardrijkskundeWindow.Show();
                     break;
             }
         }

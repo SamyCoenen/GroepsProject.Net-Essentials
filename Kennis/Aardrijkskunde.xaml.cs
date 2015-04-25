@@ -15,17 +15,17 @@ using System.Windows.Shapes;
 
 namespace leren
 {
-    // Aarderijkskunde window
+    // Aardrijkskunde window
     // Date: 08/04/15 - Last edit: 14/04/15
     // Author: Timothy Vanderaerden
 
-    public partial class Aarderijkskunde : Window
+    public partial class Aardrijkskunde : Window
     {
         private int graad;
         string[] landenList = new string[5]{"België", "Nederland", "Spanje", "Duitsland", "Frankrijk"};
         string[] stedenList = new string[5]{ "Brussel", "Amsterdam", "Madrid", "Berlijn", "Parijs" };
 
-        public Aarderijkskunde()
+        public Aardrijkskunde()
         {
             InitializeComponent();
             Loaded+=Aarderijkskunde_Loaded;

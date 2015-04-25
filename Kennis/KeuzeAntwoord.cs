@@ -12,15 +12,8 @@ namespace leren
 
     class KeuzeAntwoord
     {
-        private int niveau;
         private int index;
         private int antwoord;
-
-        public int Niveau
-        {
-            get { return niveau; }
-            set { niveau = value; }
-        }
 
         public int Index
         {
@@ -33,5 +26,6 @@ namespace leren
             get { return antwoord; }
             set { antwoord = value; }
         }
+
     }
 }
