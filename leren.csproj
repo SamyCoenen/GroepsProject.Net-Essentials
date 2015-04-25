@@ -63,8 +63,8 @@
     <Compile Include="Algemeen\StudentenPunten.xaml.cs">
       <DependentUpon>StudentenPunten.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Kennis\Aarderijkskunde.xaml.cs">
-      <DependentUpon>Aarderijkskunde.xaml</DependentUpon>
+    <Compile Include="Kennis\Aardrijkskunde.xaml.cs">
+      <DependentUpon>Aardrijkskunde.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spel\ComputerSpeler.cs" />
     <Compile Include="Algemeen\IODatabase.cs" />
@@ -96,7 +96,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Kennis\Aarderijkskunde.xaml">
+    <Page Include="Kennis\Aardrijkskunde.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

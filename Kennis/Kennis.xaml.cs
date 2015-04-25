@@ -26,6 +26,7 @@ namespace leren
         private List<int> vragenGeschiedenis = new List<int>();
         private List<KeuzeAntwoord> keuzeAntwoorden = new List<KeuzeAntwoord>();
         private int index;
+        private string naam = "test";
 
         public int Graad
         {
@@ -107,7 +108,6 @@ namespace leren
             {
                 antwoord.Antwoord = gekozenAntwoord;
                 antwoord.Index = index;
-                antwoord.Niveau = graad;
                 keuzeAntwoorden.Add(antwoord);
                 if (vragenGeschiedenis.Count >= 5)
                 {
@@ -115,6 +115,8 @@ namespace leren
                     resultaatWindow.Vragen = keuzevragen;
                     resultaatWindow.Antwoorden = keuzeAntwoorden;
                     resultaatWindow.Show();
+                    IODatabase resultaatKennis = new IODatabase("Kennis");
+                    resultaatKennis.SchrijfResultaatKennis(keuzevragen, keuzeAntwoorden, naam, graad);
                 }
                 else if (vragenGeschiedenis.Count == 4)
                 {

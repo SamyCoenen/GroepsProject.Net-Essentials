@@ -10,7 +10,7 @@ namespace leren
     class IODatabase
     {
         // Input en output methoden
-        // Date: 01/04/15 - Last edit: 06/04/15
+        // Date: 01/04/15 - Last edit: 24/04/15
         // Author: Timothy Vanderaerden
 
         //Constructor en filename aangepast om deze classe te kunnen gebruiken bij meerdere vakken
@@ -51,5 +51,27 @@ namespace leren
             }
             return vragenlijst;
         }
+
+        public void SchrijfResultaatKennis(List<KeuzeVraag> keuzeVragen, List<KeuzeAntwoord> keuzeAntwoorden, string naam, int graad)
+        {
+            StringBuilder resultaat = new StringBuilder();
+            resultaat.Append(naam + ":" + graad.ToString() + "(");
+
+            foreach(KeuzeAntwoord antwoord in keuzeAntwoorden) {
+                KeuzeVraag keuzeVraag = keuzeVragen[antwoord.Index];
+                int juist = 0;
+                if (antwoord.Antwoord == keuzeVraag.JuistIndex)
+                {
+                    juist = 1;
+                }
+                resultaat.Append(keuzeVraag.Vraag + ":" + keuzeVraag.Keuzes[keuzeVraag.JuistIndex] + ":" + juist + "$");
+            }
+            resultaat.Append(")$");
+
+            StreamWriter writeout = new StreamWriter("../../Data/kennisresultaat.txt", true);
+            writeout.WriteLine(resultaat);
+            writeout.Close();
+        }
+
     }
 }
