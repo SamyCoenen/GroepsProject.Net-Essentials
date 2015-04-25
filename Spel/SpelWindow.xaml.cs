@@ -22,6 +22,7 @@ namespace leren
     public partial class SpelWindow : Window
     {
         private List<ComputerSpeler> cs = new List<ComputerSpeler>();
+        private MensSpeler ms;
         private SoundPlayer sp = new SoundPlayer("../../Kernkraft.wav");
         private DispatcherTimer spelKlok = new DispatcherTimer();
         public SpelWindow()
@@ -29,7 +30,11 @@ namespace leren
             InitializeComponent();
             ComputerSpeler cs = new ComputerSpeler();
             cs.Teken(ballenSpel);            
-            this.cs.Add(cs);   
+            this.cs.Add(cs);
+
+            ms = new MensSpeler();
+            ms.Teken(ballenSpel);
+               
             spelKlok.Tick+=spelKlok_Tick;
             spelKlok.Interval = new TimeSpan(0, 0, 0, 0, 1000/60);
             sp.Play();
@@ -38,8 +43,6 @@ namespace leren
         void spelKlok_Tick(object sender, EventArgs e)
         {
             cs[0].Beweeg(ballenSpel,0);
-           
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -51,20 +54,31 @@ namespace leren
         {
             if (spelKlok.IsEnabled == false)
             {
+                //start the timer and starts the game
                 spelKlok.Start();
+                // set focus on the canvas
+                ballenSpel.Focus(); 
             }
             else
             {
                 spelKlok.Stop();
-            }
-            MessageBox.Show(Properties.Settings.Default.userName);
-           
+            }   
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {                     
             base.Show();
             this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            sp.Stop();
+        }
+
+        private void OnCanvasKeyDown(object sender, KeyEventArgs e)
+        {
+            ms.Beweeg(ballenSpel, 1, e.Key);     
         }
     }
 }

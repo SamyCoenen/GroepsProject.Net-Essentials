@@ -16,8 +16,8 @@ namespace leren
         //Aanmaak van een blokje dat de gebruiker kan besturen
         //Date: 15/04/2014 23:08
         //Author: Samy Coenen
-        
-         public ComputerSpeler()
+
+        public ComputerSpeler(): base(new SolidColorBrush(Colors.Green))
         {
             
         }
@@ -27,7 +27,7 @@ namespace leren
             {
                 Snelheid = Snelheid * (-1);
             }
-            Canvas.SetLeft(spelCanvas.Children[0], Positie.X + Snelheid);
+            Canvas.SetLeft(spelCanvas.Children[index], Positie.X + Snelheid);
             Positie = new Point(Canvas.GetLeft(spelCanvas.Children[index]), Canvas.GetTop(spelCanvas.Children[index]));       
         }
         public void Maakvrij()

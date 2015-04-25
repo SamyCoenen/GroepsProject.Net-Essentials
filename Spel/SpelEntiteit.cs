@@ -9,7 +9,6 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-
 namespace leren
 {
     //De superclasse voor alle bewegenden objecten van het spel
@@ -19,14 +18,14 @@ namespace leren
     {
         private int snelheid = 10;
         private Rectangle se;
-        public SpelEntiteit()
+
+        public SpelEntiteit(SolidColorBrush kleur)
         {
             se = new Rectangle();
-            se.Height = 25;
-            se.Width = 25;
-            se.Fill = new SolidColorBrush(Colors.Red);
+            se.Height = 40;
+            se.Width = 40;
+            se.Fill = kleur;
         }
-
         
         public void Teken(Canvas spelCanvas)
         {
