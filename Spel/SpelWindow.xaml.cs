@@ -57,6 +57,7 @@ namespace leren
             {
                 spelKlok.Stop();
             }
+            MessageBox.Show(Properties.Settings.Default.userName);
            
         }
 

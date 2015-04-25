@@ -51,6 +51,8 @@ namespace leren
                 this.Hide();
                 if (gebruiker.Equals("student"))
                 {
+                    Properties.Settings.Default.userName = naamTextBox.Text;
+                    Properties.Settings.Default.Save();
                     Student leerling = new Student();
                     leerling.Show();
                 }
