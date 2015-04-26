@@ -29,20 +29,20 @@ namespace leren
         {
             InitializeComponent();
             ComputerSpeler cs = new ComputerSpeler();
-            cs.Teken(ballenSpel);            
+            cs.Teken(ballenSpel,0,0);            
             this.cs.Add(cs);
 
             ms = new MensSpeler();
-            ms.Teken(ballenSpel);
+            ms.Teken(ballenSpel,1000,700);
                
             spelKlok.Tick+=spelKlok_Tick;
-            spelKlok.Interval = new TimeSpan(0, 0, 0, 0, 1000/60);
+            spelKlok.Interval = new TimeSpan( 0, 0, 0,0,16);
             sp.Play();
         }
 
         void spelKlok_Tick(object sender, EventArgs e)
         {
-            cs[0].Beweeg(ballenSpel,0);
+            cs[0].Beweeg(ballenSpel,1);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -56,7 +56,7 @@ namespace leren
             {
                 //start the timer and starts the game
                 spelKlok.Start();
-                // set focus on the canvas
+                //set focus on the canvas
                 ballenSpel.Focus(); 
             }
             else
@@ -78,7 +78,7 @@ namespace leren
 
         private void OnCanvasKeyDown(object sender, KeyEventArgs e)
         {
-            ms.Beweeg(ballenSpel, 1, e.Key);     
+            ms.Beweeg(ballenSpel, 2, e.Key);     
         }
     }
 }

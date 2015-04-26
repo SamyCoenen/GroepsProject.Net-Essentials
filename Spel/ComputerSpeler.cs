@@ -23,7 +23,7 @@ namespace leren
         }
         public void Beweeg(Canvas spelCanvas, int index)
         {
-            if (Positie.X > spelCanvas.Width - 25 || Positie.X < 0)
+            if (Positie.X > spelCanvas.Width - 40 || Positie.X < 0)
             {
                 Snelheid = Snelheid * (-1);
             }

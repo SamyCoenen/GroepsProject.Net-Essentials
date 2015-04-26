@@ -3,9 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Game" Height="764" Width="1024" Icon="/leren;component/images/favicon.ico" WindowStartupLocation="CenterScreen" Closing="Window_Closing" >
     <Grid>
-        <Canvas Background="SlateGray" Focusable="True" Name="ballenSpel" Width="1024" Margin="0,0,-8,89" KeyDown="OnCanvasKeyDown"/>
-        <Button Focusable="False" Content="Start/Stop" HorizontalAlignment="Left" Margin="40,670,0,0" VerticalAlignment="Top" Width="188" Height="53" Click="Button_Click_1"/>
-        <Button Focusable="False" Content="Mute" HorizontalAlignment="Left" Margin="800,670,0,0" VerticalAlignment="Top" Width="80" Height="53" Click="Button_Click"/>
-        <Button Focusable="False" Content="Menu" HorizontalAlignment="Left" Margin="900,670,0,0" VerticalAlignment="Top" Width="80" Height="53" Click="Button_Click_2"/>
+        <Canvas Background="SlateGray" Focusable="True" Name="ballenSpel" Width="1000" Margin="0,0,0,64" KeyDown="OnCanvasKeyDown">
+            <Rectangle Height="100" Width="300" Canvas.Bottom="0" Canvas.Right="350" Fill="Blue" />
+        </Canvas>
+        <Button Focusable="False" Content="Start/Stop" HorizontalAlignment="Left" Margin="36,681,0,0" VerticalAlignment="Top" Width="188" Height="53" Click="Button_Click_1"/>
+        <Button Focusable="False" Content="Mute" HorizontalAlignment="Left" Margin="801,681,0,0" VerticalAlignment="Top" Width="80" Height="53" Click="Button_Click"/>
+        <Button Focusable="False" Content="Menu" HorizontalAlignment="Left" Margin="901,681,0,0" VerticalAlignment="Top" Width="80" Height="53" Click="Button_Click_2"/>
     </Grid>
 </Window>
