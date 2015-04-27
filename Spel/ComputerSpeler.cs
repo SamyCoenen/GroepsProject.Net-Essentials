@@ -23,16 +23,18 @@ namespace leren
         }
         public void Beweeg(Canvas spelCanvas, int index)
         {
+            Positie = new Point(Canvas.GetLeft(spelCanvas.Children[index]),Canvas.GetTop(spelCanvas.Children[index]));
+
             if (Positie.X > spelCanvas.Width - 40 || Positie.X < 0)
             {
                 Snelheid = Snelheid * (-1);
             }
             Canvas.SetLeft(spelCanvas.Children[index], Positie.X + Snelheid);
-            Positie = new Point(Canvas.GetLeft(spelCanvas.Children[index]), Canvas.GetTop(spelCanvas.Children[index]));       
         }
-        public void Maakvrij()
+
+        public void Maakvrij(Canvas spelCanvas,int index)
         {
-          
+            spelCanvas.Children.Remove(spelCanvas.Children[index]);
         }
     }
 }

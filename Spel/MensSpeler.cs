@@ -21,11 +21,17 @@ namespace leren
         {
 
         }
+
+        public void Beweeg(Canvas spelCanvas, int indexOfChild)
+        {
+
+        }
+
         public void Beweeg(Canvas spelCanvas, int indexOfChild,Key ingedrukteKnop){
+            Positie = new Point(Canvas.GetLeft(spelCanvas.Children[indexOfChild]), Canvas.GetTop(spelCanvas.Children[indexOfChild]));
             switch (ingedrukteKnop)
             {
                 case Key.Left:
-                    Console.WriteLine(Canvas.GetLeft(spelCanvas.Children[indexOfChild]));
                     if (Canvas.GetLeft(spelCanvas.Children[indexOfChild]) >= 0) Canvas.SetLeft(spelCanvas.Children[indexOfChild], Positie.X - Snelheid);
                     break;
                 case Key.Right:
@@ -40,11 +46,10 @@ namespace leren
                 default: 
                     return;
             }
-            Positie = new Point(Canvas.GetLeft(spelCanvas.Children[indexOfChild]), Canvas.GetTop(spelCanvas.Children[indexOfChild]));
         }
-        public void Maakvrij()
+        public void Maakvrij(Canvas spelCanvas, int index)
         {
-
+            spelCanvas.Children.Remove(spelCanvas.Children[index]);
         }
     }
 }

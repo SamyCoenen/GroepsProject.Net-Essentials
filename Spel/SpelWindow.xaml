@@ -6,8 +6,9 @@
         <Canvas Background="SlateGray" Focusable="True" Name="ballenSpel" Width="1000" Margin="0,0,0,64" KeyDown="OnCanvasKeyDown">
             <Rectangle Height="100" Width="300" Canvas.Bottom="0" Canvas.Right="350" Fill="Blue" />
         </Canvas>
-        <Button Focusable="False" Content="Start/Stop" HorizontalAlignment="Left" Margin="36,681,0,0" VerticalAlignment="Top" Width="188" Height="53" Click="Button_Click_1"/>
-        <Button Focusable="False" Content="Mute" HorizontalAlignment="Left" Margin="801,681,0,0" VerticalAlignment="Top" Width="80" Height="53" Click="Button_Click"/>
-        <Button Focusable="False" Content="Menu" HorizontalAlignment="Left" Margin="901,681,0,0" VerticalAlignment="Top" Width="80" Height="53" Click="Button_Click_2"/>
+        <Button Focusable="False" Content="Start/Stop" HorizontalAlignment="Left" Margin="26,675,0,0" VerticalAlignment="Top" Width="188" Height="56" Click="Button_Click"/>
+        <Button Focusable="False" Content="Reset" HorizontalAlignment="Left" Margin="226,675,0,0" VerticalAlignment="Top" Width="188" Height="56" Click="Button_Click"/>
+        <Button Focusable="False" Content="Mute" HorizontalAlignment="Left" Margin="802,670,0,0" VerticalAlignment="Top" Width="80" Height="56" Click="Button_Click"/>
+        <Button Focusable="False" Content="Menu" HorizontalAlignment="Left" Margin="901,670,0,0" VerticalAlignment="Top" Width="80" Height="56" Click="Button_Click"/>
     </Grid>
 </Window>

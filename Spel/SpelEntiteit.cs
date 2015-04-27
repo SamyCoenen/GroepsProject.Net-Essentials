@@ -16,7 +16,7 @@ namespace leren
     //Author: Samy Coenen
     abstract class SpelEntiteit
     {
-        private double snelheid = 10.0/60;
+        private double snelheid = 10;
         private Rectangle se;
 
         public SpelEntiteit(SolidColorBrush kleur)
@@ -29,7 +29,8 @@ namespace leren
         
         public void Teken(Canvas spelCanvas,double x,double y)
         {
-            Positie = new Point(x, y);
+            Canvas.SetLeft(se, x);
+            Canvas.SetTop(se, y);
             spelCanvas.Children.Add(se);
         }
         public double Snelheid

@@ -12,7 +12,7 @@ namespace leren.Spel
     //Author: Samy Coenen
     interface IBeweegbaar
     {
-        //void Beweeg();//(Canvas spelCanvas,int index);
-        void Maakvrij();
+        void Beweeg(Canvas spelCanvas,int index);
+        void Maakvrij(Canvas spelCanvas, int index);
     }
 }
