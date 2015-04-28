@@ -55,6 +55,19 @@ namespace leren
                 }
         }
 
+        private void steden_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (steden.SelectedItems.Count > 0)
+            {
+                ListBoxItem mySelectedItem = steden.SelectedItem as ListBoxItem;
+                if (mySelectedItem != null)
+                {
+                    DragDrop.DoDragDrop(steden, mySelectedItem.Content.ToString(), DragDropEffects.Copy);
+                }
+
+            }
+        }
+
         private void land_DragEnter(object sender, DragEventArgs e)
         {
             e.Effects = DragDropEffects.Copy;
@@ -69,9 +82,37 @@ namespace leren
         {
             ListBox lb = (ListBox)sender;
             lb.Items.Clear();
+            error.Content = "";
             string tstring;
             tstring = e.Data.GetData(DataFormats.StringFormat).ToString();
             lb.Items.Add(tstring.ToString());
+
+            for (int i = 0; i < stedenList.Length; i++) {
+                if (lb.Items.Contains(stedenList[i].ToString()))
+                {
+                    lb.Items.Clear();
+                    error.Content = "Dit is geen land!";
+                }
+            }
+        }
+
+        private void stad_Drop(object sender, DragEventArgs e)
+        {
+            ListBox lb = (ListBox)sender;
+            lb.Items.Clear();
+            error.Content = "";
+            string tstring;
+            tstring = e.Data.GetData(DataFormats.StringFormat).ToString();
+            lb.Items.Add(tstring.ToString());
+
+            for (int i = 0; i < landenList.Length; i++)
+            {
+                if (lb.Items.Contains(landenList[i].ToString()))
+                {
+                    lb.Items.Clear();
+                    error.Content = "Dit is geen stad!";
+                }
+            }
         }
 
         private void drop_PreviewMouseUp(object sender, MouseButtonEventArgs e)
@@ -101,17 +142,26 @@ namespace leren
 
         private void Resultaat(object sender, RoutedEventArgs e)
         {
-            //if (land1box.)
-            //{
-                
-            //}
-            //if (graad == 0)
-            //{
-                
-            //}
-            //else
+            //if (graad == 0) {
+            //    if (land1box.Items.Count == 0)
+            //    {
+
+            //    }
+            //    else
+            //    {
+
+            //    }
+            //} else 
             //{
 
+            //}
+        }
+
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            //if (graad == 0)
+            //{
+            //    if ()
             //}
         }
     }
