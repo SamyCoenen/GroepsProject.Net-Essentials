@@ -13,6 +13,6 @@ namespace leren.Spel
     interface IBeweegbaar
     {
         void Beweeg(Canvas spelCanvas,int index);
-        void Maakvrij();
+        void Maakvrij(Canvas spelCanvas, int index);
     }
 }

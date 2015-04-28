@@ -16,23 +16,25 @@ namespace leren
         //Aanmaak van een blokje dat de gebruiker kan besturen
         //Date: 15/04/2014 23:08
         //Author: Samy Coenen
-        
-         public ComputerSpeler()
+
+        public ComputerSpeler(): base(new SolidColorBrush(Colors.Green))
         {
             
         }
         public void Beweeg(Canvas spelCanvas, int index)
         {
-            if (Positie.X > spelCanvas.Width - 25 || Positie.X < 0)
+            Positie = new Point(Canvas.GetLeft(spelCanvas.Children[index]),Canvas.GetTop(spelCanvas.Children[index]));
+
+            if (Positie.X > spelCanvas.Width - 40 || Positie.X < 0)
             {
                 Snelheid = Snelheid * (-1);
             }
-            Canvas.SetLeft(spelCanvas.Children[0], Positie.X + Snelheid);
-            Positie = new Point(Canvas.GetLeft(spelCanvas.Children[index]), Canvas.GetTop(spelCanvas.Children[index]));       
+            Canvas.SetLeft(spelCanvas.Children[index], Positie.X + Snelheid);
         }
-        public void Maakvrij()
+
+        public void Maakvrij(Canvas spelCanvas,int index)
         {
-          
+            spelCanvas.Children.Remove(spelCanvas.Children[index]);
         }
     }
 }
