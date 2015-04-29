@@ -24,7 +24,17 @@ namespace leren
 
         public void Beweeg(Canvas spelCanvas, int indexOfChild)
         {
-
+            //if ((Positie.X <= 0) || (Positie.X >= (spelCanvas.Width - 40)))
+            //{
+            //    Snelheid = Snelheid*(-1);
+            //}
+            //if ((Positie.Y <= 0) || (Positie.Y >= spelCanvas.Height - 40))
+            //{
+               
+            //    yChange = -yChange;
+            //}
+            //x = x + xChange;
+            //y = y + yChange;
         }
 
         public void Beweeg(Canvas spelCanvas, int indexOfChild,Key ingedrukteKnop){

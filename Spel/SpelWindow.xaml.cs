@@ -35,7 +35,7 @@ namespace leren
             this.cs.Add(cs);
 
             spelKlok.Tick += spelKlok_Tick;
-            spelKlok.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            spelKlok.Interval = new TimeSpan(10000000/60);
             sp.Play();
         }
 
