@@ -85,22 +85,6 @@ namespace leren
             set { graad = value; }
         }
 
-        private void landlbl_Loaded(object sender, RoutedEventArgs e)
-        {
-            ListBox landBox = (ListBox)sender;
-            ListBoxItem landtext = new ListBoxItem();
-            landtext.Content = "Land:";
-            landBox.Items.Add(landtext);
-        }
-
-        private void stadlbl_Loaded(object sender, RoutedEventArgs e)
-        {
-            ListBox stadBox = (ListBox)sender;
-            ListBoxItem stadtext = new ListBoxItem();
-            stadtext.Content = "Stad:";
-            stadBox.Items.Add(stadtext);
-        }
-
         private void Moeilijk(int graad)
         {
             if (graad == 1)
