@@ -28,11 +28,11 @@ namespace leren
         public SpelWindow()
         {
             InitializeComponent();
-            ms = new MensSpeler();
-            ms.Teken(ballenSpel, 960, 350);
+            //ms = new MensSpeler();
+            //ms.Teken(ballenSpel, 960, 350);
             ComputerSpeler cs = new ComputerSpeler();
-            cs.Teken(ballenSpel, 0, 0);
-            this.cs.Add(cs);
+            cs.Teken(ballenSpel);
+           this.cs.Add(cs);
 
             spelKlok.Tick += spelKlok_Tick;
             spelKlok.Interval = new TimeSpan(10000000/60);
@@ -41,7 +41,7 @@ namespace leren
 
         void spelKlok_Tick(object sender, EventArgs e)
         {
-            cs[0].Beweeg(ballenSpel, 2);
+            cs[0].Beweeg(ballenSpel);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -51,14 +51,14 @@ namespace leren
                 case "Start/Stop":
                     if (spelKlok.IsEnabled == false)
                     {
-                        //start the timer and starts the game
+                        //Start de timer and start het spel
                         spelKlok.Start();
-                        //set focus on the canvas
+                        //zet focus op het canvas zodat de menselijke speler kan bewegen met het toetsenbord
                         ballenSpel.Focus();
                     }
                     else
                     {
-                        //stop the timer
+                        //stop de timer
                         spelKlok.Stop();
                     }   
                     break;
@@ -70,12 +70,12 @@ namespace leren
                     }
                     break;
                 case "Menu":
-                     //close current window and show the mainmenu   
+                     //Sluit current window en toon mainmenu   
                                       base.Show();
                         this.Close();
                     break;
                 case "Mute":
-                    //stop the music playing
+                    //stop de muziek
                      sp.Stop();
                     break;
             } 
@@ -84,13 +84,13 @@ namespace leren
 
         private void OnCanvasKeyDown(object sender, KeyEventArgs e)
         {
-            //move block with human input
-            ms.Beweeg(ballenSpel, 1, e.Key);
+            //Bewegen na toets ingedrukt
+            //ms.Beweeg(ballenSpel, 1, e.Key);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //stop the music playing
+            //stop de muziek
             sp.Stop();
         }
     }
