@@ -61,10 +61,21 @@ namespace leren
 
         public bool Geraakt(Canvas spelCanvas)
         {
-            for (int i=1;i<=spelCanvas.Children.Count-2;i++){
-
+            int aantalGebotst=0;
+            foreach (UIElement element in spelCanvas.Children)
+            {              
+                    Rectangle se = element as Rectangle;
+                    if ((Positie().X <= (se.Margin.Left + se.Width) && Positie().X >= se.Margin.Left) && Positie().Y <= (se.Margin.Top + se.Height) && Positie().Y >= se.Margin.Top)
+                    {
+                        aantalGebotst++; 
+                        //Hij controleerd zichzelf altijd 1 keer maar we willen weten of een ander object op die locatie is
+                        if (aantalGebotst>1){
+                            return true;
+                        }
+                        
+                    }                      
             }
-            return true;
+            return false;
         }
 
         public Point Positie()
