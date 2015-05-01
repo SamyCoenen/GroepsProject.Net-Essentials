@@ -21,22 +21,31 @@ namespace leren
         {
             veranderKleur(new SolidColorBrush(Colors.Green));
         }
+
         public void Beweeg(Canvas spelCanvas)
-        {        
-            if (Positie().X+ XVerplaatsing > spelCanvas.Width - Grootte || Positie().X + XVerplaatsing < 0)
+        {
+            bool geraakt = Geraakt(spelCanvas);
+            Point positie = new Point(Positie().X + XVerplaatsing, Positie().Y +YVerplaatsing);
+            if (positie.X > spelCanvas.Width - Grootte|| positie.X < 0 || geraakt == true)
             {
                 XVerplaatsing = -XVerplaatsing;
             }
-            if (Positie().Y + YVerplaatsing > spelCanvas.Height - Grootte || Positie().Y + YVerplaatsing < 0)
+            if (positie.Y > spelCanvas.Height - Grootte|| positie.Y< 0 || geraakt == true)
             {
                 YVerplaatsing = -YVerplaatsing;
-            }
-            se.Margin = new Thickness(Positie().X + XVerplaatsing, Positie().Y + YVerplaatsing, 0, 0);
+            }         
+            se.Margin = new Thickness(positie.X, positie.Y, 0, 0);
         }
 
         public void Maakvrij(Canvas spelCanvas,int index)
         {
             spelCanvas.Children.Remove(se);
+            //this.Draw.Dispose();
+            //if (disposing && (components != null))
+            //{
+            //    components.Dispose();
+            //}
+            //base.Dispose(disposing);
         }
     }
 }

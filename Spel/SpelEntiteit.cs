@@ -21,6 +21,7 @@ namespace leren
         private double yChange = 5;
         protected Rectangle se;
         private int grootte = 40;
+        private static readonly Random r1 = new Random();
         
         public SpelEntiteit()
         {
@@ -37,9 +38,8 @@ namespace leren
         }
 
         public void Teken(Canvas spelCanvas)
-        {
-            Random r1 = new Random();
-            se.Margin = new Thickness(r1.Next(0, Convert.ToInt32(spelCanvas.Width-grootte)),r1.Next(0,Convert.ToInt32(spelCanvas.Height-grootte)),0,0);
+        {            
+            se.Margin = new Thickness(r1.Next(0, Convert.ToInt32(spelCanvas.Width-grootte)),r1.Next(0,Convert.ToInt32(spelCanvas.Height-grootte)),0,0);  
             spelCanvas.Children.Add(se);
         }
 
@@ -61,18 +61,20 @@ namespace leren
 
         public bool Geraakt(Canvas spelCanvas)
         {
-            int aantalGebotst=0;
+            int geraakt=0;
+            Point positie = new Point(Positie().X+xChange, Positie().Y+yChange);
+            Rect rect2 = new Rect(positie.X, positie.Y, se.Width, se.Height);
             foreach (UIElement element in spelCanvas.Children)
-            {              
-                    Rectangle se = element as Rectangle;
-                    if ((Positie().X <= (se.Margin.Left + se.Width) && Positie().X >= se.Margin.Left) && Positie().Y <= (se.Margin.Top + se.Height) && Positie().Y >= se.Margin.Top)
-                    {
-                        aantalGebotst++; 
-                        //Hij controleerd zichzelf altijd 1 keer maar we willen weten of een ander object op die locatie is
-                        if (aantalGebotst>1){
-                            return true;
-                        }
-                        
+            {
+                  Rectangle el = element as Rectangle;
+                  Rect rect1 = new Rect(el.Margin.Left , el.Margin.Top, el.Width, el.Height);                  
+                   if (rect1.IntersectsWith(rect2))
+                   {
+                       geraakt++;
+                       if (geraakt > 1)
+                       {
+                           return true;
+                       }
                     }                      
             }
             return false;
