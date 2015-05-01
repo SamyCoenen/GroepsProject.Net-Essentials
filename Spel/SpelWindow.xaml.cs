@@ -81,7 +81,6 @@ namespace leren
             } 
         }
 
-
         private void OnCanvasKeyDown(object sender, KeyEventArgs e)
         {
             //Bewegen na toets ingedrukt
