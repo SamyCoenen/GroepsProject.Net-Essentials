@@ -22,7 +22,7 @@ namespace leren
     public partial class SpelWindow : Window
     {
         private List<ComputerSpeler> cs = new List<ComputerSpeler>();
-        private MensSpeler ms;
+        //private MensSpeler ms;
         private SoundPlayer sp = new SoundPlayer("../../Kernkraft.wav");
         private DispatcherTimer spelKlok = new DispatcherTimer();
         public SpelWindow()
@@ -30,10 +30,11 @@ namespace leren
             InitializeComponent();
             //ms = new MensSpeler();
             //ms.Teken(ballenSpel, 960, 350);
+            for (int i=0;i<2;i++){
             ComputerSpeler cs = new ComputerSpeler();
             cs.Teken(ballenSpel);
            this.cs.Add(cs);
-
+        }
             spelKlok.Tick += spelKlok_Tick;
             spelKlok.Interval = new TimeSpan(10000000/60);
             sp.Play();
@@ -41,7 +42,11 @@ namespace leren
 
         void spelKlok_Tick(object sender, EventArgs e)
         {
-            cs[0].Beweeg(ballenSpel);
+            for (int i = 0;i<cs.Count(); i++)
+            {
+                cs[i].Beweeg(ballenSpel);
+            }
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
