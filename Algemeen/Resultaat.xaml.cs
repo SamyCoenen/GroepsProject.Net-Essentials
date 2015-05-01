@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace leren
 {
     // Resultaat Window
-    // Date: 06/04/15 - Last edit: 06/04/15
+    // Date: 06/04/15 - Last edit: 29/04/15
     // Author: Timothy Vanderaerden
 
     public partial class Resultaat : Window
@@ -86,13 +86,8 @@ namespace leren
 
         private void menuBtn_Click(object sender, RoutedEventArgs e)
         {
-            CloseWindows();
-        }
-
-        private void CloseWindows()
-        {
-            for (int intCounter = App.Current.Windows.Count - 1; intCounter > 1; intCounter--)
-                App.Current.Windows[intCounter].Close();
+            WindowHelper close = new WindowHelper();
+            close.CloseWindows();
         }
     }
 }

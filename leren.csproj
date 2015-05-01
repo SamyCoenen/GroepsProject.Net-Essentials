@@ -78,6 +78,7 @@
     <Compile Include="Algemeen\StudentenPunten.xaml.cs">
       <DependentUpon>StudentenPunten.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Algemeen\WindowHelper.cs" />
     <Compile Include="Kennis\Aardrijkskunde.xaml.cs">
       <DependentUpon>Aardrijkskunde.xaml</DependentUpon>
     </Compile>
