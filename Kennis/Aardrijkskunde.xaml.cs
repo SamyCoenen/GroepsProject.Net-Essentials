@@ -225,106 +225,25 @@ namespace leren
 
         private void Resultaat_Makkelijk()
         {
-            int juist = 0;
-            land1box.Foreground = Brushes.Red;
-            land2box.Foreground = Brushes.Red;
-            land3box.Foreground = Brushes.Red;
-            land4box.Foreground = Brushes.Red;
-            land5box.Foreground = Brushes.Red;
-
-            if (land1box.Items.Contains(landenList[0]))
-            {
-                land1box.Foreground = Brushes.Green;
-                juist++;
-            }
-            if (land2box.Items.Contains(landenList[1]))
-            {
-                land2box.Foreground = Brushes.Green;
-                juist++;
-            }
-            if (land3box.Items.Contains(landenList[2]))
-            {
-                land3box.Foreground = Brushes.Green;
-                juist++;
-            }
-            if (land4box.Items.Contains(landenList[3]))
-            {
-                land4box.Foreground = Brushes.Green;
-                juist++;
-            }
-            if (land5box.Items.Contains(landenList[4]))
-            {
-                land5box.Foreground = Brushes.Green;
-                juist++;
-            }
+            List<string> antwoorden = new List<string>{land1box.Items[0].ToString(), land2box.Items[0].ToString(), land3box.Items[0].ToString(), land4box.Items[0].ToString(), land5box.Items[0].ToString() };
+            List<string> oplossingen = new List<string>(landenList);
+            Resultaat resultaatWindow = new Resultaat("Aardrijkskunde");
+            resultaatWindow.AntwoordenAarderijkskunde = antwoorden;
+            resultaatWindow.OplossingenAarderijkskunde = oplossingen;
+            resultaatWindow.Graad = graad;
+            resultaatWindow.Show();
         }
 
         private void Resultaat_Moeilijk()
         {
-            double juist = 0;
-            land1box.Foreground = Brushes.Red;
-            land2box.Foreground = Brushes.Red;
-            land3box.Foreground = Brushes.Red;
-            land4box.Foreground = Brushes.Red;
-            land5box.Foreground = Brushes.Red;
-
-            stad1box.Foreground = Brushes.Red;
-            stad2box.Foreground = Brushes.Red;
-            stad3box.Foreground = Brushes.Red;
-            stad4box.Foreground = Brushes.Red;
-            stad5box.Foreground = Brushes.Red;
-
-            if (land1box.Items.Contains(landenList[0]))
-            {
-                land1box.Foreground = Brushes.Green;
-                juist += 0.5;
-            }
-            if (land2box.Items.Contains(landenList[1]))
-            {
-                land2box.Foreground = Brushes.Green;
-                juist += 0.5;
-            }
-            if (land3box.Items.Contains(landenList[2]))
-            {
-                land3box.Foreground = Brushes.Green;
-                juist += 0.5;
-            }
-            if (land4box.Items.Contains(landenList[3]))
-            {
-                land4box.Foreground = Brushes.Green;
-                juist += 0.5;
-            }
-            if (land5box.Items.Contains(landenList[4]))
-            {
-                land5box.Foreground = Brushes.Green;
-                juist += 0.5;
-            }
-
-            if (stad1box.Items.Contains(stedenList[0]))
-            {
-                stad1box.Foreground = Brushes.Green;
-                juist += 0.5;
-            }
-            if (stad2box.Items.Contains(stedenList[1]))
-            {
-                stad2box.Foreground = Brushes.Green;
-                juist += 0.5;
-            }
-            if (stad3box.Items.Contains(stedenList[2]))
-            {
-                stad3box.Foreground = Brushes.Green;
-                juist += 0.5;
-            }
-            if (stad4box.Items.Contains(stedenList[3]))
-            {
-                stad4box.Foreground = Brushes.Green;
-                juist += 0.5;
-            }
-            if (stad5box.Items.Contains(stedenList[4]))
-            {
-                stad5box.Foreground = Brushes.Green;
-                juist += 0.5;
-            }
+            List<string> antwoorden = new List<string> { land1box.Items[0].ToString(), land2box.Items[0].ToString(), land3box.Items[0].ToString(), land4box.Items[0].ToString(), land5box.Items[0].ToString(), stad1box.Items[0].ToString(), stad2box.Items[0].ToString(), stad3box.Items[0].ToString(), stad4box.Items[0].ToString(), stad5box.Items[0].ToString() };
+            List<string> oplossingen = new List<string>(landenList);
+            oplossingen.AddRange(stedenList);
+            Resultaat resultaatWindow = new Resultaat("Aardrijkskunde");
+            resultaatWindow.AntwoordenAarderijkskunde = antwoorden;
+            resultaatWindow.OplossingenAarderijkskunde = oplossingen;
+            resultaatWindow.Graad = graad;
+            resultaatWindow.Show();
         }
     }
 }

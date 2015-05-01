@@ -110,7 +110,7 @@ namespace leren
                 keuzeAntwoorden.Add(antwoord);
                 if (vragenGeschiedenis.Count >= 5)
                 {
-                    Resultaat resultaatWindow = new Resultaat();
+                    Resultaat resultaatWindow = new Resultaat("Kennis");
                     resultaatWindow.Vragen = keuzevragen;
                     resultaatWindow.Antwoorden = keuzeAntwoorden;
                     resultaatWindow.Show();

@@ -22,17 +22,29 @@ namespace leren
     {
         private List<KeuzeVraag> vragen = new List<KeuzeVraag>();
         private List<KeuzeAntwoord> antwoorden = new List<KeuzeAntwoord>();
+        private List<string> antwoordenAarderijkskunde = new List<string>();
+        private List<string> oplossingenAarderijkskunde = new List<string>();
+        private int graad;
         private int punten;
+        private string vak;
 
-        public Resultaat()
+        public Resultaat(string v)
         {
             InitializeComponent();
             Loaded+=Resultaat_Loaded;
+            vak = v;
         }
 
         private void Resultaat_Loaded(object sender, RoutedEventArgs e)
         {
-            printResultaat();
+            if (vak.Equals("Kennis"))
+            {
+                printResultaat();
+            }
+            else
+            {
+                printResultaatAardrijkskunde(antwoordenAarderijkskunde, oplossingenAarderijkskunde, graad);
+            }
         }
 
         internal List<KeuzeVraag> Vragen
@@ -84,10 +96,71 @@ namespace leren
             }
         }
 
+        private void printResultaatAardrijkskunde(List<string> antwoorden, List<string> oplossingen, int graad) 
+        {
+            resultatenGrid.Children.Clear();
+            resultatenGrid.RowDefinitions.Clear();
+            for (int i = 0; antwoorden.Count > i; i++)
+            {
+                if (antwoorden[i] == oplossingen[i])
+                {
+                    Label vraaglbl = new Label();
+                    vraaglbl.Content = "Oplossing " + oplossingen[i] +
+                        Environment.NewLine + "Uw antwoord: " + antwoorden[i];
+                    vraaglbl.Foreground = Brushes.Green;
+                    RowDefinition row = new RowDefinition();
+                    row.Height = new GridLength(45);
+                    resultatenGrid.RowDefinitions.Add(row);
+                    Grid.SetRow(vraaglbl, i);
+                    resultatenGrid.Children.Add(vraaglbl);
+                    punten++;
+                }
+                else
+                {
+                    Label vraaglbl = new Label();
+                    vraaglbl.Content = "Oplossing " + oplossingen[i] +
+                        Environment.NewLine + "Uw antwoord: " + antwoorden[i];
+                    vraaglbl.Foreground = Brushes.Red;
+                    RowDefinition row = new RowDefinition();
+                    row.Height = new GridLength(45);
+                    resultatenGrid.RowDefinitions.Add(row);
+                    Grid.SetRow(vraaglbl, i);
+                    resultatenGrid.Children.Add(vraaglbl);
+                }
+                if (graad == 0)
+                {
+                    resultaatlbl.Content = "Uw score is: " + punten + "/" + oplossingen.Count.ToString();
+                }
+                else
+                {
+                    resultaatlbl.Content = "Uw score is: " + punten + "/" + oplossingen.Count.ToString();
+                }
+            }
+        }
+
         private void menuBtn_Click(object sender, RoutedEventArgs e)
         {
             WindowHelper close = new WindowHelper();
             close.CloseWindows();
         }
+
+        public List<string> OplossingenAarderijkskunde
+        {
+            get { return oplossingenAarderijkskunde; }
+            set { oplossingenAarderijkskunde = value; }
+        }
+
+        public List<string> AntwoordenAarderijkskunde
+        {
+            get { return antwoordenAarderijkskunde; }
+            set { antwoordenAarderijkskunde = value; }
+        }
+
+        public int Graad
+        {
+            get { return graad; }
+            set { graad = value; }
+        }
+
     }
 }
