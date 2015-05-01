@@ -17,24 +17,35 @@ namespace leren
         //Date: 15/04/2014 23:08
         //Author: Samy Coenen
 
-        public ComputerSpeler(): base(new SolidColorBrush(Colors.Green))
+        public ComputerSpeler()
         {
-            
+            veranderKleur(new SolidColorBrush(Colors.Green));
         }
-        public void Beweeg(Canvas spelCanvas, int index)
-        {
-            Positie = new Point(Canvas.GetLeft(spelCanvas.Children[index]),Canvas.GetTop(spelCanvas.Children[index]));
 
-            if (Positie.X > spelCanvas.Width - 40 || Positie.X < 0)
+        public void Beweeg(Canvas spelCanvas)
+        {
+            bool geraakt = Geraakt(spelCanvas);
+            Point positie = new Point(Positie().X + XVerplaatsing, Positie().Y +YVerplaatsing);
+            if (positie.X > spelCanvas.Width - Grootte|| positie.X < 0 || geraakt == true)
             {
-                Snelheid = Snelheid * (-1);
+                XVerplaatsing = -XVerplaatsing;
             }
-            Canvas.SetLeft(spelCanvas.Children[index], Positie.X + Snelheid);
+            if (positie.Y > spelCanvas.Height - Grootte|| positie.Y< 0 || geraakt == true)
+            {
+                YVerplaatsing = -YVerplaatsing;
+            }         
+            se.Margin = new Thickness(positie.X, positie.Y, 0, 0);
         }
 
         public void Maakvrij(Canvas spelCanvas,int index)
         {
-            spelCanvas.Children.Remove(spelCanvas.Children[index]);
+            spelCanvas.Children.Remove(se);
+            //this.Draw.Dispose();
+            //if (disposing && (components != null))
+            //{
+            //    components.Dispose();
+            //}
+            //base.Dispose(disposing);
         }
     }
 }

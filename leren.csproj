@@ -82,6 +82,7 @@
     <Compile Include="Kennis\Aardrijkskunde.xaml.cs">
       <DependentUpon>Aardrijkskunde.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoginException.cs" />
     <Compile Include="Spel\ComputerSpeler.cs" />
     <Compile Include="Algemeen\IODatabase.cs" />
     <Compile Include="Kennis\Kennis.xaml.cs">

@@ -12,5 +12,6 @@
         <TextBlock TextWrapping="WrapWithOverflow"  Name="errorLabel" HorizontalAlignment="Left" Margin="10,267,0,0" VerticalAlignment="Top" Width="194" Height="42" FontWeight="Bold" FontStyle="Italic" Background="OrangeRed" Visibility="Hidden"/>
         <RadioButton Name="leekrachtRadioButton" Content="Leerkracht"  VerticalAlignment="Top" Margin="10,30,394,0" Checked="studentRadioButton_Checked"/>
         <RadioButton Name="studentRadioButton" Content="Student" VerticalAlignment="Top" IsChecked="True" Margin="10,10,409,0" Checked="studentRadioButton_Checked" />
+        <Button Content="Registreer" HorizontalAlignment="Left" Margin="398,267,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
