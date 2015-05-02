@@ -24,11 +24,12 @@ namespace leren
             InitializeComponent();
             ms = new MensSpeler();
             ms.Teken(ballenSpel);
-            for (int i=0;i<2;i++){
-            ComputerSpeler cs = new ComputerSpeler();
-            cs.Teken(ballenSpel);
-           this.cs.Add(cs);
-        }
+            for (int i=0;i<2;i++)
+            {
+            ComputerSpeler cp = new ComputerSpeler();
+            cp.Teken(ballenSpel);
+            cs.Add(cp);
+            }
             spelKlok.Tick += spelKlok_Tick;
             spelKlok.Interval = new TimeSpan(10000000/60);
             sp.Play();
