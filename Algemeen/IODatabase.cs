@@ -73,5 +73,26 @@ namespace leren
             writeout.Close();
         }
 
+        public void SchrijfResultaatAarderijkskunde(List<string> antwoorden, List<string> oplossingen, string naam, int graad)
+        {
+            StringBuilder resultaat = new StringBuilder();
+            resultaat.Append(naam + ":" + graad.ToString() + "(");
+
+            for (int i = 0; i < oplossingen.Count; i++)
+            {
+                int juist = 0;
+                if (antwoorden[i].ToString() == oplossingen[i].ToString())
+                {
+                    juist = 1;
+                }
+                resultaat.Append(oplossingen[i].ToString() + ":" + antwoorden[i].ToString() + ":" + juist + "$");
+            }
+            resultaat.Append(")$");
+
+            StreamWriter writeout = new StreamWriter("../../Data/aardrijkskunderesultaat.txt", true);
+            writeout.WriteLine(resultaat);
+            writeout.Close();
+        }
+
     }
 }

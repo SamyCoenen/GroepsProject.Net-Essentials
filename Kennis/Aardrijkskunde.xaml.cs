@@ -227,6 +227,8 @@ namespace leren
         {
             List<string> antwoorden = new List<string>{land1box.Items[0].ToString(), land2box.Items[0].ToString(), land3box.Items[0].ToString(), land4box.Items[0].ToString(), land5box.Items[0].ToString() };
             List<string> oplossingen = new List<string>(landenList);
+            IODatabase database = new IODatabase("Aardrijkskunde");
+            database.SchrijfResultaatAarderijkskunde(antwoorden, oplossingen, Properties.Settings.Default.userName.ToString(), graad);
             Resultaat resultaatWindow = new Resultaat("Aardrijkskunde");
             resultaatWindow.AntwoordenAarderijkskunde = antwoorden;
             resultaatWindow.OplossingenAarderijkskunde = oplossingen;
@@ -239,6 +241,8 @@ namespace leren
             List<string> antwoorden = new List<string> { land1box.Items[0].ToString(), land2box.Items[0].ToString(), land3box.Items[0].ToString(), land4box.Items[0].ToString(), land5box.Items[0].ToString(), stad1box.Items[0].ToString(), stad2box.Items[0].ToString(), stad3box.Items[0].ToString(), stad4box.Items[0].ToString(), stad5box.Items[0].ToString() };
             List<string> oplossingen = new List<string>(landenList);
             oplossingen.AddRange(stedenList);
+            IODatabase database = new IODatabase("Aardrijkskunde");
+            database.SchrijfResultaatAarderijkskunde(antwoorden, oplossingen, Properties.Settings.Default.userName.ToString(), graad);
             Resultaat resultaatWindow = new Resultaat("Aardrijkskunde");
             resultaatWindow.AntwoordenAarderijkskunde = antwoorden;
             resultaatWindow.OplossingenAarderijkskunde = oplossingen;
