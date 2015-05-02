@@ -6,22 +6,24 @@
         <Label Content="Sleep de landen op de kaart" HorizontalAlignment="Left" Margin="787,10,0,0" VerticalAlignment="Top"/>
         <Image Source="../images/europe_map_hulp.jpg" HorizontalAlignment="Left" VerticalAlignment="Top" Width="782" Height="638"/>
         <ListBox Name="landen" HorizontalAlignment="Left" Height="240" Margin="787,33,0,0" VerticalAlignment="Top" Width="195" PreviewMouseDown="landen_PreviewMouseDown"/>
-        <ListBox Name="land1box" ToolTip="Land" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="152,369,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
+        <ListBox Name="land1box" ToolTip="Land" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="10,314,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
         <ListBox Name="land2box" ToolTip="Land" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="180,67,0,0"  VerticalAlignment="Top" Width="84" Cursor="IBeam" AllowDrop="True"/>
         <ListBox Name="land3box" ToolTip="Land" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="56,491,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
         <ListBox Name="land4box" ToolTip="Land" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="259,301,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
-        <ListBox Name="land5box" ToolTip="Land" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="10,314,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
+        <ListBox Name="land5box" ToolTip="Land" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="152,369,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
 
         <Grid Name="stedenGrid" Visibility="Hidden">
-            <ListBox Name="steden" HorizontalAlignment="Left" Height="240" Margin="787,312,0,0" VerticalAlignment="Top" Width="195" PreviewMouseDown="landen_PreviewMouseDown"/>
-            <ListBox Name="stad1box" ToolTip="Stad" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="152,396,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
-            <ListBox Name="stad2box" ToolTip="Stad" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="178,95,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
-            <ListBox Name="stad3box" ToolTip="Stad" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="56,518,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
-            <ListBox Name="stad4box" ToolTip="Stad" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="260,329,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
-            <ListBox Name="stad5box" ToolTip="Stad" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="land_Drop" HorizontalAlignment="Left" Height="24" Margin="10,340,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
+            <ListBox Name="steden" HorizontalAlignment="Left" Height="230" Margin="787,312,0,0" VerticalAlignment="Top" Width="195" PreviewMouseDown="steden_PreviewMouseDown"/>
+            <ListBox Name="stad1box" ToolTip="Stad" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="stad_Drop" HorizontalAlignment="Left" Height="24" Margin="10,340,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
+            <ListBox Name="stad2box" ToolTip="Stad" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="stad_Drop" HorizontalAlignment="Left" Height="24" Margin="178,95,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
+            <ListBox Name="stad3box" ToolTip="Stad" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="stad_Drop" HorizontalAlignment="Left" Height="24" Margin="56,518,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
+            <ListBox Name="stad4box" ToolTip="Stad" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="stad_Drop" HorizontalAlignment="Left" Height="24" Margin="260,329,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
+            <ListBox Name="stad5box" ToolTip="Stad" PreviewMouseUp="drop_PreviewMouseUp" DragEnter="land_DragEnter" PreviewDragEnter="land_PreviewDragOver" Drop="stad_Drop" HorizontalAlignment="Left" Height="24" Margin="152,396,0,0" VerticalAlignment="Top" Width="87" Cursor="IBeam" AllowDrop="True"/>
+
             <Label Content="Sleep de steden naar het juiste land" HorizontalAlignment="Left" Margin="787,281,0,0" VerticalAlignment="Top" Width="205" Height="31"/>
         </Grid>
         <Button Content="Resultaat" HorizontalAlignment="Left" Margin="907,598,0,0" VerticalAlignment="Top" Width="75" Click="Resultaat"/>
-        <Button Content="Menu" HorizontalAlignment="Left" Margin="787,598,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Menu" HorizontalAlignment="Left" Margin="787,598,0,0" VerticalAlignment="Top" Width="75" Click="Menu_Click"/>
+        <Label Name="error" HorizontalAlignment="Left" Margin="787,554,0,0" Foreground="Red" FontWeight="Bold" VerticalAlignment="Top" Width="195" Height="28"/>
     </Grid>
 </Window>
