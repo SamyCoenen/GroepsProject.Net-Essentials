@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
+using leren.Spel;
 
 namespace leren
 {
@@ -22,14 +16,14 @@ namespace leren
     public partial class SpelWindow : Window
     {
         private List<ComputerSpeler> cs = new List<ComputerSpeler>();
-        //private MensSpeler ms;
+        private MensSpeler ms;
         private SoundPlayer sp = new SoundPlayer("../../Kernkraft.wav");
         private DispatcherTimer spelKlok = new DispatcherTimer();
         public SpelWindow()
         {
             InitializeComponent();
-            //ms = new MensSpeler();
-            //ms.Teken(ballenSpel, 960, 350);
+            ms = new MensSpeler();
+            ms.Teken(ballenSpel);
             for (int i=0;i<2;i++){
             ComputerSpeler cs = new ComputerSpeler();
             cs.Teken(ballenSpel);
@@ -45,8 +39,7 @@ namespace leren
             for (int i = 0;i<cs.Count(); i++)
             {
                 cs[i].Beweeg(ballenSpel);
-            }
-           
+            }        
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -89,7 +82,7 @@ namespace leren
         private void OnCanvasKeyDown(object sender, KeyEventArgs e)
         {
             //Bewegen na toets ingedrukt
-            //ms.Beweeg(ballenSpel, 1, e.Key);
+            ms.Beweeg(ballenSpel, e.Key);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

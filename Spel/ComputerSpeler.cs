@@ -19,14 +19,14 @@ namespace leren
 
         public ComputerSpeler()
         {
-            veranderKleur(new SolidColorBrush(Colors.Green));
+            VeranderKleur(new SolidColorBrush(Colors.Green));
         }
 
         public void Beweeg(Canvas spelCanvas)
         {
             bool geraakt = Geraakt(spelCanvas);
             Point positie = new Point(Positie().X + XVerplaatsing, Positie().Y +YVerplaatsing);
-            if (positie.X > spelCanvas.Width - Grootte|| positie.X < 0 || geraakt == true)
+            if (positie.X > spelCanvas.Width - Grootte || positie.X < 0||geraakt == true)
             {
                 XVerplaatsing = -XVerplaatsing;
             }

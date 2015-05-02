@@ -16,34 +16,33 @@ namespace leren
     //Author: Samy Coenen
     abstract class SpelEntiteit
     {
-        private double snelheid = 1.0;
-        private double xChange = 5;
-        private double yChange = 5;
+        private double _snelheid = 1.0;
+        private double _xChange = 5;
+        private double _yChange = 5;
         protected Rectangle se;
-        private int grootte = 40;
+        private int _grootte = 40;
         private static readonly Random r1 = new Random();
         
         public SpelEntiteit()
         {
             se = new Rectangle();
-            se.Height = grootte;
-            se.Width = grootte;
+            se.Height = _grootte;
+            se.Width = _grootte;
         }
 
         public void Teken(Canvas spelCanvas, double x, double y)
         {
-            Canvas.SetLeft(se, x);
-            Canvas.SetTop(se, y);
+            se.Margin = new Thickness(x, y, 0, 0);
             spelCanvas.Children.Add(se);
         }
 
         public void Teken(Canvas spelCanvas)
         {            
-            se.Margin = new Thickness(r1.Next(0, Convert.ToInt32(spelCanvas.Width-grootte)),r1.Next(0,Convert.ToInt32(spelCanvas.Height-grootte)),0,0);  
+            se.Margin = new Thickness(r1.Next(0, Convert.ToInt32(spelCanvas.Width-_grootte)),r1.Next(0,Convert.ToInt32(spelCanvas.Height-_grootte)),0,0);  
             spelCanvas.Children.Add(se);
         }
 
-        public void veranderKleur(SolidColorBrush kleur)
+        public void VeranderKleur(SolidColorBrush kleur)
         {
             se.Fill = kleur;
         }
@@ -55,24 +54,25 @@ namespace leren
 
         public double Snelheid
         {
-            get { return snelheid; }
-            set { snelheid = value; }
+            get { return _snelheid; }
+            set { _snelheid = value; }
         }
 
         public bool Geraakt(Canvas spelCanvas)
         {
             int geraakt=0;
-            Point positie = new Point(Positie().X+xChange, Positie().Y+yChange);
+            Point positie = new Point(Positie().X+_xChange, Positie().Y+_yChange);
             Rect rect2 = new Rect(positie.X, positie.Y, se.Width, se.Height);
             foreach (UIElement element in spelCanvas.Children)
             {
                   Rectangle el = element as Rectangle;
-                  Rect rect1 = new Rect(el.Margin.Left , el.Margin.Top, el.Width, el.Height);                  
+                  Rect rect1 = new Rect( el.Margin.Left , el.Margin.Top, el.Width, el.Height);                  
                    if (rect1.IntersectsWith(rect2))
                    {
-                       geraakt++;
+                       geraakt++;                       
                        if (geraakt > 1)
                        {
+                           Console.WriteLine(geraakt);
                            return true;
                        }
                     }                      
@@ -88,20 +88,20 @@ namespace leren
 
         public int Grootte
         {
-            get { return grootte; }
-            set { grootte = value; }
+            get { return _grootte; }
+            set { _grootte = value; }
         }
 
         public double XVerplaatsing
         {
-            get { return xChange; }
-            set { xChange = value; }
+            get { return _xChange; }
+            set { _xChange = value; }
         }        
 
         public double YVerplaatsing
         {
-            get { return yChange; }
-            set { yChange = value; }
+            get { return _yChange; }
+            set { _yChange = value; }
         }
     }
 }

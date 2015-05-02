@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using leren.Algemeen;
 namespace leren
 {
@@ -38,17 +25,10 @@ namespace leren
             {
                 gebruiker = "leerkracht";
             }
-            GebruikersLijst gebruikers = new GebruikersLijst(gebruiker);
-            //Controleren of de velden "naam" en "wachtwoord" ingevuld zijn.
-            if (naamTextBox.Text.Length == 0||wachtwoordPasswordBox.Password.Length==0)
+            GebruikersLijst gebruikers = new GebruikersLijst(gebruiker);         
+             if(gebruikers.Controle(naamTextBox.Text,wachtwoordPasswordBox.Password))
             {
-                errorLabel.Visibility = System.Windows.Visibility.Visible;
-                errorLabel.Text = "U moet een naam en wachtwoord ingeven";
-            }
-            //controleren of de credentials juist zijn en vervolgens juiste window tonen.
-            else if(gebruikers.Controle(naamTextBox.Text,wachtwoordPasswordBox.Password))
-            {
-                this.Hide();
+                Hide();
                 if (gebruiker.Equals("student"))
                 {
                     Properties.Settings.Default.userName = naamTextBox.Text;
@@ -59,12 +39,8 @@ namespace leren
                 else
                 {
                     leerkrachtVenster leerkracht = new leerkrachtVenster();
-                    leerkracht.Show();
-                    
-                }
-                
-                
-                
+                    leerkracht.Show();                  
+                }                                             
             }
             else
                 //Een error geven bij verkeerde credentials.
@@ -72,14 +48,11 @@ namespace leren
                 errorLabel.Visibility = System.Windows.Visibility.Visible;
                 errorLabel.Text = "Verkeerde naam of wachtwoord";
             }
-
         }
 
         private void studentRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             naamTextBox.Focus();
-        }
-
-       
+        }      
     }
 }

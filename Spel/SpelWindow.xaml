@@ -13,9 +13,7 @@
             <RowDefinition Height="650"/>
             <RowDefinition Height="64"/>          
         </Grid.RowDefinitions>
-        <Canvas Grid.Row="0" Background="SlateGray" Focusable="True" Name="ballenSpel" VerticalAlignment="Center" Width="1000" Height="600" KeyDown="OnCanvasKeyDown">
-            <Rectangle Height="100" Width="300" Canvas.Bottom="0" Canvas.Right="350" Fill="Blue" />
-        </Canvas>
+        <Canvas Grid.Row="0" Background="SlateGray" Focusable="True" Name="ballenSpel" VerticalAlignment="Center" Width="1000" Height="600" KeyDown="OnCanvasKeyDown"/>
         <Button Grid.Row="1" Grid.Column="0" Focusable="False" Content="Start/Stop" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="188" Height="56" Click="Button_Click"/>
         <Button Grid.Row="1" Grid.Column="1" Focusable="False" Content="Reset" HorizontalAlignment="Right" VerticalAlignment="Top" Width="188" Height="56" Click="Button_Click"/>
         <Button Grid.Row="1" Grid.Column="2" Focusable="False" Content="Mute" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Height="56" Click="Button_Click"/>

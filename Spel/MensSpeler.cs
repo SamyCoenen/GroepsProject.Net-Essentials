@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using leren.Spel;
 using System.Windows.Input;
-using System.Windows;
+using System.Windows.Media;
 
-namespace leren
+namespace leren.Spel
 {
     class MensSpeler: SpelEntiteit,IBeweegbaar
     {
@@ -19,34 +12,45 @@ namespace leren
         //Author: Samy Coenen           
         public MensSpeler()
         {
-            veranderKleur(new SolidColorBrush(Colors.Blue));
+            VeranderKleur(new SolidColorBrush(Colors.Blue));
         }
 
         public void Beweeg(Canvas spelCanvas)
         {
-            
+            bool geraakt = Geraakt(spelCanvas);
+            Point positie = new Point(Positie().X + XVerplaatsing, Positie().Y + YVerplaatsing);
+            if (positie.X > spelCanvas.Width - Grootte || positie.X < 0 || geraakt == true)
+            {
+                XVerplaatsing = -XVerplaatsing;
+            }
+            if (positie.Y > spelCanvas.Height - Grootte || positie.Y < 0 || geraakt == true)
+            {
+                YVerplaatsing = -YVerplaatsing;
+            }
+            se.Margin = new Thickness(positie.X, positie.Y, 0, 0);
         }
 
-        //public void Beweeg(Canvas spelCanvas, int indexOfChild,Key ingedrukteKnop){
-        //    Positie = new Point(Canvas.GetLeft(spelCanvas.Children[indexOfChild]), Canvas.GetTop(spelCanvas.Children[indexOfChild]));
-        //    switch (ingedrukteKnop)
-        //    {
-        //        case Key.Left:
-        //            if (Canvas.GetLeft(spelCanvas.Children[indexOfChild]) >= 0) Canvas.SetLeft(spelCanvas.Children[indexOfChild], Positie.X - Snelheid);
-        //            break;
-        //        case Key.Right:
-        //             Canvas.SetLeft(spelCanvas.Children[indexOfChild], Positie.X + Snelheid);
-        //            break;
-        //        case Key.Up:
-        //            if (Canvas.GetTop(spelCanvas.Children[indexOfChild]) >= 0) Canvas.SetTop(spelCanvas.Children[indexOfChild], Positie.Y - Snelheid);
-        //            break;
-        //        case Key.Down:
-        //            Canvas.SetTop(spelCanvas.Children[indexOfChild], Positie.Y + Snelheid);
-        //            break;
-        //        default: 
-        //            return;
-        //    }
-        //}
+        public void Beweeg(Canvas spelCanvas, Key ingedrukteKnop)
+        {
+            Point positie1 = Positie();
+            switch (ingedrukteKnop)
+            {
+                case Key.Left:
+                    if (positie1.X-XVerplaatsing >= 0) se.Margin = new Thickness(positie1.X-XVerplaatsing, positie1.Y, 0, 0);
+                    break;
+                case Key.Right:
+                    if (positie1.X + XVerplaatsing <= spelCanvas.Width) se.Margin = new Thickness(positie1.X + XVerplaatsing, positie1.Y, 0, 0);
+                    break;
+                case Key.Up:
+                    if (positie1.Y - YVerplaatsing >= 0) se.Margin = new Thickness(positie1.X, positie1.Y-YVerplaatsing, 0, 0);
+                    break;
+                case Key.Down:
+                    if (positie1.Y + YVerplaatsing <= spelCanvas.Width) se.Margin = new Thickness(positie1.X, positie1.Y+YVerplaatsing, 0, 0);
+                    break;
+                default:
+                    return;
+            }
+        }
         public void Maakvrij(Canvas spelCanvas, int index)
         {
             spelCanvas.Children.Remove(spelCanvas.Children[index]);
