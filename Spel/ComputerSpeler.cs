@@ -1,4 +1,5 @@
-﻿using leren.Spel;
+﻿using System.Collections.Generic;
+using leren.Spel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -16,9 +17,9 @@ namespace leren
             VeranderKleur(new SolidColorBrush(Colors.Green));
         }
 
-        public void Beweeg(Canvas spelCanvas)
+        public void Beweeg(Canvas spelCanvas,List<ComputerSpeler> csList,MensSpeler msSpeler )
         {
-            bool geraakt = Geraakt(spelCanvas);
+            bool geraakt = Geraakt(csList, msSpeler);
             Point positie = new Point(Positie().X + XVerplaatsing, Positie().Y +YVerplaatsing);
             if (positie.X > spelCanvas.Width - Grootte || positie.X < 0||geraakt == true)
             {
