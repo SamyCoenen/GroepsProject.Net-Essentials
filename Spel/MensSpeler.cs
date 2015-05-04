@@ -36,16 +36,16 @@ namespace leren.Spel
             switch (ingedrukteKnop)
             {
                 case Key.Left:
-                    if (positie1.X-XVerplaatsing*3 >= 0) se.Margin = new Thickness(positie1.X-XVerplaatsing*3, positie1.Y, 0, 0);
+                    if (positie1.X - XVerplaatsing * Snelheid >= 0) se.Margin = new Thickness(positie1.X - XVerplaatsing * Snelheid, positie1.Y, 0, 0);
                     break;
                 case Key.Right:
-                    if (positie1.X + XVerplaatsing*3 <= spelCanvas.Width) se.Margin = new Thickness(positie1.X + XVerplaatsing*3, positie1.Y, 0, 0);
+                    if (positie1.X + XVerplaatsing * Snelheid <= spelCanvas.Width) se.Margin = new Thickness(positie1.X + XVerplaatsing * Snelheid, positie1.Y, 0, 0);
                     break;
                 case Key.Up:
-                    if (positie1.Y - YVerplaatsing*3 >= 0) se.Margin = new Thickness(positie1.X, positie1.Y-YVerplaatsing*3, 0, 0);
+                    if (positie1.Y - YVerplaatsing * Snelheid >= 0) se.Margin = new Thickness(positie1.X, positie1.Y - YVerplaatsing * Snelheid, 0, 0);
                     break;
                 case Key.Down:
-                    if (positie1.Y + YVerplaatsing*3 <= spelCanvas.Width) se.Margin = new Thickness(positie1.X, positie1.Y+YVerplaatsing*3, 0, 0);
+                    if (positie1.Y + YVerplaatsing * Snelheid <= spelCanvas.Width) se.Margin = new Thickness(positie1.X, positie1.Y + YVerplaatsing * Snelheid, 0, 0);
                     break;
                 default:
                     return;
