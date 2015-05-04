@@ -3,6 +3,9 @@ using System.IO;
 
 namespace leren.Algemeen
 {
+    //Deze klasse is nodig om al de gebruikergegevens te controleren/aan te passen
+    //Date: 16/04/2014 20:48
+    //Author: Samy Coenen
     class GebruikersLijst
     {
         private List<string> _naam;
@@ -31,7 +34,7 @@ namespace leren.Algemeen
             {
                 throw new LoginException("Deze naam bestaat niet");
             }
-            else if (wachtwoord.Equals(_wachtwoord[_naam.IndexOf(naam)]))
+            else if (!wachtwoord.Equals(_wachtwoord[_naam.IndexOf(naam)]))
             {
                 throw new LoginException("Uw naam of wachtwoord is niet juist");
             }
