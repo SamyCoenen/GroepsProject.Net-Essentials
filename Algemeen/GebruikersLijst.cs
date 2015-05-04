@@ -31,7 +31,7 @@ namespace leren.Algemeen
             {
                 throw new LoginException("Deze naam bestaat niet");
             }
-            else if (wachtwoord.Equals(_wachtwoord[_naam.IndexOf(naam)]))
+            else if (!wachtwoord.Equals(_wachtwoord[_naam.IndexOf(naam)]))
             {
                 throw new LoginException("Uw naam of wachtwoord is niet juist");
             }

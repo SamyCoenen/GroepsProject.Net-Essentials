@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace leren
 {
@@ -11,7 +7,6 @@ namespace leren
         public LoginException(string message)
             : base(message)
         {
-
         }
     }
 }

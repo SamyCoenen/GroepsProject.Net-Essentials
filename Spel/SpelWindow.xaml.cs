@@ -24,23 +24,23 @@ namespace leren
             InitializeComponent();
             ms = new MensSpeler();
             ms.Teken(ballenSpel);
-            for (int i=0;i<2;i++)
+            for (int i = 0; i < 2; i++)
             {
-            ComputerSpeler cp = new ComputerSpeler();
-            cp.Teken(ballenSpel);
-            cs.Add(cp);
+                ComputerSpeler cp = new ComputerSpeler();
+                cp.Teken(ballenSpel);
+                cs.Add(cp);
             }
             spelKlok.Tick += spelKlok_Tick;
-            spelKlok.Interval = new TimeSpan(10000000/60);
-            sp.Play();
+            spelKlok.Interval = new TimeSpan(10000000 / 60);
+            sp.PlayLooping();
         }
 
         void spelKlok_Tick(object sender, EventArgs e)
         {
-            for (int i = 0;i<cs.Count(); i++)
+            for (int i = 0; i < cs.Count(); i++)
             {
                 cs[i].Beweeg(ballenSpel);
-            }        
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,25 +59,25 @@ namespace leren
                     {
                         //stop de timer
                         spelKlok.Stop();
-                    }   
+                    }
                     break;
                 case "Reset":
                     spelKlok.Stop();
-                    for (int i = 2; i <= ballenSpel.Children.Count;i++ )
+                    for (int i = 2; i <= ballenSpel.Children.Count; i++)
                     {
                         cs[i - 2].Maakvrij(ballenSpel, i);
                     }
                     break;
                 case "Menu":
-                     //Sluit current window en toon mainmenu   
-                                      base.Show();
-                        this.Close();
+                    //Sluit current window en toon mainmenu   
+                    base.Show();
+                    this.Close();
                     break;
                 case "Mute":
                     //stop de muziek
-                     sp.Stop();
+                    sp.Stop();
                     break;
-            } 
+            }
         }
 
         private void OnCanvasKeyDown(object sender, KeyEventArgs e)
