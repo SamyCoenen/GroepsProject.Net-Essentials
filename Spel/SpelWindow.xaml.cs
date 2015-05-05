@@ -124,7 +124,9 @@ namespace leren
             {
                 csList[i].Maakvrij(ballenSpel);
             }
+            csList.Clear();
             ms.Maakvrij(ballenSpel);
+            ms = new MensSpeler();
             ms.Teken(ballenSpel, csList, ms);
         }
     }
