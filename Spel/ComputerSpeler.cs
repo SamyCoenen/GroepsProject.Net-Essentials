@@ -21,26 +21,20 @@ namespace leren
         {
             bool geraakt = Geraakt(csList, msSpeler);
             Point positie = new Point(Positie().X + XVerplaatsing, Positie().Y +YVerplaatsing);
-            if (positie.X > spelCanvas.Width - Grootte || positie.X < 0||geraakt == true)
+            if (positie.X > spelCanvas.Width - Grootte || positie.X < 0||geraakt)
             {
                 XVerplaatsing = -XVerplaatsing;
             }
-            if (positie.Y > spelCanvas.Height - Grootte|| positie.Y< 0 || geraakt == true)
+            if (positie.Y > spelCanvas.Height - Grootte|| positie.Y< 0 || geraakt)
             {
                 YVerplaatsing = -YVerplaatsing;
             }         
             se.Margin = new Thickness(positie.X, positie.Y, 0, 0);
         }
 
-        public void Maakvrij(Canvas spelCanvas,int index)
+        public void Maakvrij(Canvas spelCanvas)
         {
-            spelCanvas.Children.Remove(se);
-            //this.Draw.Dispose();
-            //if (disposing && (components != null))
-            //{
-            //    components.Dispose();
-            //}
-            //base.Dispose(disposing);
+            spelCanvas.Children.Remove(se);          
         }
     }
 }

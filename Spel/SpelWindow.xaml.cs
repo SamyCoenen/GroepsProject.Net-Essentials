@@ -20,12 +20,12 @@ namespace leren
         private SoundPlayer sp = new SoundPlayer("../../Kernkraft.wav");
         private DispatcherTimer spelKlok = new DispatcherTimer();
         private DispatcherTimer nieuweSpeler = new DispatcherTimer();
-        private int totaalscore = 0;
+        private int totaalScore = 0;
         public SpelWindow()
         {
             InitializeComponent();
             ms = new MensSpeler();
-            ms.Teken(ballenSpel);
+            ms.Teken(ballenSpel, csList, ms);
 
             spelKlok.Tick += spelKlok_Tick;
             spelKlok.Interval = new TimeSpan(10000000 / 60);
@@ -38,28 +38,39 @@ namespace leren
         void nieuweSpeler_Tick(object sender, EventArgs e)
         {
             ComputerSpeler cs = new ComputerSpeler();
-            cs.Teken(ballenSpel);
+            cs.Teken(ballenSpel,csList,ms);
             csList.Add(cs);
         }
 
         void spelKlok_Tick(object sender, EventArgs e)
-        {
+        {          
+            if (ms.Kleur() == "#FFFFFFFF")
+            {
+                MessageBox.Show("Game Over! U score was: " + totaalScore);
+                Reset();
+            }
             for (int i = 0; i < csList.Count(); i++)
             {
                 csList[i].Beweeg(ballenSpel, csList, ms);
-            }
+            }           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             switch (((Button)sender).Content.ToString())
             {
-                case "Start/Stop":
+                case "Start/Pauze":
                     if (spelKlok.IsEnabled == false)
                     {
-                        //We starten het spel door de ComputerSpelers aan te maken per 10 seconden en ze dan ook te laten bewegen
+                        //We starten het spel door de ComputerSpelers aan te maken per 10 seconden met een DispatcherTimer en ze dan ook te laten bewegen
                         spelKlok.Start();
                         nieuweSpeler.Start();
+                        if (csList.Count == 0)
+                        {
+                            //Om ervoor te zorgen dat er niet pas na 10 seconden maar nu direct een ComputerSpeler wordt toegevoegd voeren we de tick ook al direct eens uit
+                            //Ook willen we niet dat wanneer men de start knop meermaals indrukt dat er geen ComputerSpelers bijkomen
+                            nieuweSpeler_Tick(sender, e); 
+                        }
                         //zet focus op het canvas zodat de menselijke speler kan bewegen met het toetsenbord
                         ballenSpel.Focus();
                     }
@@ -71,16 +82,12 @@ namespace leren
                     }
                     break;
                 case "Reset":
-                    spelKlok.Stop();
-                    for (int i = 2; i <= ballenSpel.Children.Count; i++)
-                    {
-                        csList[i - 2].Maakvrij(ballenSpel, i);
-                    }
+                    Reset();
                     break;
                 case "Menu":
                     //Sluit current window en toon mainmenu   
-                    base.Show();
-                    this.Close();
+                    Show();
+                    Close();
                     break;
                 case "Mute":
                     //stop de muziek
@@ -97,8 +104,28 @@ namespace leren
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //stop de muziek
+            //Stop de muziek en de timers omdat dit andere threads zijn dan window
             sp.Stop();
+            if (spelKlok.IsEnabled)
+            {
+                spelKlok.Stop();
+            }
+            if (nieuweSpeler.IsEnabled)
+            {
+                nieuweSpeler.Stop();
+            }
+        }
+
+        private void Reset()
+        {
+            spelKlok.Stop();
+            nieuweSpeler.Stop();
+            for (int i = 0; i < csList.Count; i++)
+            {
+                csList[i].Maakvrij(ballenSpel);
+            }
+            ms.Maakvrij(ballenSpel);
+            ms.Teken(ballenSpel, csList, ms);
         }
     }
 }

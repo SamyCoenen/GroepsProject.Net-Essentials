@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -13,11 +14,11 @@ namespace leren
     //Author: Samy Coenen
     abstract class SpelEntiteit
     {
-        private double _snelheid = 3.0;
+        private double _snelheid = 5.0;
         private double _xChange = 5;
         private double _yChange = 5;
         protected Rectangle se;
-        private int _grootte = 40;
+        private int _grootte = 20;
         private static readonly Random r1 = new Random();
         
         public SpelEntiteit()
@@ -33,9 +34,13 @@ namespace leren
             spelCanvas.Children.Add(se);
         }
 
-        public void Teken(Canvas spelCanvas)
-        {            
-            se.Margin = new Thickness(r1.Next(0, Convert.ToInt32(spelCanvas.Width-_grootte)),r1.Next(0,Convert.ToInt32(spelCanvas.Height-_grootte)),0,0);  
+        public void Teken(Canvas spelCanvas, List<ComputerSpeler> csList, MensSpeler msSpeler)
+        {
+            se.Margin = new Thickness(r1.Next(0, Convert.ToInt32(spelCanvas.Width - _grootte)), r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0);
+            while (Geraakt(csList, msSpeler))
+            {
+                se.Margin = new Thickness(r1.Next(0, Convert.ToInt32(spelCanvas.Width - _grootte)), r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0); 
+            }              
             spelCanvas.Children.Add(se);
         }
 
@@ -57,18 +62,41 @@ namespace leren
 
         public bool Geraakt(List<ComputerSpeler> csList, MensSpeler msSpeler)
         {
-            Point positie1 = new Point(Positie().X+_xChange, Positie().Y+_yChange);
-            Rect rect1 = new Rect(positie1.X, positie1.Y, _grootte, _grootte);
+            Point positieHuidig = Positie();
+            Rect rect1 = new Rect(positieHuidig.X + _xChange, positieHuidig.Y + _yChange, _grootte, _grootte);
             for (int i=0;i<csList.Count;i++)
             {
-                Point positie2 = csList[i].Positie();
-                  Rect rect2 = new Rect( positie2.X , positie2.Y, _grootte, _grootte);                 
+                Point positieComputer = csList[i].Positie();
+                Rect rect2 = new Rect(positieComputer.X + csList[i].YVerplaatsing, positieComputer.Y + csList[i].YVerplaatsing, _grootte, _grootte);                 
                 //Bepalen of hij met een vierhoek botst behalve zichzelf
-                   if (rect1.IntersectsWith(rect2))
-                   {                         
+                   if (rect1.IntersectsWith(rect2)&&positieHuidig!=positieComputer)
+                   {
+                      
+                       if (Kleur() == "#FF008000")
+                       {
+                         VeranderKleur(new SolidColorBrush(Colors.Black));
+                       }
+                       else if (Kleur() == "#FF000000")
+                       {
+                           VeranderKleur(new SolidColorBrush(Colors.Green));
+                       }
                            return true;                      
                     }                      
             }
+            Point positieMens = msSpeler.Positie();
+            Rect rect3 = new Rect(positieMens.X, positieMens.Y, _grootte, _grootte);
+            if (rect1.IntersectsWith(rect3) && positieHuidig != positieMens)
+            {
+                if (Kleur() == "#FF008000")
+                {
+                    msSpeler.VeranderKleur(new SolidColorBrush(Colors.White));
+                }
+                else if (Kleur() == "#FF000000")
+                {
+                    
+                }
+                return true;
+            }   
             return false;
         }
 
