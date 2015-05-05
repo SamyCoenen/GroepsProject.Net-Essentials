@@ -105,6 +105,12 @@
     <Compile Include="Algemeen\Student.xaml.cs">
       <DependentUpon>Student.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Taal\Taal.xaml.cs">
+      <DependentUpon>Taal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Taal\TaalMenu.xaml.cs">
+      <DependentUpon>TaalMenu.xaml</DependentUpon>
+    </Compile>
     <Page Include="Algemeen\leerkrachtVenster.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,6 +152,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Algemeen\Student.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Taal\Taal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Taal\TaalMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,6 +240,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

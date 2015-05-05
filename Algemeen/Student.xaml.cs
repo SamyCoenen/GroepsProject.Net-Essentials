@@ -41,7 +41,8 @@ namespace leren
             switch (((Image)sender).Name)
             {
                 case "talen":
-                    
+                    TalenMenu talenMenuWindow = new TalenMenu();
+                    talenMenuWindow.Show();
                     break;
                 case "wiskunde":
 

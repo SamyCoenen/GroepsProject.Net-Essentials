@@ -120,12 +120,6 @@ namespace leren
         
         }
 
-        public int Graad
-        {
-            get { return graad; }
-            set { graad = value; }
-        }
-
         private void Moeilijk(int graad)
         {
             if (graad == 1)
@@ -148,11 +142,11 @@ namespace leren
                 {
                     if (stad1box.Items.Count == 0 && stad2box.Items.Count == 0 && stad3box.Items.Count == 0 && stad4box.Items.Count == 0 && stad5box.Items.Count == 0)
                     {
-                        string messageBoxText2 = Properties.Settings.Default.userName +  ", je heb geen land of stad versleept! Versleep de landen en steden naar het juiste land en druk vervolgens op resultaat.";
-                        string caption2 = "Geen antwoord";
-                        MessageBoxButton button2 = MessageBoxButton.OK;
-                        MessageBoxImage icon2 = MessageBoxImage.Warning;
-                        MessageBox.Show(messageBoxText2, caption2, button2, icon2);
+                        string messageBoxText = Properties.Settings.Default.userName +  ", je heb geen land of stad versleept! Versleep de landen en steden naar het juiste land en druk vervolgens op resultaat.";
+                        string caption = "Geen antwoord";
+                        MessageBoxButton button = MessageBoxButton.OK;
+                        MessageBoxImage icon = MessageBoxImage.Warning;
+                        MessageBox.Show(messageBoxText, caption, button, icon);
                     }
                 }
                 else
@@ -179,46 +173,48 @@ namespace leren
 
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
-            if (land1box.Items.Count == 0 && land2box.Items.Count == 0 && land3box.Items.Count == 0 && land4box.Items.Count == 0 && land5box.Items.Count == 0)
             {
-                if (graad == 1)
+                if (land1box.Items.Count == 0 && land2box.Items.Count == 0 && land3box.Items.Count == 0 && land4box.Items.Count == 0 && land5box.Items.Count == 0)
                 {
-                    if (stad1box.Items.Count == 0 && stad2box.Items.Count == 0 && stad3box.Items.Count == 0 && stad4box.Items.Count == 0 && stad5box.Items.Count == 0)
+                    if (graad == 1)
                     {
-                        WindowHelper close = new WindowHelper();
-                        close.CloseWindows();
-                    }
-                    else
-                    {
-                        MessageBoxResult result = MessageBox.Show("Bent u zeker dat u wilt stoppen? Je gegeven antwoorden worden niet opgeslagen!", "Je data zal verloren gaan", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                        if (result == MessageBoxResult.Yes)
+                        if (stad1box.Items.Count == 0 && stad2box.Items.Count == 0 && stad3box.Items.Count == 0 && stad4box.Items.Count == 0 && stad5box.Items.Count == 0)
                         {
                             WindowHelper close = new WindowHelper();
                             close.CloseWindows();
                         }
                         else
                         {
-                            result = MessageBoxResult.No;
+                            MessageBoxResult result = MessageBox.Show("Bent u zeker dat u wilt stoppen? Je gegeven antwoorden worden niet opgeslagen!", "Je data zal verloren gaan", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                            if (result == MessageBoxResult.Yes)
+                            {
+                                WindowHelper close = new WindowHelper();
+                                close.CloseWindows();
+                            }
+                            else
+                            {
+                                result = MessageBoxResult.No;
+                            }
                         }
+                    }
+                    else
+                    {
+                        WindowHelper close = new WindowHelper();
+                        close.CloseWindows();
                     }
                 }
                 else
                 {
-                    WindowHelper close = new WindowHelper();
-                    close.CloseWindows();
-                }
-            }
-            else
-            {
-                MessageBoxResult result = MessageBox.Show("Bent u zeker dat u wilt stoppen? Je gegeven antwoorden worden niet opgeslagen!", "Je data zal verloren gaan", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
-                {
-                    WindowHelper close = new WindowHelper();
-                    close.CloseWindows();
-                }
-                else
-                {
-                    result = MessageBoxResult.No;
+                    MessageBoxResult result = MessageBox.Show("Bent u zeker dat u wilt stoppen? Je gegeven antwoorden worden niet opgeslagen!", "Je data zal verloren gaan", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        WindowHelper close = new WindowHelper();
+                        close.CloseWindows();
+                    }
+                    else
+                    {
+                        result = MessageBoxResult.No;
+                    }
                 }
             }
         }
@@ -249,5 +245,12 @@ namespace leren
             resultaatWindow.Graad = graad;
             resultaatWindow.Show();
         }
+
+        public int Graad
+        {
+            get { return graad; }
+            set { graad = value; }
+        }
+
     }
 }

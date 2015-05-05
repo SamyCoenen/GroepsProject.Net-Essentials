@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 
 namespace leren
 {
-    // KennisMenu window
+    // KennisQuiz window
     // Date: 03/04/15 - Last edit: 06/04/15
     // Author: Timothy Vanderaerden
     
