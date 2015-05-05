@@ -19,7 +19,7 @@ namespace leren
 
         public void Beweeg(Canvas spelCanvas,List<ComputerSpeler> csList,MensSpeler msSpeler)
         {
-            bool geraakt = Geraakt(csList, msSpeler);
+            bool geraakt = Geraakt(csList, msSpeler,spelCanvas);
             Point positie = new Point(Positie().X + XVerplaatsing, Positie().Y +YVerplaatsing);
             if (positie.X > spelCanvas.Width - Grootte || positie.X < 0||geraakt)
             {

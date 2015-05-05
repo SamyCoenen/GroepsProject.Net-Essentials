@@ -60,7 +60,7 @@ namespace leren
             set { _snelheid = value; }
         }
 
-        public bool Geraakt(List<ComputerSpeler> csList, MensSpeler msSpeler)
+        public bool Geraakt(List<ComputerSpeler> csList, MensSpeler msSpeler,Canvas spelCanvas)
         {
             Point positieHuidig = Positie();
             Rect rect1 = new Rect(positieHuidig.X + _xChange, positieHuidig.Y + _yChange, _grootte, _grootte);
@@ -93,7 +93,7 @@ namespace leren
                 }
                 else if (Kleur() == "#FF000000")
                 {
-                    
+                    spelCanvas.Children.Remove(se);
                 }
                 return true;
             }   
