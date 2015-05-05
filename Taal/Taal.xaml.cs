@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 
 namespace leren
 {
-    // KennisQuiz window
-    // Date: 03/04/15 - Last edit: 06/04/15
+    // Talen quiz
+    // Date: 05/05/2015 - Last edit: 05/05/15
     // Author: Timothy Vanderaerden
-    
-    public partial class Kennis : Window
+
+    public partial class Taal : Window
     {
 
         private int graad;
@@ -33,19 +33,16 @@ namespace leren
             set { graad = value; }
         }
 
-        public Kennis()
+        public Taal()
         {
-            InitializeComponent();         
-            Loaded+=Kennis_Loaded;
-            
+            InitializeComponent();
+            Loaded += Taal_Loaded;
+
         }
 
-        //Een parameter toegevoegd bij het aanmaken van IODatabase
-        //Author: Samy Coenen
-        //Date: 11/04/2015 15:04
-        private void Kennis_Loaded(object sender, RoutedEventArgs e)
+        private void Taal_Loaded(object sender, RoutedEventArgs e)
         {
-            IODatabase database = new IODatabase("kennis");
+            IODatabase database = new IODatabase("taal");
             keuzevragen = database.ReadKeuzeVragenByGraad(graad);
             VolgendeVraag();
         }
@@ -56,7 +53,7 @@ namespace leren
             Random rnd = new Random();
             do
             {
-                index = rnd.Next(0, keuzevragen.Count -1); 
+                index = rnd.Next(0, keuzevragen.Count - 1);
             } while (vragenGeschiedenis.Contains(index));
             vragenGeschiedenis.Add(index);
 
@@ -81,7 +78,8 @@ namespace leren
 
         private int getAntwoord()
         {
-            foreach (RadioButton button in radioBtnGrid.Children) {
+            foreach (RadioButton button in radioBtnGrid.Children)
+            {
                 if (button.IsChecked == true)
                 {
                     return (int)button.Tag;
@@ -95,7 +93,7 @@ namespace leren
         {
             KeuzeAntwoord antwoord = new KeuzeAntwoord();
             int gekozenAntwoord = getAntwoord();
-            if(gekozenAntwoord == -1) 
+            if (gekozenAntwoord == -1)
             {
                 string messageBoxText = "Je heb geen antwoord aangeduid! Duid een antwoord aan om naar de volgende vraag te gaan!";
                 string caption = "Geen antwoord";
@@ -110,12 +108,12 @@ namespace leren
                 keuzeAntwoorden.Add(antwoord);
                 if (vragenGeschiedenis.Count >= 5)
                 {
-                    Resultaat resultaatWindow = new Resultaat("Kennis");
+                    Resultaat resultaatWindow = new Resultaat("Taal");
                     resultaatWindow.Vragen = keuzevragen;
                     resultaatWindow.Antwoorden = keuzeAntwoorden;
                     resultaatWindow.Show();
-                    IODatabase resultaatKennis = new IODatabase("Kennis");
-                    resultaatKennis.SchrijfResultaatKennis(keuzevragen, keuzeAntwoorden, Properties.Settings.Default.userName, graad);
+                    IODatabase resultaatTaal = new IODatabase("Taal");
+                    resultaatTaal.SchrijfResultaatTaal(keuzevragen, keuzeAntwoorden, Properties.Settings.Default.userName, graad);
                 }
                 else if (vragenGeschiedenis.Count == 4)
                 {

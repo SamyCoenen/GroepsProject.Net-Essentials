@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows;
 
 namespace leren
 {
@@ -69,8 +70,120 @@ namespace leren
             resultaat.Append(")$");
 
             StreamWriter writeout = new StreamWriter("../../Data/kennisresultaat.txt", true);
-            writeout.WriteLine(resultaat);
-            writeout.Close();
+
+            try
+            {
+                writeout.WriteLine(resultaat);
+            }
+            catch (System.IO.IOException)
+            {
+                string messageBoxText = "Error: System.IO.IOException";
+                string caption = "Geen antwoord";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            catch (System.ObjectDisposedException)
+            {
+                string messageBoxText = "Error: System.ObjectDisposedException";
+                string caption = "Geen antwoord";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            finally
+            {
+                writeout.Close();
+            }
+        }
+
+        public void SchrijfResultaatAarderijkskunde(List<string> antwoorden, List<string> oplossingen, string naam, int graad)
+        {
+            StringBuilder resultaat = new StringBuilder();
+            resultaat.Append(naam + ":" + graad.ToString() + "(");
+
+            for (int i = 0; i < oplossingen.Count; i++)
+            {
+                int juist = 0;
+                if (antwoorden[i].ToString() == oplossingen[i].ToString())
+                {
+                    juist = 1;
+                }
+                resultaat.Append(oplossingen[i].ToString() + ":" + antwoorden[i].ToString() + ":" + juist + "$");
+            }
+            resultaat.Append(")$");
+
+            StreamWriter writeout = new StreamWriter("../../Data/aardrijkskunderesultaat.txt", true);
+
+            try
+            {
+                writeout.WriteLine(resultaat);
+            }
+            catch (System.IO.IOException)
+            {
+                string messageBoxText = "Error: System.IO.IOException";
+                string caption = "Geen antwoord";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            catch (System.ObjectDisposedException)
+            {
+                string messageBoxText = "Error: System.ObjectDisposedException";
+                string caption = "Geen antwoord";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            finally
+            {
+                writeout.Close();
+            }
+        }
+
+        public void SchrijfResultaatTaal(List<KeuzeVraag> keuzeVragen, List<KeuzeAntwoord> keuzeAntwoorden, string naam, int graad)
+        {
+            StringBuilder resultaat = new StringBuilder();
+            resultaat.Append(naam + ":" + graad.ToString() + "(");
+
+            foreach (KeuzeAntwoord antwoord in keuzeAntwoorden)
+            {
+                KeuzeVraag keuzeVraag = keuzeVragen[antwoord.Index];
+                int juist = 0;
+                if (antwoord.Antwoord == keuzeVraag.JuistIndex)
+                {
+                    juist = 1;
+                }
+                resultaat.Append(keuzeVraag.Vraag + ":" + keuzeVraag.Keuzes[keuzeVraag.JuistIndex] + ":" + juist + "$");
+            }
+            resultaat.Append(")$");
+
+            StreamWriter writeout = new StreamWriter("../../Data/taalresultaat.txt", true);
+
+            try
+            {
+                writeout.WriteLine(resultaat);
+            }
+            catch (System.IO.IOException)
+            {
+                string messageBoxText = "Error: System.IO.IOException";
+                string caption = "Geen antwoord";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            catch (System.ObjectDisposedException)
+            {
+                string messageBoxText = "Error: System.ObjectDisposedException";
+                string caption = "Geen antwoord";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            finally
+            {
+                writeout.Close();
+            }
         }
 
     }
