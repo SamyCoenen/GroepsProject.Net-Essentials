@@ -17,7 +17,7 @@ namespace leren
             VeranderKleur(new SolidColorBrush(Colors.Green));
         }
 
-        public void Beweeg(Canvas spelCanvas,List<ComputerSpeler> csList,MensSpeler msSpeler )
+        public void Beweeg(Canvas spelCanvas,List<ComputerSpeler> csList,MensSpeler msSpeler)
         {
             bool geraakt = Geraakt(csList, msSpeler);
             Point positie = new Point(Positie().X + XVerplaatsing, Positie().Y +YVerplaatsing);

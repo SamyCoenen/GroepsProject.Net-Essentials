@@ -46,7 +46,7 @@ namespace leren
         {
             for (int i = 0; i < csList.Count(); i++)
             {
-                csList[i].Beweeg(ballenSpel);
+                csList[i].Beweeg(ballenSpel, csList, ms);
             }
         }
 
