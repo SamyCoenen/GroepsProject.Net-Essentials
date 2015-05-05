@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using System.Windows.Threading;
+using leren.Spel;
 
 namespace leren
 {
-    //De superclasse voor alle bewegenden objecten van het spel
-    //Date: 16/04/2014 20:48
+    //De abstracte superklasse voor alle bewegenden objecten van het spel
+    //Date: 30/03/2014 20:03
     //Author: Samy Coenen
     abstract class SpelEntiteit
     {
-        private double _snelheid = 1.0;
+        private double _snelheid = 3.0;
         private double _xChange = 5;
         private double _yChange = 5;
         protected Rectangle se;
@@ -58,23 +55,18 @@ namespace leren
             set { _snelheid = value; }
         }
 
-        public bool Geraakt(Canvas spelCanvas)
+        public bool Geraakt(List<ComputerSpeler> csList, MensSpeler msSpeler)
         {
-            int geraakt=0;
-            Point positie = new Point(Positie().X+_xChange, Positie().Y+_yChange);
-            Rect rect2 = new Rect(positie.X, positie.Y, se.Width, se.Height);
-            foreach (UIElement element in spelCanvas.Children)
+            Point positie1 = new Point(Positie().X+_xChange, Positie().Y+_yChange);
+            Rect rect1 = new Rect(positie1.X, positie1.Y, _grootte, _grootte);
+            for (int i=0;i<csList.Count;i++)
             {
-                  Rectangle el = element as Rectangle;
-                  Rect rect1 = new Rect( el.Margin.Left , el.Margin.Top, el.Width, el.Height);                  
+                Point positie2 = csList[i].Positie();
+                  Rect rect2 = new Rect( positie2.X , positie2.Y, _grootte, _grootte);                 
+                //Bepalen of hij met een vierhoek botst behalve zichzelf
                    if (rect1.IntersectsWith(rect2))
-                   {
-                       geraakt++;                       
-                       if (geraakt > 1)
-                       {
-                           Console.WriteLine(geraakt);
-                           return true;
-                       }
+                   {                         
+                           return true;                      
                     }                      
             }
             return false;
@@ -82,8 +74,7 @@ namespace leren
 
         public Point Positie()
         {
-            return new Point(se.Margin.Left, se.Margin.Top);
-            
+            return new Point(se.Margin.Left, se.Margin.Top);     
         }
 
         public int Grootte

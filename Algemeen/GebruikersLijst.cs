@@ -3,43 +3,43 @@ using System.IO;
 
 namespace leren.Algemeen
 {
+    //Deze klasse is nodig om al de gebruikergegevens te controleren/aan te passen
+    //Date: 16/04/2014 20:48
+    //Author: Samy Coenen
     class GebruikersLijst
     {
-        private List<string> _naam;      
+        private List<string> _naam;
         private List<string> _wachtwoord;
         public GebruikersLijst(string gebruiker)
         {
-            string[] lines = File.ReadAllLines("../../Data/"+gebruiker+"logins.txt");
+            string[] lines = File.ReadAllLines("../../Data/" + gebruiker + "logins.txt");
             _naam = new List<string>();
             _wachtwoord = new List<string>();
             foreach (string line in lines)
             {
-                int scheiding = line.IndexOf("$");                
+                int scheiding = line.IndexOf("$");
                 _naam.Add(line.Substring(0, scheiding));
-                _wachtwoord.Add(line.Substring(scheiding + 1, line.Length - scheiding-1));               
-            }           
+                _wachtwoord.Add(line.Substring(scheiding + 1, line.Length - scheiding - 1));
+            }
         }
 
-        public bool Controle(string naam,string wachtwoord)
+        public void Controle(string naam, string wachtwoord)
         {
             //Controleren of de velden "naam" en "wachtwoord" ingevuld zijn.
             if (naam.Length == 0 || wachtwoord.Length == 0)
             {
-               //errorLabel.Visibility = System.Windows.Visibility.Visible;
-                //errorLabel.Text = "U moet een naam en wachtwoord ingeven";
                 throw new LoginException("U moet een naam en wachtwoord ingeven");
             }
-            //controleren of de credentials juist zijn en vervolgens juiste window tonen.
-            if (this._naam.IndexOf(naam)!=-1&&wachtwoord.Equals(this._wachtwoord[this._naam.IndexOf(naam)]))
+            else if (_naam.IndexOf(naam) == -1)
             {
-                return true;
+                throw new LoginException("Deze naam bestaat niet");
             }
-            else
+            else if (!wachtwoord.Equals(_wachtwoord[_naam.IndexOf(naam)]))
             {
-                return false;
+                throw new LoginException("Uw naam of wachtwoord is niet juist");
             }
-                   
-        } 
+        }
+
         // Marnic
         public List<string> Naam
         {

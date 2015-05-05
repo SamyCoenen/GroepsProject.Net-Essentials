@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq.Expressions;
+using System.Windows;
 using leren.Algemeen;
 namespace leren
 {
@@ -16,7 +17,6 @@ namespace leren
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string gebruiker;
-            
             if (studentRadioButton.IsChecked==true)
             {
                 gebruiker = "student";
@@ -25,9 +25,10 @@ namespace leren
             {
                 gebruiker = "leerkracht";
             }
-            GebruikersLijst gebruikers = new GebruikersLijst(gebruiker);         
-             if(gebruikers.Controle(naamTextBox.Text,wachtwoordPasswordBox.Password))
+            GebruikersLijst gebruikers = new GebruikersLijst(gebruiker);
+            try
             {
+                gebruikers.Controle(naamTextBox.Text, wachtwoordPasswordBox.Password);
                 Hide();
                 if (gebruiker.Equals("student"))
                 {
@@ -39,14 +40,14 @@ namespace leren
                 else
                 {
                     leerkrachtVenster leerkracht = new leerkrachtVenster();
-                    leerkracht.Show();                  
-                }                                             
+                    leerkracht.Show();
+                }
             }
-            else
-                //Een error geven bij verkeerde credentials.
+            catch (LoginException ex)
             {
+                //Een error geven bij verkeerde credentials.
                 errorLabel.Visibility = System.Windows.Visibility.Visible;
-                errorLabel.Text = "Verkeerde naam of wachtwoord";
+                errorLabel.Text = ex.Message;
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -15,9 +16,9 @@ namespace leren.Spel
             VeranderKleur(new SolidColorBrush(Colors.Blue));
         }
 
-        public void Beweeg(Canvas spelCanvas)
+        public void Beweeg(Canvas spelCanvas, List<ComputerSpeler> csList, MensSpeler msSpeler)
         {
-            bool geraakt = Geraakt(spelCanvas);
+            bool geraakt = Geraakt(csList, msSpeler);
             Point positie = new Point(Positie().X + XVerplaatsing, Positie().Y + YVerplaatsing);
             if (positie.X > spelCanvas.Width - Grootte || positie.X < 0 || geraakt == true)
             {
@@ -36,21 +37,22 @@ namespace leren.Spel
             switch (ingedrukteKnop)
             {
                 case Key.Left:
-                    if (positie1.X-XVerplaatsing >= 0) se.Margin = new Thickness(positie1.X-XVerplaatsing, positie1.Y, 0, 0);
+                    if (positie1.X - XVerplaatsing * Snelheid >= 0) se.Margin = new Thickness(positie1.X - XVerplaatsing * Snelheid, positie1.Y, 0, 0);
                     break;
                 case Key.Right:
-                    if (positie1.X + XVerplaatsing <= spelCanvas.Width) se.Margin = new Thickness(positie1.X + XVerplaatsing, positie1.Y, 0, 0);
+                    if (positie1.X + XVerplaatsing * Snelheid <= spelCanvas.Width) se.Margin = new Thickness(positie1.X + XVerplaatsing * Snelheid, positie1.Y, 0, 0);
                     break;
                 case Key.Up:
-                    if (positie1.Y - YVerplaatsing >= 0) se.Margin = new Thickness(positie1.X, positie1.Y-YVerplaatsing, 0, 0);
+                    if (positie1.Y - YVerplaatsing * Snelheid >= 0) se.Margin = new Thickness(positie1.X, positie1.Y - YVerplaatsing * Snelheid, 0, 0);
                     break;
                 case Key.Down:
-                    if (positie1.Y + YVerplaatsing <= spelCanvas.Width) se.Margin = new Thickness(positie1.X, positie1.Y+YVerplaatsing, 0, 0);
+                    if (positie1.Y + YVerplaatsing * Snelheid <= spelCanvas.Width) se.Margin = new Thickness(positie1.X, positie1.Y + YVerplaatsing * Snelheid, 0, 0);
                     break;
                 default:
                     return;
             }
         }
+
         public void Maakvrij(Canvas spelCanvas, int index)
         {
             spelCanvas.Children.Remove(spelCanvas.Children[index]);

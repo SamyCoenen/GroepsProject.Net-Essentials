@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace leren
 {
-    class LoginException:ApplicationException
+    class wiskunde
     {
-        public LoginException(string message)
-            : base(message)
-        {
 
-        }
+        private Random r1= new random();
+    {
+
+       r1.next(0,20);
+    }
+        
+        
+        
     }
 }
