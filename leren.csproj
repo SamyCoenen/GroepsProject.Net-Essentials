@@ -99,6 +99,7 @@
       <DependentUpon>Resultaat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spel\SpelEntiteit.cs" />
+    <Compile Include="Spel\SpelGegevens.cs" />
     <Compile Include="Spel\SpelWindow.xaml.cs">
       <DependentUpon>SpelWindow.xaml</DependentUpon>
     </Compile>
@@ -221,6 +222,7 @@
     <Resource Include="images\europe_map_hulp.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Data\spelgegevens.txt" />
     <Content Include="Kernkraft.wav" />
   </ItemGroup>
   <ItemGroup>
