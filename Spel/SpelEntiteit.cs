@@ -34,13 +34,9 @@ namespace leren
             spelCanvas.Children.Add(se);
         }
 
-        public void Teken(Canvas spelCanvas, List<ComputerSpeler> csList, MensSpeler msSpeler)
+        public void Teken(Canvas spelCanvas, List<ComputerSpeler> csList, MensSpeler msSpeler,Label speLabel)
         {
-            se.Margin = new Thickness(r1.Next(0, Convert.ToInt32(spelCanvas.Width - _grootte)), r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0);
-            while (Geraakt(csList, msSpeler))
-            {
-                se.Margin = new Thickness(r1.Next(0, Convert.ToInt32(spelCanvas.Width - _grootte)), r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0); 
-            }              
+            se.Margin = new Thickness(0, r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0);                      
             spelCanvas.Children.Add(se);
         }
 
@@ -60,7 +56,7 @@ namespace leren
             set { _snelheid = value; }
         }
 
-        public bool Geraakt(List<ComputerSpeler> csList, MensSpeler msSpeler,Canvas spelCanvas)
+        public bool Geraakt(List<ComputerSpeler> csList,int index, MensSpeler msSpeler,Canvas spelCanvas,Label scoreLabel)
         {
             Point positieHuidig = Positie();
             Rect rect1 = new Rect(positieHuidig.X + _xChange, positieHuidig.Y + _yChange, _grootte, _grootte);
@@ -68,10 +64,9 @@ namespace leren
             {
                 Point positieComputer = csList[i].Positie();
                 Rect rect2 = new Rect(positieComputer.X + csList[i].YVerplaatsing, positieComputer.Y + csList[i].YVerplaatsing, _grootte, _grootte);                 
-                //Bepalen of hij met een vierhoek botst behalve zichzelf
+                //Bepalen of huidige SpelEntiteit met een vierhoek ComputerSpeler botst behalve zichzelf
                    if (rect1.IntersectsWith(rect2)&&positieHuidig!=positieComputer)
-                   {
-                      
+                   {                   
                        if (Kleur() == "#FF008000")
                        {
                          VeranderKleur(new SolidColorBrush(Colors.Black));
@@ -93,7 +88,9 @@ namespace leren
                 }
                 else if (Kleur() == "#FF000000")
                 {
+                    scoreLabel.Content = Convert.ToString(Convert.ToInt32(scoreLabel.Content) + 1);
                     spelCanvas.Children.Remove(se);
+                    csList.RemoveAt(index);
                 }
                 return true;
             }   

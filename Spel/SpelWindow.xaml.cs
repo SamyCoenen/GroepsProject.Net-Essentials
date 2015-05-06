@@ -25,33 +25,33 @@ namespace leren
         {
             InitializeComponent();
             ms = new MensSpeler();
-            ms.Teken(ballenSpel, csList, ms);
-
+            ms.Teken(ballenSpel, csList, ms,ScoreLabel);
             spelKlok.Tick += spelKlok_Tick;
-            spelKlok.Interval = new TimeSpan(10000000 / 60);
-            
+            spelKlok.Interval = new TimeSpan(10000000 / 60);            
             nieuweSpeler.Tick += nieuweSpeler_Tick;
             nieuweSpeler.Interval = new TimeSpan(0,0,10);
             sp.PlayLooping();
         }
 
+        //We willen om de 10 seconden een nieuwe ComputerSpeler
         void nieuweSpeler_Tick(object sender, EventArgs e)
         {
             ComputerSpeler cs = new ComputerSpeler();
-            cs.Teken(ballenSpel,csList,ms);
+            cs.Teken(ballenSpel,csList,ms,ScoreLabel);
             csList.Add(cs);
         }
 
         void spelKlok_Tick(object sender, EventArgs e)
         {          
+            //Zodra de MensSpeler wit is, is het spel gedaan en moet het gereset worden
             if (ms.Kleur() == "#FFFFFFFF")
             {
-                MessageBox.Show("Game Over! U score was: " + totaalScore);
+                MessageBox.Show("Game Over! U score was: " + ScoreLabel.Content);
                 Reset();
             }
             for (int i = 0; i < csList.Count(); i++)
             {
-                csList[i].Beweeg(ballenSpel, csList, ms);
+                csList[i].Beweeg(ballenSpel,csList,i, ms,ScoreLabel);
             }           
         }
 
@@ -76,7 +76,7 @@ namespace leren
                     }
                     else
                     {
-                        //Stop de timer
+                        //Stop de timers zodat de beweging stops en er geen nieuwe ComputerSpelers bijkomen
                         spelKlok.Stop();
                         nieuweSpeler.Stop();
                     }
@@ -104,7 +104,7 @@ namespace leren
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //Stop de muziek en de timers omdat dit andere threads zijn dan window
+            //Stop de muziek en de timers omdat dit andere threads zijn dan de Window
             sp.Stop();
             if (spelKlok.IsEnabled)
             {
@@ -120,6 +120,7 @@ namespace leren
         {
             spelKlok.Stop();
             nieuweSpeler.Stop();
+            ScoreLabel.Content = 0;
             for (int i = 0; i < csList.Count; i++)
             {
                 csList[i].Maakvrij(ballenSpel);
@@ -127,7 +128,7 @@ namespace leren
             csList.Clear();
             ms.Maakvrij(ballenSpel);
             ms = new MensSpeler();
-            ms.Teken(ballenSpel, csList, ms);
+            ms.Teken(ballenSpel, csList, ms,ScoreLabel);
         }
     }
 }

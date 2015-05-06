@@ -8,6 +8,8 @@ namespace leren
         //Dit is het inlogscherm
         //Date: 27/03/2014 20:03
         //Author: Samy Coenen
+
+        private string _gebruiker;
         public MainWindow()
         {
             InitializeComponent();
@@ -15,22 +17,13 @@ namespace leren
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string gebruiker;
-            if (studentRadioButton.IsChecked==true)
-            {
-                gebruiker = "student";
-            }
-            else
-            {
-                gebruiker = "leerkracht";
-            }
-            GebruikersLijst gebruikers = new GebruikersLijst(gebruiker);
+        {            
+            GebruikersLijst gebruikers = new GebruikersLijst(_gebruiker);
             try
             {
                 gebruikers.Controle(naamTextBox.Text, wachtwoordPasswordBox.Password);
                 Hide();
-                if (gebruiker.Equals("student"))
+                if (_gebruiker.Equals("student"))
                 {
                     Properties.Settings.Default.userName = naamTextBox.Text;
                     Properties.Settings.Default.Save();
@@ -53,7 +46,22 @@ namespace leren
 
         private void studentRadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            if (studentRadioButton.IsChecked == true)
+            {
+                _gebruiker = "student";
+            }
+            else
+            {
+                _gebruiker = "leerkracht";
+            }
             naamTextBox.Focus();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            StudentToevoegen registreer = new StudentToevoegen(_gebruiker);
+            registreer.Show();
+            Hide();
         }      
     }
 }
