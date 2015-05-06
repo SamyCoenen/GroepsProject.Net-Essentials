@@ -1,7 +1,7 @@
 ﻿<Window x:Class="leren.Resultaat"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Resultaat" Height="590" Width="500" Icon="/leren;component/images/favicon.ico" >
+        Title="Resultaat" Height="590" Width="500" Icon="/leren;component/images/favicon.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Uw resultaat" FontSize="22" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="50" Width="472"/>
         <Grid HorizontalAlignment="Left" Name="resultatenGrid" Height="458" Margin="10,60,0,0" VerticalAlignment="Top" Width="472"/>

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="leren.Aardrijkskunde"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Aarderijkskunde" Height="659" Width="1000">
+        Title="Aarderijkskunde" Height="659" Width="1000" WindowStartupLocation="CenterScreen" Icon="/leren;component/images/favicon.ico">
     <Grid>
         <Label Content="Sleep de landen op de kaart" HorizontalAlignment="Left" Margin="787,10,0,0" VerticalAlignment="Top"/>
         <Image Source="../images/europe_map_hulp.jpg" HorizontalAlignment="Left" VerticalAlignment="Top" Width="782" Height="638"/>
