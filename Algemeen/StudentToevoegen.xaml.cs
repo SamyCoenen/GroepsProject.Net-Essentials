@@ -1,25 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace leren.Algemeen
 {
-    /// <summary>
-    /// Interaction logic for StudentToevoegen.xaml
-    /// </summary>
+    //Gebruikers kunnen zicht hier registreren 
+    //Date: 07/05/2014 00:03
+    //Author: Samy Coenen
     public partial class StudentToevoegen : Window
     {
-
         private string gebruiker;
         public StudentToevoegen(string gebruiker)
         {
@@ -30,6 +17,19 @@ namespace leren.Algemeen
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             GebruikersLijst l1 = new GebruikersLijst(gebruiker);
+            if (l1.Naam.Contains(naamTextBox.Text) == false)
+            {
+                l1.Wachtwoord.Add(wachtwoordPasswordBox.Password);
+                l1.Naam.Add(naamTextBox.Text);
+                l1.WegSchrijven();
+                MessageBox.Show("U heeft een gebruiker toegevoegd met de naam " + naamTextBox.Text);
+                Close();
+                Show();
+            }
+            else
+            {
+                MessageBox.Show("Deze gebruikersnaam is al in gebruik");
+            }          
         }
     }
 }

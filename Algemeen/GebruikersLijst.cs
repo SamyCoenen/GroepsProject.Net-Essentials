@@ -1,25 +1,53 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 
 namespace leren.Algemeen
 {
-    //Deze klasse is nodig om al de gebruikergegevens te controleren/aan te passen
+    //Deze klasse is gebruikt om al de gebruikergegevens te controleren/aan te passen
     //Date: 16/04/2014 20:48
     //Author: Samy Coenen
     class GebruikersLijst
     {
-        private List<string> _naam;
-        private List<string> _wachtwoord;
+
+        private List<string> _namen;
+        private List<string> _wachtwoorden;
+        private string _bestand;
+
         public GebruikersLijst(string gebruiker)
         {
-            string[] lines = File.ReadAllLines("../../Data/" + gebruiker + "logins.txt");
-            _naam = new List<string>();
-            _wachtwoord = new List<string>();
-            foreach (string line in lines)
+            _namen = new List<string>();
+            _wachtwoorden = new List<string>();
+            _bestand = "../../Data/" + gebruiker + "logins.txt";
+            StreamReader inputStream = null;
+            try
             {
-                int scheiding = line.IndexOf("$");
-                _naam.Add(line.Substring(0, scheiding));
-                _wachtwoord.Add(line.Substring(scheiding + 1, line.Length - scheiding - 1));
+                inputStream = File.OpenText(_bestand);
+                string line = inputStream.ReadLine();
+                //string[] lines = File.ReadAllLines("../../Data/" + gebruiker + "logins.txt");   
+                while (line != null)
+                {
+                    int scheiding = line.IndexOf("$");
+                    _namen.Add(line.Substring(0, scheiding));
+                    _wachtwoorden.Add(line.Substring(scheiding + 1, line.Length - scheiding - 1));
+                     line = inputStream.ReadLine();
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Het gegevensbestand van het spel werd niet teruggevonden");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (inputStream != null)
+                {
+                    inputStream.Close();
+                }
             }
         }
 
@@ -30,26 +58,54 @@ namespace leren.Algemeen
             {
                 throw new LoginException("U moet een naam en wachtwoord ingeven");
             }
-            else if (_naam.IndexOf(naam) == -1)
+            else if (_namen.IndexOf(naam) == -1)
             {
                 throw new LoginException("Deze naam bestaat niet");
             }
-            else if (!wachtwoord.Equals(_wachtwoord[_naam.IndexOf(naam)]))
+            else if (!wachtwoord.Equals(_wachtwoorden[_namen.IndexOf(naam)]))
             {
                 throw new LoginException("Uw naam of wachtwoord is niet juist");
+            }
+        }
+
+        public void WegSchrijven()
+        {
+            StreamWriter outputStream = null;
+            try
+            {
+                outputStream = new StreamWriter(_bestand);
+                for (int i = 0; i < _namen.Count; i++)
+                {
+                    outputStream.WriteLine(_namen[i] + "$" + _wachtwoorden[i]);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Het gegevensbestand van het spel werd niet teruggevonden");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (outputStream != null)
+                {
+                    outputStream.Close();
+                }
             }
         }
 
         // Marnic
         public List<string> Naam
         {
-            get { return _naam; }
-            set { _naam = value; }
+            get { return _namen; }
+            set { _namen = value; }
         }
         public List<string> Wachtwoord
         {
-            get { return _wachtwoord; }
-            set { _wachtwoord = value; }
+            get { return _wachtwoorden; }
+            set { _wachtwoorden = value; }
         }
     }
 }

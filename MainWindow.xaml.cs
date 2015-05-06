@@ -1,23 +1,23 @@
-﻿using System.Linq.Expressions;
-using System.Windows;
+﻿using System.Windows;
 using leren.Algemeen;
 namespace leren
 {
+    //Dit is het inlogscherm
+    //Date: 27/03/2014 20:03
+    //Author: Samy Coenen
     public partial class MainWindow : Window
     {
-        //Dit is het inlogscherm
-        //Date: 27/03/2014 20:03
-        //Author: Samy Coenen
 
         private string _gebruiker;
+
         public MainWindow()
         {
             InitializeComponent();
-            naamTextBox.Focus();            
+            naamTextBox.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             GebruikersLijst gebruikers = new GebruikersLijst(_gebruiker);
             try
             {
@@ -62,6 +62,6 @@ namespace leren
             StudentToevoegen registreer = new StudentToevoegen(_gebruiker);
             registreer.Show();
             Hide();
-        }      
+        }
     }
 }

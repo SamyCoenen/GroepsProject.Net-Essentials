@@ -1,5 +1,8 @@
-﻿samy$coenen
+samy$coenen
 tom$jerry
 ik$ik
 wachtwoord$wachtwoord
 ps$ps
+thomas$gerrits
+student1$wachtwoord
+student2$wachtwoord2

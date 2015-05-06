@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -56,14 +55,14 @@ namespace leren
             set { _snelheid = value; }
         }
 
-        public bool Geraakt(List<ComputerSpeler> csList,int index, MensSpeler msSpeler,Canvas spelCanvas,Label scoreLabel)
+        public bool Geraakt(List<ComputerSpeler> csLijst,int index, MensSpeler msSpeler,Canvas spelCanvas,Label scoreLabel)
         {
             Point positieHuidig = Positie();
             Rect rect1 = new Rect(positieHuidig.X + _xChange, positieHuidig.Y + _yChange, _grootte, _grootte);
-            for (int i=0;i<csList.Count;i++)
+            for (int i=0;i<csLijst.Count;i++)
             {
-                Point positieComputer = csList[i].Positie();
-                Rect rect2 = new Rect(positieComputer.X + csList[i].YVerplaatsing, positieComputer.Y + csList[i].YVerplaatsing, _grootte, _grootte);                 
+                Point positieComputer = csLijst[i].Positie();
+                Rect rect2 = new Rect(positieComputer.X + csLijst[i].XVerplaatsing, positieComputer.Y + csLijst[i].YVerplaatsing, _grootte, _grootte);                 
                 //Bepalen of huidige SpelEntiteit met een vierhoek ComputerSpeler botst behalve zichzelf
                    if (rect1.IntersectsWith(rect2)&&positieHuidig!=positieComputer)
                    {                   
@@ -90,7 +89,7 @@ namespace leren
                 {
                     scoreLabel.Content = Convert.ToString(Convert.ToInt32(scoreLabel.Content) + 1);
                     spelCanvas.Children.Remove(se);
-                    csList.RemoveAt(index);
+                    csLijst.RemoveAt(index);
                 }
                 return true;
             }   

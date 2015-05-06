@@ -1,31 +1,102 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
+using System.Windows;
 
 namespace leren.Spel
 {
+    //Met deze klasse kunnen gegevens in verband met het spel bekomen worden en ze ook veranderen door weg te schrijven
+    //Date: 06/05/2014 23:03
+    //Author: Samy Coenen
     class SpelGegevens
     {
-
-        private List<int> _highScore;
-        private List<string> _naam;
-        private List<int> _levens; 
+       
+        private List<int> _highScores;
+        private List<string> _namen;
+        private List<int> _levens;
+        private string _bestand = "../../Data/spelgegevens.txt";
 
         public SpelGegevens()
-        {
-            string[] lines = File.ReadAllLines("../../Data/spelgegevens.txt");
-            _naam = new List<string>();
-            _highScore = new List<int>();
-            _levens = new List<int>();
-            foreach (string line in lines)
+        {           
+            _namen = new List<string>();
+            _highScores = new List<int>();
+            _levens = new List<int>();      
+            StreamReader inputStream = null;
+            try
             {
-                int scheiding = line.IndexOf("$");
-                _naam.Add(line.Substring(0, scheiding));
-               // _highScore.Add(line.Substring(scheiding + 1, line.Length - scheiding - 1));
+                 inputStream = File.OpenText(_bestand);
+                string line = inputStream.ReadLine();
+                while (line != null)
+                {
+                    string[] lijneDeel = line.Split('$');
+                    _namen.Add(lijneDeel[0]);
+                    _highScores.Add(Convert.ToInt32(lijneDeel[1]));
+                   _levens.Add(Convert.ToInt32(lijneDeel[2]));
+                    line = inputStream.ReadLine();
+                }
             }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Het gegevensbestand van het spel werd niet teruggevonden");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (inputStream != null)
+                {
+                    inputStream.Close(); 
+                }          
+            }           
+        }
+
+        public void WegSchrijven()
+        {           
+            StreamWriter outputStream = null;
+            try
+            {
+                outputStream = new StreamWriter(_bestand);
+                for (int i=0;i<_namen.Count;i++)
+                {
+                    outputStream.WriteLine(_namen[i]+"$"+_highScores[i]+"$"+_levens[i]);
+                }            
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Het gegevensbestand van het spel werd niet teruggevonden");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (outputStream != null)
+                {
+                    outputStream.Close();
+                }
+            }
+        }
+
+        public List<int> HighScore
+        {
+            get { return _highScores; }
+            set { _highScores = value; }
+        }
+       
+        public List<string> Naam
+        {
+            get { return _namen; }
+            set { _namen = value; }
+        }
+
+        public List<int> Levens
+        {
+            get { return _levens; }
+            set { _levens = value; }
         }
     }
 }

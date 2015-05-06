@@ -8,14 +8,12 @@ using System.Windows.Controls;
 
 namespace leren
 {
-    /// <summary>
-    /// Interaction logic for Student.xaml
-    /// </summary>
+    //Dit is het inlogscherm
+    //Date: 27/03/2014 21:40
+    //Author: Samy Coenen
     public partial class Student : Window
     {
-        //Dit is het inlogscherm
-        //Date: 27/03/2014 21:40
-        //Author: Samy Coenen
+
         public Student()
         {
             InitializeComponent();
@@ -29,7 +27,7 @@ namespace leren
             {
                 Application.Current.Shutdown();
             }
-            else 
+            else
             {
                 e.Cancel = true;
             }
@@ -37,7 +35,7 @@ namespace leren
 
         private void Image_MouseDown(object sender, RoutedEventArgs e)
         {
-            
+
             switch (((Image)sender).Name)
             {
                 case "talen":
@@ -47,7 +45,7 @@ namespace leren
                 case "wiskunde":
 
                     break;
-                case "kennis":                  
+                case "kennis":
                     KennisMenu kennisWindow = new KennisMenu();
                     kennisWindow.Show();
                     break;
@@ -66,12 +64,12 @@ namespace leren
 
                     break;
                 case "Afsluiten":
-                    Application.Current.Shutdown();
+                    this.Close();
                     break;
             }
         }
-        
 
-       
+
+
     }
 }

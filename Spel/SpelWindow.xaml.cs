@@ -10,7 +10,7 @@ using leren.Spel;
 
 namespace leren
 {
-    //Het scherm met de knoppen en het canvas voor alle bewegenden objecten van het spel
+    //Het spelscherm met de knoppen en het canvas voor alle bewegenden objecten
     //Date: 30/03/2014 19:03
     //Author: Samy Coenen
     public partial class SpelWindow : Window
@@ -46,6 +46,14 @@ namespace leren
             if (ms.Kleur() == "#FFFFFFFF")
             {
                 MessageBox.Show("Game Over! U score was: " + ScoreLabel.Content);
+                SpelGegevens gegevens = new SpelGegevens();
+                if(gegevens.HighScore[gegevens.Naam.IndexOf(Properties.Settings.Default.userName)]>Convert.ToInt32(ScoreLabel.Content))
+                {
+                    gegevens.HighScore[gegevens.Naam.IndexOf(Properties.Settings.Default.userName)] = Convert.ToInt32(ScoreLabel.Content);
+                    
+                }
+                gegevens.Levens[gegevens.Naam.IndexOf(Properties.Settings.Default.userName)] -=1;
+                gegevens.WegSchrijven();
                 Reset();
             }
             for (int i = 0; i < csList.Count(); i++)

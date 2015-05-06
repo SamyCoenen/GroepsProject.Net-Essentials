@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows;
 
@@ -18,7 +16,6 @@ namespace leren
         //Author: Samy Coenen
         //Date: 11/04/2015 14:54
         private string dataVak;
-
         
         public IODatabase(String vak)
         {
