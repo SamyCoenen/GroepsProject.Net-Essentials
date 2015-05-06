@@ -20,7 +20,6 @@ namespace leren
         private SoundPlayer sp = new SoundPlayer("../../Kernkraft.wav");
         private DispatcherTimer spelKlok = new DispatcherTimer();
         private DispatcherTimer nieuweSpeler = new DispatcherTimer();
-        private int totaalScore = 0;
         public SpelWindow()
         {
             InitializeComponent();

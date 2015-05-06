@@ -1,7 +1,7 @@
 ﻿<Window x:Class="leren.Student"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Student" Height="768" Width="1024" Closing="Window_Closing" Icon="/leren;component/images/favicon.ico">
+        Title="Student" Height="768" Width="1024"  Closing="Window_Closing" WindowStartupLocation="CenterScreen" Icon="/leren;component/images/favicon.ico">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="450"/>
