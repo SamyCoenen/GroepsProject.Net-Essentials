@@ -1,7 +1,7 @@
 ﻿<Window x:Class="leren.Kennis"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Kennis" Height="400" Width="600" Icon="/leren;component/images/favicon.ico"  >
+        Title="Kennis" Height="400" Width="600" Icon="/leren;component/images/favicon.ico" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Label Content="" Name="lblVraag" HorizontalAlignment="Stretch" Margin="10,10,0,0" FontSize="22" VerticalAlignment="Top"/>
         <Grid Name="radioBtnGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15,70,10,51"  />
