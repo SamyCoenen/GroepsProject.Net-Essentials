@@ -69,9 +69,7 @@ namespace leren
         private void vakkenListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             oefeningListBox.Items.Clear();
-            vraagTextBox.IsEnabled = false;
-            antwoordenListBox.IsEnabled = false;
-            juisteTextBox.IsEnabled = false;
+            DisableElements();
             switch (vakkenListBox.SelectedIndex)
             {
                 case 0:
@@ -104,9 +102,7 @@ namespace leren
         {
             string[] lines;
             antwoordenListBox.Items.Clear();
-            vraagTextBox.IsEnabled = false;
-            antwoordenListBox.IsEnabled = false;
-            juisteTextBox.IsEnabled = false;
+            DisableElements();
             switch (vakkenListBox.SelectedIndex)
             {
                 case 0:
@@ -144,7 +140,7 @@ namespace leren
             juisteTextBox.Text = juist.ToString();
         }
 
-        // Timothy Vanderaerden
+        // Verwijder alle value (als deze er is) | Timothy Vanderaerden
         private void nieuwButton_Click(object sender, RoutedEventArgs e)
         {
             if (vakkenListBox.SelectedIndex < 0)
@@ -160,14 +156,11 @@ namespace leren
                 vraagTextBox.Clear();
                 antwoordenListBox.Items.Clear();
                 juisteTextBox.Clear();
-                vraagTextBox.IsEnabled = true;
-                antwoordenListBox.IsEnabled = true;
-                juisteTextBox.IsEnabled = true;
-
+                EnableElements();
             }
         }
 
-        // Timothy Vanderaerden
+        // Edit button - Enable elements wanneer er een oefening is aangeduid | Timothy Vanderaerden
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
             if (oefeningListBox.SelectedIndex < 0)
@@ -180,9 +173,51 @@ namespace leren
             }
             else
             {
-                vraagTextBox.IsEnabled = true;
-                antwoordenListBox.IsEnabled = true;
-                juisteTextBox.IsEnabled = true;
+                EnableElements();
+            }
+        }
+
+        // Antwoord toevoegen | Timothy Vanderaerden
+        private void antwoordToevoegenButton_Click(object sender, RoutedEventArgs e)
+        {
+            antwoordenListBox.Items.Add(antwoordTextBox.Text.ToString());
+            antwoordTextBox.Clear();
+        }
+
+
+        // Antwoord verwijderen | Timothy Vanderaerden
+        private void verwijderAntwoordButton_Click(object sender, RoutedEventArgs e)
+        {
+            antwoordenListBox.Items.RemoveAt(antwoordenListBox.SelectedIndex);
+        }
+
+        // Methode om elements inteschakelen | Timothy Vanderaerden
+        private void EnableElements()
+        {
+            vraagTextBox.IsEnabled = true;
+            antwoordenListBox.IsEnabled = true;
+            juisteTextBox.IsEnabled = true;
+            antwoordToevoegenButton.IsEnabled = true;
+            verwijderAntwoordButton.IsEnabled = true;
+            antwoordTextBox.IsEnabled = true;
+        }
+
+        // Methode om elements uitteschakelen | Timothy Vanderaerden
+        private void DisableElements()
+        {
+            vraagTextBox.IsEnabled = false;
+            antwoordenListBox.IsEnabled = false;
+            juisteTextBox.IsEnabled = false;
+            antwoordToevoegenButton.IsEnabled = false;
+            verwijderAntwoordButton.IsEnabled = false;
+            antwoordTextBox.IsEnabled = false;
+        }
+
+        // Verwijder alle gegevens van een oefening | Timothy Vanderaerden
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (vraagTextBox.Text.Count() < 0 && antwoordenListBox.Items.IsEmpty == true && juisteTextBox.Text.Count() < 0)
+            {
 
             }
         }
