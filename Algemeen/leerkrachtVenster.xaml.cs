@@ -23,11 +23,6 @@ namespace leren
     {
         private string fileName;
 
-        public string FileName
-        {
-            get { return fileName; }
-            set { fileName = value; }
-        }
         public leerkrachtVenster()
         {
             InitializeComponent();
@@ -75,7 +70,6 @@ namespace leren
         // Vakken Listbox + declareren oefeninglistbox | Timothy Vanderaerden
         private void vakkenListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            oefeningListBox.Items.Clear();
             switch (vakkenListBox.SelectedIndex)
             {
                 case 0:
