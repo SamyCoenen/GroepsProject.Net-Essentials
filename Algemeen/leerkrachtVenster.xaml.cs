@@ -28,10 +28,10 @@ namespace leren
             InitializeComponent();
             GebruikersLijst lijst = new GebruikersLijst("student");           
             Combobox1.ItemsSource = lijst.Naam;
-            vakkenListBox.Items.Add("Talen - Makkelijk");
-            vakkenListBox.Items.Add("Talen - Moeilijk");
-            vakkenListBox.Items.Add("Kennis - Makkelijk");
-            vakkenListBox.Items.Add("Kennis - Moeilijk");
+            vakkenComboBox.Items.Add("Talen - Makkelijk");
+            vakkenComboBox.Items.Add("Talen - Moeilijk");
+            vakkenComboBox.Items.Add("Kennis - Makkelijk");
+            vakkenComboBox.Items.Add("Kennis - Moeilijk");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -68,9 +68,9 @@ namespace leren
         }
 
         // Vakken Listbox + declareren oefeninglistbox | Timothy Vanderaerden
-        private void vakkenListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void vakkenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (vakkenListBox.SelectedIndex)
+            switch (vakkenComboBox.SelectedIndex)
             {
                 case 0:
                     fileName = "taalvragen_0.txt";
@@ -89,7 +89,7 @@ namespace leren
         }
 
         // oefeninglistbox | Timothy Vanderaerden
-        private void oefeningListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void oefeningComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ToonVakOefening();
             DisableElements();
@@ -103,7 +103,7 @@ namespace leren
             {
                 int deelEinde = line.IndexOf("-");
                 string oefening = line.Substring(0, deelEinde);
-                oefeningListBox.Items.Add(oefening.ToString());
+                oefeningComboBox.Items.Add(oefening.ToString());
             }
 
         }
@@ -111,6 +111,7 @@ namespace leren
         // Toonvakoefening gegevens methode | Timothy Vanderaerden
         private void ToonVakOefening()
         {
+            ComboBox oefeningComboBox = new ComboBox();
             string[] lines;
             lines = File.ReadAllLines("../../Data/" + fileName);
             int deelEinde = lines[oefeningListBox.SelectedIndex].IndexOf("-");
@@ -129,7 +130,7 @@ namespace leren
         // Verwijder alle value (als deze er is) | Timothy Vanderaerden
         private void nieuwButton_Click(object sender, RoutedEventArgs e)
         {
-            if (vakkenListBox.SelectedIndex < 0)
+            if (vakkenComboBox.SelectedIndex < 0)
             {
                 string messageBoxText = "U hebt geen vak aangeduid, gelieve een vak aanteduiden!";
                 string caption = "Geen vak geselecteerd";
@@ -149,7 +150,7 @@ namespace leren
         // Edit button - Enable elements wanneer er een oefening is aangeduid | Timothy Vanderaerden
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
-            if (oefeningListBox.SelectedIndex < 0)
+            if (oefeningComboBox.SelectedIndex < 0)
             {
                 string messageBoxText = "U hebt geen oefening aangeduid, gelieve een vak aanteduiden!";
                 string caption = "Geen vak geselecteerd";
@@ -213,7 +214,7 @@ namespace leren
                 if (result == MessageBoxResult.Yes)
                 {
                     IODatabase database = new IODatabase("");
-                    database.VerwijderOefening(oefeningListBox.SelectedIndex, fileName);
+                    database.VerwijderOefening(oefeningComboBox.SelectedIndex, fileName);
                     vraagTextBox.Clear();
                     antwoordTextBox.Clear();
                     antwoordenListBox.Items.Clear();
