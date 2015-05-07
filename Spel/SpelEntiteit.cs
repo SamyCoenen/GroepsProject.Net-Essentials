@@ -19,7 +19,7 @@ namespace leren
         protected Rectangle se;
         private int _grootte = 20;
         private static readonly Random r1 = new Random();
-        
+
         public SpelEntiteit()
         {
             se = new Rectangle();
@@ -33,9 +33,13 @@ namespace leren
             spelCanvas.Children.Add(se);
         }
 
-        public void Teken(Canvas spelCanvas, List<ComputerSpeler> csList, MensSpeler msSpeler,Label speLabel)
+        public void Teken(Canvas spelCanvas, List<ComputerSpeler> csLijst, MensSpeler msSpeler)
         {
-            se.Margin = new Thickness(0, r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0);                      
+            se.Margin = new Thickness(0, r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0);
+            while (Geraakt(csLijst, msSpeler))
+            {
+                se.Margin = new Thickness(0, r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0);  
+            }
             spelCanvas.Children.Add(se);
         }
 
@@ -55,27 +59,27 @@ namespace leren
             set { _snelheid = value; }
         }
 
-        public bool Geraakt(List<ComputerSpeler> csLijst,int index, MensSpeler msSpeler,Canvas spelCanvas,Label scoreLabel)
+        public bool Geraakt(List<ComputerSpeler> csLijst, int indexInLijst, MensSpeler msSpeler, Canvas spelCanvas, Label scoreLabel)
         {
             Point positieHuidig = Positie();
             Rect rect1 = new Rect(positieHuidig.X + _xChange, positieHuidig.Y + _yChange, _grootte, _grootte);
-            for (int i=0;i<csLijst.Count;i++)
+            for (int i = 0; i < csLijst.Count; i++)
             {
                 Point positieComputer = csLijst[i].Positie();
-                Rect rect2 = new Rect(positieComputer.X + csLijst[i].XVerplaatsing, positieComputer.Y + csLijst[i].YVerplaatsing, _grootte, _grootte);                 
+                Rect rect2 = new Rect(positieComputer.X + csLijst[i].XVerplaatsing, positieComputer.Y + csLijst[i].YVerplaatsing, _grootte, _grootte);
                 //Bepalen of huidige SpelEntiteit met een vierhoek ComputerSpeler botst behalve zichzelf
-                   if (rect1.IntersectsWith(rect2)&&positieHuidig!=positieComputer)
-                   {                   
-                       if (Kleur() == "#FF008000")
-                       {
-                         VeranderKleur(new SolidColorBrush(Colors.Black));
-                       }
-                       else if (Kleur() == "#FF000000")
-                       {
-                           VeranderKleur(new SolidColorBrush(Colors.Green));
-                       }
-                           return true;                      
-                    }                      
+                if (rect1.IntersectsWith(rect2) && positieHuidig != positieComputer)
+                {
+                    if (Kleur() == "#FF008000")
+                    {
+                        VeranderKleur(new SolidColorBrush(Colors.Black));
+                    }
+                    else if (Kleur() == "#FF000000")
+                    {
+                        VeranderKleur(new SolidColorBrush(Colors.Green));
+                    }
+                    return true;
+                }
             }
             Point positieMens = msSpeler.Positie();
             Rect rect3 = new Rect(positieMens.X, positieMens.Y, _grootte, _grootte);
@@ -89,16 +93,39 @@ namespace leren
                 {
                     scoreLabel.Content = Convert.ToString(Convert.ToInt32(scoreLabel.Content) + 1);
                     spelCanvas.Children.Remove(se);
-                    csLijst.RemoveAt(index);
+                    csLijst.RemoveAt(indexInLijst);
                 }
                 return true;
-            }   
+            }
+            return false;
+        }
+
+        public bool Geraakt(List<ComputerSpeler> csLijst, MensSpeler msSpeler)
+        {
+            Point positieHuidig = Positie();
+            Rect rect1 = new Rect(positieHuidig.X + _xChange, positieHuidig.Y + _yChange, _grootte, _grootte);
+            for (int i = 0; i < csLijst.Count; i++)
+            {
+                Point positieComputer = csLijst[i].Positie();
+                Rect rect2 = new Rect(positieComputer.X + csLijst[i].XVerplaatsing, positieComputer.Y + csLijst[i].YVerplaatsing, _grootte, _grootte);
+                if (rect1.IntersectsWith(rect2) && positieHuidig != positieComputer)
+                {
+                    return true;
+                }
+            }
+            Point positieMens = msSpeler.Positie();
+            Rect rect3 = new Rect(positieMens.X, positieMens.Y, _grootte, _grootte);
+            if (rect1.IntersectsWith(rect3) && positieHuidig != positieMens)
+            {
+                return true;
+            }
+
             return false;
         }
 
         public Point Positie()
         {
-            return new Point(se.Margin.Left, se.Margin.Top);     
+            return new Point(se.Margin.Left, se.Margin.Top);
         }
 
         public int Grootte
@@ -111,7 +138,7 @@ namespace leren
         {
             get { return _xChange; }
             set { _xChange = value; }
-        }        
+        }
 
         public double YVerplaatsing
         {
