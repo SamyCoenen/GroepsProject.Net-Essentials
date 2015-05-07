@@ -25,6 +25,7 @@ namespace leren
             InitializeComponent();
         }
 
+        // Open quiz window
         private void Image_MouseDown(object sender, RoutedEventArgs e)
         {
             int graad = (int)graadSlider.Value;

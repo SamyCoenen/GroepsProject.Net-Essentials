@@ -22,7 +22,7 @@ namespace leren
     public partial class leerkrachtVenster : Window
     {
         private string fileName;
-        private bool crashFix;
+        private bool selectionChanged;
         public leerkrachtVenster()
         {
             InitializeComponent();
@@ -67,24 +67,25 @@ namespace leren
             
         }
 
-        // Vakken Listbox + declareren oefeninglistbox | Timothy Vanderaerden
+        // Vakken Listbox + declareren oefeninglistbox
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void vakkenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (vakkenComboBox.SelectedIndex)
             {
                 case 0:
-                    crashFix = true;
+                    selectionChanged = false;
                     oefeningComboBox.Items.Clear();
-                    crashFix = false;
+                    selectionChanged = true;
                     fileName = "taalvragen_0.txt";
                     ToonOefeningen();
                     break;
                 case 1:
                     break;
                 case 2:
-                    crashFix = true;
+                    selectionChanged = false;
                     oefeningComboBox.Items.Clear();
-                    crashFix = false;
+                    selectionChanged = true;
                     fileName = "kennisvragen_0.txt";
                     ToonOefeningen();
                     break;
@@ -94,14 +95,15 @@ namespace leren
             DisableElements();
         }
 
-        // oefeninglistbox | Timothy Vanderaerden
+        // oefeninglistbox
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void oefeningComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Wanneer er een vak is aangeduid en een oefening en het vak wijzigd wordt de selectionchanged
-            // opgeroepen. Waardoor ToonVakOefening() aangesproken wordt en zorgt ervoor dat het programma crasht
+            // Wanneer er een vak en een oefening is aangeduid en het vak wijzigd wordt de selectionchanged
+            // opgeroepen. Waardoor ToonVakOefening() aangesproken wordt en ervoor zorg dat het programma crasht
             // http://stackoverflow.com/questions/8608128/how-to-cancel-a-combobox-selectionchanged-event
-            // Timothy Vanderaerden
-            if (crashFix == true)
+            // Author: Timothy Vanderaerden - Date: 07/05/15 
+            if (selectionChanged == false)
             {
                 ComboBox combo = (ComboBox)sender;
                 combo.SelectedItem = e.RemovedItems[0];
@@ -114,7 +116,8 @@ namespace leren
             }
         }
 
-        // methoden om oefeninglistbox te vullen | Timothy Vanderaerden
+        // methoden om oefeninglistbox te vullen
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void ToonOefeningen()
         {
             string[] lines = File.ReadAllLines("../../Data/" + fileName);
@@ -127,7 +130,8 @@ namespace leren
 
         }
 
-        // Toonvakoefening gegevens methode | Timothy Vanderaerden
+        // Toonvakoefening gegevens methode
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void ToonVakOefening()
         {
             string[] lines;
@@ -145,7 +149,8 @@ namespace leren
             juisteTextBox.Text = juist.ToString();
         }
 
-        // Verwijder alle value (als deze er is) | Timothy Vanderaerden
+        // Verwijder alle value (als deze er is)
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void nieuwButton_Click(object sender, RoutedEventArgs e)
         {
             if (vakkenComboBox.SelectedIndex < 0)
@@ -162,7 +167,8 @@ namespace leren
             }
         }
 
-        // Edit button - Enable elements wanneer er een oefening is aangeduid | Timothy Vanderaerden
+        // Edit button - Enable elements wanneer er een oefening is aangeduid
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
             if (oefeningComboBox.SelectedIndex < 0)
@@ -179,7 +185,8 @@ namespace leren
             }
         }
 
-        // Antwoord toevoegen | Timothy Vanderaerden
+        // Antwoord toevoegen
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void antwoordToevoegenButton_Click(object sender, RoutedEventArgs e)
         {
             antwoordenListBox.Items.Add(antwoordTextBox.Text.ToString());
@@ -187,13 +194,15 @@ namespace leren
         }
 
 
-        // Antwoord verwijderen | Timothy Vanderaerden
+        // Antwoord verwijderen
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void verwijderAntwoordButton_Click(object sender, RoutedEventArgs e)
         {
             antwoordenListBox.Items.RemoveAt(antwoordenListBox.SelectedIndex);
         }
 
-        // Verwijder alle gegevens van een oefening | Timothy Vanderaerden
+        // Verwijder alle gegevens van een oefening
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (vraagTextBox.Text.Count() > 0 && antwoordenListBox.Items.IsEmpty != true && juisteTextBox.Text.Count() > 0)
@@ -209,6 +218,8 @@ namespace leren
             }
         }
 
+        // Een oefening toevoegen
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             if (vraagTextBox.Text.Count() > 0 && antwoordenListBox.Items.IsEmpty != true && juisteTextBox.Text.Count() > 0)
@@ -239,7 +250,8 @@ namespace leren
 
         }
 
-        // Methode om elements inteschakelen | Timothy Vanderaerden
+        // Methode om elements inteschakelen
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void EnableElements()
         {
             vraagTextBox.IsEnabled = true;
@@ -252,7 +264,8 @@ namespace leren
             deleteButton.IsEnabled = true;
         }
 
-        // Methode om elements uitteschakelen | Timothy Vanderaerden
+        // Methode om elements uitteschakelen
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void DisableElements()
         {
             vraagTextBox.IsEnabled = false;
@@ -265,7 +278,8 @@ namespace leren
             deleteButton.IsEnabled = false;
         }
 
-        // Methoden om alle elementen hun gegevens te wissen | Timothy Vanderaerden
+        // Methoden om alle elementen hun gegevens te wissen
+        // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void ClearElements()
         {
             vraagTextBox.Clear();
@@ -275,4 +289,3 @@ namespace leren
         }
     }
 }
-

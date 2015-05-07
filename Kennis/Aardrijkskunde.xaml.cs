@@ -31,6 +31,7 @@ namespace leren
             Loaded+=Aarderijkskunde_Loaded;
         }
 
+        // Bij het laden van het scherm de graad aanpassen
         private void Aarderijkskunde_Loaded(object sender, RoutedEventArgs e)
         {
             Moeilijk(graad);
@@ -42,6 +43,7 @@ namespace leren
             }
         }
 
+        // Selecteren van een land
         private void landen_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
                 if (landen.SelectedItems.Count > 0)
@@ -55,6 +57,7 @@ namespace leren
                 }
         }
 
+        // Selecteren van een stad
         private void steden_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (steden.SelectedItems.Count > 0)
@@ -68,16 +71,19 @@ namespace leren
             }
         }
 
+        // Drag land
         private void land_DragEnter(object sender, DragEventArgs e)
         {
             e.Effects = DragDropEffects.Copy;
         }
 
+        // Drag Land
         private void land_PreviewDragOver(object sender, DragEventArgs e)
         {
             e.Handled = true;
         }
 
+        // Drap land
         private void land_Drop(object sender, DragEventArgs e)
         {
             ListBox lb = (ListBox)sender;
@@ -96,6 +102,7 @@ namespace leren
             }
         }
 
+        // Drop stad
         private void stad_Drop(object sender, DragEventArgs e)
         {
             ListBox lb = (ListBox)sender;
@@ -115,11 +122,13 @@ namespace leren
             }
         }
 
+        // drop land en stad
         private void drop_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
         
         }
 
+        // Visibility uitzetten voor moeilijk
         private void Moeilijk(int graad)
         {
             if (graad == 1)
@@ -134,27 +143,28 @@ namespace leren
             }
         }
 
+        // Toon resultaat
         private void Resultaat(object sender, RoutedEventArgs e)
         {
-            if (land1box.Items.Count == 0 && land2box.Items.Count == 0 && land3box.Items.Count == 0 && land4box.Items.Count == 0 && land5box.Items.Count == 0)
+            if (land1box.Items.Count == 0 || land2box.Items.Count == 0 || land3box.Items.Count == 0 || land4box.Items.Count == 0 || land5box.Items.Count == 0)
             {
                 if (graad == 1)
                 {
-                    if (stad1box.Items.Count == 0 && stad2box.Items.Count == 0 && stad3box.Items.Count == 0 && stad4box.Items.Count == 0 && stad5box.Items.Count == 0)
+                    if (stad1box.Items.Count == 0 || stad2box.Items.Count == 0 || stad3box.Items.Count == 0 || stad4box.Items.Count == 0 || stad5box.Items.Count == 0)
                     {
-                        string messageBoxText = Properties.Settings.Default.userName +  ", je heb geen land of stad versleept! Versleep de landen en steden naar het juiste land en druk vervolgens op resultaat.";
+                        string messageBoxText = Properties.Settings.Default.userName +  ", je hebt niet alle landen of staded versleept! Versleep de landen en steden naar het juiste land en druk vervolgens op resultaat.";
                         string caption = "Geen antwoord";
                         MessageBoxButton button = MessageBoxButton.OK;
-                        MessageBoxImage icon = MessageBoxImage.Warning;
+                        MessageBoxImage icon = MessageBoxImage.Error;
                         MessageBox.Show(messageBoxText, caption, button, icon);
                     }
                 }
                 else
                 {
-                    string messageBoxText = Properties.Settings.Default.userName + ", je heb geen land versleept! Versleep de landen en druk vervolgens op resultaat.";
+                    string messageBoxText = Properties.Settings.Default.userName + ", je hebt niet alle landen versleept! Versleep de landen en druk vervolgens op resultaat.";
                     string caption = "Geen antwoord";
                     MessageBoxButton button = MessageBoxButton.OK;
-                    MessageBoxImage icon = MessageBoxImage.Warning;
+                    MessageBoxImage icon = MessageBoxImage.Error;
                     MessageBox.Show(messageBoxText, caption, button, icon);
                 }
             }
@@ -171,6 +181,7 @@ namespace leren
             }
         }
 
+        // Terug naar het menu gaan
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             {
@@ -219,6 +230,7 @@ namespace leren
             }
         }
 
+        // Sla het resultaat makkelijk op
         private void Resultaat_Makkelijk()
         {
             List<string> antwoorden = new List<string>{land1box.Items[0].ToString(), land2box.Items[0].ToString(), land3box.Items[0].ToString(), land4box.Items[0].ToString(), land5box.Items[0].ToString() };
@@ -232,6 +244,7 @@ namespace leren
             resultaatWindow.Show();
         }
 
+        // Sla het resultaat moeilijk op
         private void Resultaat_Moeilijk()
         {
             List<string> antwoorden = new List<string> { land1box.Items[0].ToString(), land2box.Items[0].ToString(), land3box.Items[0].ToString(), land4box.Items[0].ToString(), land5box.Items[0].ToString(), stad1box.Items[0].ToString(), stad2box.Items[0].ToString(), stad3box.Items[0].ToString(), stad4box.Items[0].ToString(), stad5box.Items[0].ToString() };

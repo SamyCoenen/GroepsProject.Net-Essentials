@@ -40,6 +40,7 @@ namespace leren
 
         }
 
+        // Form laden
         private void Taal_Loaded(object sender, RoutedEventArgs e)
         {
             IODatabase database = new IODatabase("taal");
@@ -47,6 +48,7 @@ namespace leren
             VolgendeVraag();
         }
 
+        // Volgende vraag nemen
         private void VolgendeVraag()
         {
             index = 0;
@@ -76,6 +78,7 @@ namespace leren
             }
         }
 
+        // Return gegeven antwoord index
         private int getAntwoord()
         {
             foreach (RadioButton button in radioBtnGrid.Children)
@@ -89,6 +92,7 @@ namespace leren
             return -1;
         }
 
+        // Naar volgende vraag of naar het resultaat te gaan
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             KeuzeAntwoord antwoord = new KeuzeAntwoord();

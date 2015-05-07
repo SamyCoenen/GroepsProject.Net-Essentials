@@ -9,7 +9,7 @@ namespace leren
     class IODatabase
     {
         // Input en output methoden
-        // Date: 01/04/15 - Last edit: 24/04/15
+        // Date: 01/04/15 - Last edit: 07/05/15
         // Author: Timothy Vanderaerden
 
         //Constructor en filename aangepast om deze classe te kunnen gebruiken bij meerdere vakken
@@ -28,6 +28,7 @@ namespace leren
             return ReadKeuzevragen(filename);
         }
 
+        // Lijst oefening
         public List<KeuzeVraag> ReadKeuzevragen(string filename)
         {
             string[] lines = File.ReadAllLines(filename);
@@ -50,6 +51,7 @@ namespace leren
             return vragenlijst;
         }
 
+        // methode om resultaat van kennis weg te schrijven
         public void SchrijfResultaatKennis(List<KeuzeVraag> keuzeVragen, List<KeuzeAntwoord> keuzeAntwoorden, string naam, int graad)
         {
             StringBuilder resultaat = new StringBuilder();
@@ -77,7 +79,7 @@ namespace leren
                 string messageBoxText = "Error: System.IO.IOException";
                 string caption = "Geen antwoord";
                 MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(messageBoxText, caption, button, icon);
             }
             catch (System.ObjectDisposedException)
@@ -85,7 +87,7 @@ namespace leren
                 string messageBoxText = "Error: System.ObjectDisposedException";
                 string caption = "Geen antwoord";
                 MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(messageBoxText, caption, button, icon);
             }
             finally
@@ -94,6 +96,7 @@ namespace leren
             }
         }
 
+        // methode om resultaat van aarderijkskunde weg te schrijven
         public void SchrijfResultaatAarderijkskunde(List<string> antwoorden, List<string> oplossingen, string naam, int graad)
         {
             StringBuilder resultaat = new StringBuilder();
@@ -121,7 +124,7 @@ namespace leren
                 string messageBoxText = "Error: System.IO.IOException";
                 string caption = "Geen antwoord";
                 MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(messageBoxText, caption, button, icon);
             }
             catch (System.ObjectDisposedException)
@@ -129,7 +132,7 @@ namespace leren
                 string messageBoxText = "Error: System.ObjectDisposedException";
                 string caption = "Geen antwoord";
                 MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(messageBoxText, caption, button, icon);
             }
             finally
@@ -138,6 +141,7 @@ namespace leren
             }
         }
 
+        // methode om resultaat van taal weg te schrijven
         public void SchrijfResultaatTaal(List<KeuzeVraag> keuzeVragen, List<KeuzeAntwoord> keuzeAntwoorden, string naam, int graad)
         {
             StringBuilder resultaat = new StringBuilder();
@@ -166,7 +170,7 @@ namespace leren
                 string messageBoxText = "Error: System.IO.IOException";
                 string caption = "Geen antwoord";
                 MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(messageBoxText, caption, button, icon);
             }
             catch (System.ObjectDisposedException)
@@ -174,7 +178,7 @@ namespace leren
                 string messageBoxText = "Error: System.ObjectDisposedException";
                 string caption = "Geen antwoord";
                 MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(messageBoxText, caption, button, icon);
             }
             finally
@@ -183,6 +187,7 @@ namespace leren
             }
         }
 
+        // Methode om een oefening te verwijderen
         public void VerwijderOefening(int index, string file)
         {
             string[] lines = File.ReadAllLines("../../Data/" + file);
@@ -197,6 +202,7 @@ namespace leren
             File.WriteAllLines("../../Data/" + file, newLines);
         }
 
+        // Methode om een oefening toe te voegen
         public void schrijfOefening(string vraag, string[] antwoorden, int juist, string file)
         {
             StringBuilder oefening = new StringBuilder();
@@ -216,15 +222,14 @@ namespace leren
                 string messageBoxText = "Uw vraag is succesvol opgeslaan!";
                 string caption = "Gelukt";
                 MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                MessageBox.Show(messageBoxText, caption, button, icon);
+                MessageBox.Show(messageBoxText, caption, button);
             }
             catch (System.IO.IOException)
             {
                 string messageBoxText = "Error: System.IO.IOException";
                 string caption = "Geen antwoord";
                 MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(messageBoxText, caption, button, icon);
             }
             catch (System.ObjectDisposedException)
@@ -232,7 +237,7 @@ namespace leren
                 string messageBoxText = "Error: System.ObjectDisposedException";
                 string caption = "Geen antwoord";
                 MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(messageBoxText, caption, button, icon);
             }
             finally
