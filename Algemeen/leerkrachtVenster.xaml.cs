@@ -111,19 +111,18 @@ namespace leren
         // Toonvakoefening gegevens methode | Timothy Vanderaerden
         private void ToonVakOefening()
         {
-            ComboBox oefeningComboBox = new ComboBox();
             string[] lines;
             lines = File.ReadAllLines("../../Data/" + fileName);
-            int deelEinde = lines[oefeningListBox.SelectedIndex].IndexOf("-");
-            string vraag = lines[oefeningListBox.SelectedIndex].Substring(0, deelEinde);
+            int deelEinde = lines[oefeningComboBox.SelectedIndex].IndexOf("-");
+            string vraag = lines[oefeningComboBox.SelectedIndex].Substring(0, deelEinde);
             vraagTextBox.Text = Convert.ToString(vraag);
             int deelBegin = deelEinde + 1;
-            while ((deelEinde = lines[oefeningListBox.SelectedIndex].IndexOf("$", deelBegin)) != -1)
+            while ((deelEinde = lines[oefeningComboBox.SelectedIndex].IndexOf("$", deelBegin)) != -1)
             {
-                antwoordenListBox.Items.Add(lines[oefeningListBox.SelectedIndex].Substring(deelBegin, (deelEinde - deelBegin)));
+                antwoordenListBox.Items.Add(lines[oefeningComboBox.SelectedIndex].Substring(deelBegin, (deelEinde - deelBegin)));
                 deelBegin = deelEinde + 1;
             }
-            int juist = Int32.Parse(lines[oefeningListBox.SelectedIndex].Substring(deelBegin, lines[oefeningListBox.SelectedIndex].Length - deelBegin));
+            int juist = Int32.Parse(lines[oefeningComboBox.SelectedIndex].Substring(deelBegin, lines[oefeningComboBox.SelectedIndex].Length - deelBegin));
             juisteTextBox.Text = juist.ToString();
         }
 
