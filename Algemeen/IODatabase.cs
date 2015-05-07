@@ -212,7 +212,7 @@ namespace leren
 
             try
             {
-                writeout.WriteLine(Environment.NewLine + oefening);
+                writeout.WriteLine(oefening);
                 string messageBoxText = "Uw vraag is succesvol opgeslaan!";
                 string caption = "Gelukt";
                 MessageBoxButton button = MessageBoxButton.OK;

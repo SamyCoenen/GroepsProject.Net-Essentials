@@ -75,6 +75,7 @@ namespace leren
         // Vakken Listbox + declareren oefeninglistbox | Timothy Vanderaerden
         private void vakkenListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            oefeningListBox.Items.Clear();
             switch (vakkenListBox.SelectedIndex)
             {
                 case 0:
@@ -168,20 +169,6 @@ namespace leren
             }
         }
 
-        // Antwoord toevoegen | Timothy Vanderaerden
-        private void antwoordToevoegenButton_Click(object sender, RoutedEventArgs e)
-        {
-            antwoordenListBox.Items.Add(antwoordTextBox.Text.ToString());
-            antwoordTextBox.Clear();
-        }
-
-
-        // Antwoord verwijderen | Timothy Vanderaerden
-        private void verwijderAntwoordButton_Click(object sender, RoutedEventArgs e)
-        {
-            antwoordenListBox.Items.RemoveAt(antwoordenListBox.SelectedIndex);
-        }
-
         // Methode om elements inteschakelen | Timothy Vanderaerden
         private void EnableElements()
         {
@@ -206,6 +193,20 @@ namespace leren
             antwoordTextBox.IsEnabled = false;
             addButton.IsEnabled = false;
             deleteButton.IsEnabled = false;
+        }
+
+        // Antwoord toevoegen | Timothy Vanderaerden
+        private void antwoordToevoegenButton_Click(object sender, RoutedEventArgs e)
+        {
+            antwoordenListBox.Items.Add(antwoordTextBox.Text.ToString());
+            antwoordTextBox.Clear();
+        }
+
+
+        // Antwoord verwijderen | Timothy Vanderaerden
+        private void verwijderAntwoordButton_Click(object sender, RoutedEventArgs e)
+        {
+            antwoordenListBox.Items.RemoveAt(antwoordenListBox.SelectedIndex);
         }
 
         // Verwijder alle gegevens van een oefening | Timothy Vanderaerden
@@ -236,9 +237,17 @@ namespace leren
                 {
                     antwoorden[i] = antwoordenListBox.Items[i].ToString();
                 }
+                int juist = 0;
+                while (juisteTextBox.Text.ToString() != antwoordenListBox.Items[juist].ToString())
+                {
+                    juist++;
+                }
                 IODatabase database = new IODatabase("");
-                database.schrijfOefening(vraagTextBox.Text.ToString(), antwoorden, Convert.ToInt32(juisteTextBox.Text.ToString()), fileName);
-                ToonOefeningen();
+                database.schrijfOefening(vraagTextBox.Text.ToString(), antwoorden, juist, fileName);
+                DisableElements();
+                vraagTextBox.Clear();
+                antwoordenListBox.Items.Clear();
+                juisteTextBox.Clear();
             }
             else
             {

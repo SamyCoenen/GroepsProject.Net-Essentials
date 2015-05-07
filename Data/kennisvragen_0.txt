@@ -9,6 +9,4 @@ Uit hoeveel letters bestaat het alfabet?-25$26$28$30$1
 Hoeveel koekjes kan je eten op een lege maag?-1$2$3$zeer veel$0
 Welke hoofdtalen spreekt men in België?-Nederlands, Deens en Duits$Nederlands, Duits en Engels$Nederlands, Frans en Duits$2
 Hoeveel bollen heeft het Atomium?-5$12$9$2
-Hoeveel planeten zitten er in ons zonnestelsel?-9$8$7$6$1Nieuwe vraag?-antw1$32$antw5$2
-
-Vraag 1-ant1$ant2$ant3$1
+Hoeveel planeten zitten er in ons zonnestelsel?-9$8$7$6$1
