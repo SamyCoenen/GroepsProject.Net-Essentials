@@ -16,8 +16,8 @@
         <ComboBox Name="vakkenListBox" HorizontalAlignment="Left" Margin="56,398,0,0" VerticalAlignment="Top" Width="281" SelectionChanged="vakkenListBox_SelectionChanged"/>
         <ComboBox Name="oefeningListBox" HorizontalAlignment="Left" Margin="56,569,0,0" VerticalAlignment="Top" Width="281" SelectionChanged="oefeningListBox_SelectionChanged"/>
         <Button Name="editButton" Content="Aanpassen" HorizontalAlignment="Left" Margin="262,617,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.353,0.051" Click="editButton_Click"/>
-        <Button Name="addButton" Content="Toevoegen" HorizontalAlignment="Left" Margin="780,691,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Name="deleteButton" Content="Verwijderen" HorizontalAlignment="Left" Margin="881,691,0,0" VerticalAlignment="Top" Width="75" Click="deleteButton_Click"/>
+        <Button Name="addButton" IsEnabled="False" Content="Toevoegen" HorizontalAlignment="Left" Margin="780,691,0,0" VerticalAlignment="Top" Width="75" Click="addButton_Click"/>
+        <Button Name="deleteButton" IsEnabled="False" Content="Verwijderen" HorizontalAlignment="Left" Margin="881,691,0,0" VerticalAlignment="Top" Width="75" Click="deleteButton_Click"/>
         <Label Content="Selecteer een oefening" FontSize="15" HorizontalAlignment="Left" Margin="56,538,0,0" VerticalAlignment="Top" Width="195"/>
         <Label Content="Vraag" FontSize="15" HorizontalAlignment="Left" Margin="461,363,0,0" VerticalAlignment="Top" Height="30" Width="60"/>
         <TextBox Name="vraagTextBox" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="586,370,0,0" Text=" " TextWrapping="Wrap"  VerticalAlignment="Top" Width="370"/>

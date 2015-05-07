@@ -21,6 +21,13 @@ namespace leren
     /// </summary>
     public partial class leerkrachtVenster : Window
     {
+        private string fileName;
+
+        public string FileName
+        {
+            get { return fileName; }
+            set { fileName = value; }
+        }
         public leerkrachtVenster()
         {
             InitializeComponent();
@@ -68,65 +75,49 @@ namespace leren
         // Vakken Listbox + declareren oefeninglistbox | Timothy Vanderaerden
         private void vakkenListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            oefeningListBox.Items.Clear();
-            DisableElements();
             switch (vakkenListBox.SelectedIndex)
             {
                 case 0:
-                    string[] linesTaal1 = File.ReadAllLines("../../Data/taalvragen_0.txt");
-                    foreach (string line in linesTaal1)
-                    {
-                        int deelEinde = line.IndexOf("-");
-                        string oefening = line.Substring(0, deelEinde);
-                        oefeningListBox.Items.Add(oefening.ToString());
-                    }
+                    fileName = "taalvragen_0.txt";
+                    ToonOefeningen();
                     break;
                 case 1:
                     break;
                 case 2:
-                    string[] linesKennis1 = File.ReadAllLines("../../Data/kennisvragen_0.txt");
-                    foreach (string line in linesKennis1)
-                    {
-                        int deelEinde = line.IndexOf("-");
-                        string oefening = line.Substring(0, deelEinde);
-                        oefeningListBox.Items.Add(oefening.ToString());
-                    }
+                    fileName = "kennisvragen_0.txt";
+                    ToonOefeningen();
                     break;
                 case 3:
                     break;
             }
+            DisableElements();
         }
 
         // oefeninglistbox | Timothy Vanderaerden
         private void oefeningListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string[] lines;
-            antwoordenListBox.Items.Clear();
+            ToonVakOefening();
             DisableElements();
-            switch (vakkenListBox.SelectedIndex)
-            {
-                case 0:
-                    lines = File.ReadAllLines("../../Data/taalvragen_0.txt");
-                    ToonVakOefening(lines);
-                    break;
-                case 1:
-                    lines = File.ReadAllLines("../../Data/taalvragen_1.txt");
-                    ToonVakOefening(lines);
-                    break;
-                case 2:
-                    lines = File.ReadAllLines("../../Data/kennisvragen_0.txt");
-                    ToonVakOefening(lines);
-                    break;
-                case 3:
-                    lines = File.ReadAllLines("../../Data/kennisvragen_1.txt");
-                    ToonVakOefening(lines);
-                    break;
-            }
         }
 
-        // Toonvakoefening methode | Timothy Vanderaerden
-        private void ToonVakOefening(string[] lines)
+        // methoden om oefeninglistbox te vullen | Timothy Vanderaerden
+        private void ToonOefeningen()
         {
+            string[] lines = File.ReadAllLines("../../Data/" + fileName);
+            foreach (string line in lines)
+            {
+                int deelEinde = line.IndexOf("-");
+                string oefening = line.Substring(0, deelEinde);
+                oefeningListBox.Items.Add(oefening.ToString());
+            }
+
+        }
+
+        // Toonvakoefening gegevens methode | Timothy Vanderaerden
+        private void ToonVakOefening()
+        {
+            string[] lines;
+            lines = File.ReadAllLines("../../Data/" + fileName);
             int deelEinde = lines[oefeningListBox.SelectedIndex].IndexOf("-");
             string vraag = lines[oefeningListBox.SelectedIndex].Substring(0, deelEinde);
             vraagTextBox.Text = Convert.ToString(vraag);
@@ -200,6 +191,8 @@ namespace leren
             antwoordToevoegenButton.IsEnabled = true;
             verwijderAntwoordButton.IsEnabled = true;
             antwoordTextBox.IsEnabled = true;
+            addButton.IsEnabled = true;
+            deleteButton.IsEnabled = true;
         }
 
         // Methode om elements uitteschakelen | Timothy Vanderaerden
@@ -211,15 +204,51 @@ namespace leren
             antwoordToevoegenButton.IsEnabled = false;
             verwijderAntwoordButton.IsEnabled = false;
             antwoordTextBox.IsEnabled = false;
+            addButton.IsEnabled = false;
+            deleteButton.IsEnabled = false;
         }
 
         // Verwijder alle gegevens van een oefening | Timothy Vanderaerden
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            if (vraagTextBox.Text.Count() < 0 && antwoordenListBox.Items.IsEmpty == true && juisteTextBox.Text.Count() < 0)
+            if (vraagTextBox.Text.Count() > 0 && antwoordenListBox.Items.IsEmpty != true && juisteTextBox.Text.Count() > 0)
             {
+                MessageBoxResult result = MessageBox.Show("Bent u zeker dat u deze gegevens wilt verwijderen! De oefening zal dan verwijdert worden. Dit kan niet ongedaan gemaakt worden!", "Deze oefening verwijderen?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    IODatabase database = new IODatabase("");
+                    database.VerwijderOefening(oefeningListBox.SelectedIndex, fileName);
+                    vraagTextBox.Clear();
+                    antwoordTextBox.Clear();
+                    antwoordenListBox.Items.Clear();
+                    juisteTextBox.Clear();
+                }
             }
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (vraagTextBox.Text.Count() > 0 && antwoordenListBox.Items.IsEmpty != true && juisteTextBox.Text.Count() > 0)
+            {
+                string[] antwoorden = new string[antwoordenListBox.Items.Count];
+                for (int i = 0; i < antwoordenListBox.Items.Count; i++) 
+                {
+                    antwoorden[i] = antwoordenListBox.Items[i].ToString();
+                }
+                IODatabase database = new IODatabase("");
+                database.schrijfOefening(vraagTextBox.Text.ToString(), antwoorden, Convert.ToInt32(juisteTextBox.Text.ToString()), fileName);
+                ToonOefeningen();
+            }
+            else
+            {
+                string messageBoxText = "U hebt niet alles ingevuld. Gelieve alles intevullen";
+                string caption = "Lege velden";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+
         }
     }
 }

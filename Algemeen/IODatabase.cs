@@ -183,5 +183,63 @@ namespace leren
             }
         }
 
+        public void VerwijderOefening(int index, string file)
+        {
+            string[] lines = File.ReadAllLines("../../Data/" + file);
+            string[] newLines = new string[lines.Length -1];
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i] != lines[index])
+                {
+                    newLines[i] = lines[i].ToString();
+                }
+            }
+            File.WriteAllLines("../../Data/" + file, newLines);
+        }
+
+        public void schrijfOefening(string vraag, string[] antwoorden, int juist, string file)
+        {
+            StringBuilder oefening = new StringBuilder();
+            oefening.Append(vraag + "-");
+
+            for (int i = 0; i < antwoorden.Length; i++)
+            {
+                oefening.Append(antwoorden[i].ToString() + "$");
+            }
+            oefening.Append(juist);
+
+            StreamWriter writeout = new StreamWriter("../../Data/" + file, true);
+
+            try
+            {
+                writeout.WriteLine(Environment.NewLine + oefening);
+                string messageBoxText = "Uw vraag is succesvol opgeslaan!";
+                string caption = "Gelukt";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            catch (System.IO.IOException)
+            {
+                string messageBoxText = "Error: System.IO.IOException";
+                string caption = "Geen antwoord";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            catch (System.ObjectDisposedException)
+            {
+                string messageBoxText = "Error: System.ObjectDisposedException";
+                string caption = "Geen antwoord";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            finally
+            {
+                writeout.Close();
+            }
+        }
+
     }
 }
