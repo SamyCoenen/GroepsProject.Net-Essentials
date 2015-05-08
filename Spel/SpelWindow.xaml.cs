@@ -68,8 +68,7 @@ namespace leren
                         SpelGegevens spelInfo = new SpelGegevens();
                         levensLabel.Content = "levens: "+spelInfo.Levens[spelInfo.Naam.IndexOf(Properties.Settings.Default.userName)];
                         if (spelInfo.Levens[spelInfo.Naam.IndexOf(Properties.Settings.Default.userName)] > 0)
-                        {
-                           
+                        {            
                             ms = new MensSpeler();
                             ms.Teken(ballenSpel, csList, ms);
                             spelKlok.Start();
@@ -90,8 +89,7 @@ namespace leren
                         else
                         {
                             MessageBox.Show("U hebt 0 levens, maak een oefening om terug 1 leven te hebben");
-                        }                       
-                       
+                        }                      
                     }
                     else
                     {
