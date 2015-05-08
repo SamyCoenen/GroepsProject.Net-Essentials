@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using leren.Spel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
