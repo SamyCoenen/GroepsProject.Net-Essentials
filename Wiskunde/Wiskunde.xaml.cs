@@ -94,6 +94,56 @@ namespace leren
                 radioBtnGrid.Children.Add(antwoordbtn);
             }
         }
+        private int getAntwoord()
+        {
+            foreach (RadioButton button in radioBtnGrid.Children)
+            {
+                if (button.IsChecked == true)
+                {
+                    return (int)button.Tag;
+                }
+            }
+
+            return -1;
+        }
+
+        // Naar volgende vraag of naar het resultaat te gaan
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            KeuzeAntwoord antwoord = new KeuzeAntwoord();
+            int gekozenAntwoord = getAntwoord();
+            if (gekozenAntwoord == -1)
+            {
+                string messageBoxText = "Je heb geen antwoord aangeduid! Duid een antwoord aan om naar de volgende vraag te gaan!";
+                string caption = "Geen antwoord";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            else
+            {
+                antwoord.Antwoord = gekozenAntwoord;
+                antwoord.Index = index;
+                keuzeAntwoorden.Add(antwoord);
+                if (vragenGeschiedenis.Count >= 5)
+                {
+                    Resultaat resultaatWindow = new Resultaat("Wiskunde");
+                    resultaatWindow.Vragen = keuzevragen;
+                    resultaatWindow.Antwoorden = keuzeAntwoorden;
+                    resultaatWindow.Show();
+                    IODatabase resultaatKennis = new IODatabase("Wiskunde");
+                }
+                else if (vragenGeschiedenis.Count == 4)
+                {
+                    volgendeBtn.Content = "Resultaat";
+                    Moeilijk();
+                }
+                else
+                {
+                    Moeilijk();
+                }
+            }
+        }
         public int Graad
         {
             get { return graad; }
