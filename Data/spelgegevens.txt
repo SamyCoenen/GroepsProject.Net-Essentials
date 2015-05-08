@@ -1,4 +1,1 @@
-ik$2$0
-student1$8$-1
-student3$3$3
-leer1$0$3
+ik$2$1000
