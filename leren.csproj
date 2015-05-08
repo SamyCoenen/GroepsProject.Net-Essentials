@@ -230,6 +230,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\spelgegevens.txt" />
+    <Resource Include="Data\aardrijkskunderesultaat.txt" />
+    <Resource Include="Data\kennisresultaat.txt" />
+    <Resource Include="Data\taalresultaat.txt" />
+    <Resource Include="Data\taalvragen_0.txt" />
     <Content Include="Kernkraft.wav" />
   </ItemGroup>
   <ItemGroup>

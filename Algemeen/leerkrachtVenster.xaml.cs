@@ -101,7 +101,6 @@ namespace leren
         {
             // Wanneer er een vak en een oefening is aangeduid en het vak wijzigd wordt de selectionchanged
             // opgeroepen. Waardoor ToonVakOefening() aangesproken wordt en ervoor zorg dat het programma crasht
-            // http://stackoverflow.com/questions/8608128/how-to-cancel-a-combobox-selectionchanged-event
             // Author: Timothy Vanderaerden - Date: 07/05/15 
             if (selectionChanged == false)
             {
