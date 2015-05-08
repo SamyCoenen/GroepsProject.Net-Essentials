@@ -31,5 +31,6 @@
         <Button Name="antwoordToevoegenButton" IsEnabled="False" Content="Toevoegen" HorizontalAlignment="Left" Margin="881,426,0,0" VerticalAlignment="Top" Width="75" Click="antwoordToevoegenButton_Click"/>
         <Button Name="addButton" IsEnabled="False" Content="Toevoegen" HorizontalAlignment="Left" Margin="780,691,0,0" VerticalAlignment="Top" Width="75" Click="addButton_Click"/>
         <Button Name="deleteButton" IsEnabled="False" Content="Verwijderen" HorizontalAlignment="Left" Margin="881,691,0,0" VerticalAlignment="Top" Width="75" Click="deleteButton_Click"/>
+        <Button Content="Voeg leerkracht toe" HorizontalAlignment="Left" Margin="56,691,0,0" VerticalAlignment="Top" Width="234" Height="37" Click="Button_Click_1"/>
     </Grid>
 </Window>

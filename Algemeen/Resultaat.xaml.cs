@@ -37,7 +37,7 @@ namespace leren
 
         private void Resultaat_Loaded(object sender, RoutedEventArgs e)
         {
-            if (vak.Equals("Kennis") || vak.Equals("Taal"))
+            if (vak.Equals("Kennis") || vak.Equals("Taal") || vak.Equals("Wiskunde"))
             {
                 printResultaat();
             }
@@ -137,6 +137,7 @@ namespace leren
                 }
             }
         }
+
 
         private void menuBtn_Click(object sender, RoutedEventArgs e)
         {

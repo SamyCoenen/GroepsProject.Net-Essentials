@@ -82,6 +82,9 @@
       <DependentUpon>StudentToevoegen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Algemeen\WindowHelper.cs" />
+    <Compile Include="Wiskunde\Wiskunde.xaml.cs">
+      <DependentUpon>Wiskunde.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Kennis\Aardrijkskunde.xaml.cs">
       <DependentUpon>Aardrijkskunde.xaml</DependentUpon>
     </Compile>
@@ -114,6 +117,9 @@
     </Compile>
     <Compile Include="Taal\TaalMenu.xaml.cs">
       <DependentUpon>TaalMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wiskunde\WiskundeMenu.xaml.cs">
+      <DependentUpon>WiskundeMenu.xaml</DependentUpon>
     </Compile>
     <Page Include="Algemeen\leerkrachtVenster.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +174,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Taal\TaalMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wiskunde\Wiskunde.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Wiskunde\WiskundeMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,10 +244,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\spelgegevens.txt" />
+    <Resource Include="Data\wiskundevragen_1.txt" />
     <Resource Include="Data\aardrijkskunderesultaat.txt" />
     <Resource Include="Data\kennisresultaat.txt" />
     <Resource Include="Data\taalresultaat.txt" />
     <Resource Include="Data\taalvragen_0.txt" />
+    <Resource Include="Data\wiskunderesultaat.txt" />
     <Content Include="Kernkraft.wav" />
   </ItemGroup>
   <ItemGroup>

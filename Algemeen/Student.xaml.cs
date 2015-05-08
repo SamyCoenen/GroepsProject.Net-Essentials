@@ -43,7 +43,8 @@ namespace leren
                     talenMenuWindow.Show();
                     break;
                 case "wiskunde":
-
+                    WiskundeMenu wiskundeMenuWindow = new WiskundeMenu();
+                    wiskundeMenuWindow.Show();
                     break;
                 case "kennis":
                     KennisMenu kennisWindow = new KennisMenu();

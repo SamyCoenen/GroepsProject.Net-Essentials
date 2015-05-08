@@ -14,40 +14,59 @@ using System.Windows.Shapes;
 
 namespace leren
 {
-    // KennisQuiz window
-    // Date: 03/04/15 - Last edit: 06/04/15
-    // Author: Timothy Vanderaerden
-    
-    public partial class Kennis : Window
+    /// <summary>
+    /// Interaction logic for Wiskunde.xaml
+    /// </summary>
+    public partial class Wiskunde : Window
     {
-
         private int graad;
         private List<KeuzeVraag> keuzevragen = new List<KeuzeVraag>();
         private List<int> vragenGeschiedenis = new List<int>();
         private List<KeuzeAntwoord> keuzeAntwoorden = new List<KeuzeAntwoord>();
         private int index;
-
-        public int Graad
+        public Wiskunde()
         {
-            get { return graad; }
-            set { graad = value; }
+            InitializeComponent();
+            Loaded += Wiskunde_Loaded;
+
         }
 
-        public Kennis()
+        private void Wiskunde_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();         
-            Loaded+=Kennis_Loaded;
-            
+            if (graad == 0)
+            {
+                Makkelijk();
+            }
+            else
+            {
+                IODatabase database = new IODatabase("wiskunde");
+                keuzevragen = database.ReadKeuzeVragenByGraad(graad);
+                VolgendeVraag();
+                moeilijk.Visibility = Visibility.Visible;
+                makkelijk.Visibility = Visibility.Hidden;
+            }
         }
 
-        //Een parameter toegevoegd bij het aanmaken van IODatabase
-        //Author: Samy Coenen
-        //Date: 11/04/2015 15:04
-        private void Kennis_Loaded(object sender, RoutedEventArgs e)
+        public void Makkelijk()
         {
-            IODatabase database = new IODatabase("kennis");
-            keuzevragen = database.ReadKeuzeVragenByGraad(graad);
-            VolgendeVraag();
+            int Min = 0;
+            int Max = 20;
+
+          
+            int[] getal = new int[10];
+            string[] symbool = new string[2]{"+", "-"};
+
+            Random randNum = new Random();
+            for (int i = 0; i < getal.Length; i++)
+            {
+                getal[i] = randNum.Next(Min, Max);
+            }
+            vraag1.Content = (getal[0] + " " + symbool[0] + " " + getal[1]);
+            vraag2.Content = (getal[2] + " " + symbool[1] + " " + getal[3]);
+            vraag3.Content = (getal[4] + " " + symbool[0] + " " + getal[5]);
+            vraag4.Content = (getal[6] + " " + symbool[1] + " " + getal[7]);
+            vraag5.Content = (getal[8] + " " + symbool[0] + " " + getal[9]);
+
         }
 
         // Volgende vraag nemen
@@ -57,7 +76,7 @@ namespace leren
             Random rnd = new Random();
             do
             {
-                index = rnd.Next(0, keuzevragen.Count -1); 
+                index = rnd.Next(0, keuzevragen.Count);
             } while (vragenGeschiedenis.Contains(index));
             vragenGeschiedenis.Add(index);
 
@@ -83,7 +102,8 @@ namespace leren
         // Return gegeven antwoord index
         private int getAntwoord()
         {
-            foreach (RadioButton button in radioBtnGrid.Children) {
+            foreach (RadioButton button in radioBtnGrid.Children)
+            {
                 if (button.IsChecked == true)
                 {
                     return (int)button.Tag;
@@ -98,7 +118,7 @@ namespace leren
         {
             KeuzeAntwoord antwoord = new KeuzeAntwoord();
             int gekozenAntwoord = getAntwoord();
-            if(gekozenAntwoord == -1) 
+            if (gekozenAntwoord == -1)
             {
                 string messageBoxText = "Je heb geen antwoord aangeduid! Duid een antwoord aan om naar de volgende vraag te gaan!";
                 string caption = "Geen antwoord";
@@ -113,12 +133,12 @@ namespace leren
                 keuzeAntwoorden.Add(antwoord);
                 if (vragenGeschiedenis.Count >= 5)
                 {
-                    Resultaat resultaatWindow = new Resultaat("Kennis");
+                    Resultaat resultaatWindow = new Resultaat("Wiskunde");
                     resultaatWindow.Vragen = keuzevragen;
                     resultaatWindow.Antwoorden = keuzeAntwoorden;
                     resultaatWindow.Show();
-                    IODatabase resultaatKennis = new IODatabase("Kennis");
-                    resultaatKennis.SchrijfResultaat(keuzevragen, keuzeAntwoorden, Properties.Settings.Default.userName, graad, "kennis");
+                    IODatabase wiskundeResultaat = new IODatabase("Wiskunde");
+                    wiskundeResultaat.SchrijfResultaat(keuzevragen, keuzeAntwoorden, Properties.Settings.Default.userName, graad, "wiskunde");
                 }
                 else if (vragenGeschiedenis.Count == 4)
                 {
@@ -131,5 +151,11 @@ namespace leren
                 }
             }
         }
+        public int Graad
+        {
+            get { return graad; }
+            set { graad = value; }
+        }
     }
+
 }

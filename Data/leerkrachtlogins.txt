@@ -1,1 +1,2 @@
 leerkracht$pxlleerkracht
+lector$wachtwoord1

@@ -64,6 +64,10 @@ namespace leren
                 StudentToevoegen registreer = new StudentToevoegen(_gebruiker);
                 registreer.Show();
                 Close();
+            }
+            else
+            {
+                MessageBox.Show("Een leekracht registreren gaat enkel via het leerkrachten venster");
             }            
         }
     }
