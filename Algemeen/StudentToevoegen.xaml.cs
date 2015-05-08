@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using leren.Spel;
 
 namespace leren.Algemeen
 {
@@ -22,9 +23,13 @@ namespace leren.Algemeen
                 l1.Wachtwoord.Add(wachtwoordPasswordBox.Password);
                 l1.Naam.Add(naamTextBox.Text);
                 l1.WegSchrijven();
-                MessageBox.Show("U heeft een gebruiker toegevoegd met de naam " + naamTextBox.Text);
+                SpelGegevens spelInfo = new SpelGegevens();
+                spelInfo.VoegSpelerToe(naamTextBox.Text);
+                spelInfo.WegSchrijven();
+                MessageBox.Show("U heeft een gebruiker toegevoegd met de naam " + naamTextBox.Text);            
+                MainWindow login = new MainWindow();
+                login.Show();
                 Close();
-                Show();
             }
             else
             {

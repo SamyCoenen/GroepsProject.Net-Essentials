@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace leren
+namespace leren.Spel
 {
     class ComputerSpeler: SpelEntiteit, IBeweegbaar
     {

@@ -5,6 +5,7 @@ using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Media3D;
 using System.Windows.Threading;
 using leren.Spel;
 
@@ -22,9 +23,7 @@ namespace leren
         private DispatcherTimer nieuweSpeler = new DispatcherTimer();
         public SpelWindow()
         {
-            InitializeComponent();
-            ms = new MensSpeler();
-            ms.Teken(ballenSpel, csList, ms,ScoreLabel);
+            InitializeComponent();            
             spelKlok.Tick += spelKlok_Tick;
             spelKlok.Interval = new TimeSpan(10000000 / 60);            
             nieuweSpeler.Tick += nieuweSpeler_Tick;
@@ -36,7 +35,7 @@ namespace leren
         void nieuweSpeler_Tick(object sender, EventArgs e)
         {
             ComputerSpeler cs = new ComputerSpeler();
-            cs.Teken(ballenSpel,csList,ms,ScoreLabel);
+            cs.Teken(ballenSpel,csList,ms);
             csList.Add(cs);
         }
 
@@ -44,21 +43,12 @@ namespace leren
         {          
             //Zodra de MensSpeler wit is, is het spel gedaan en moet het gereset worden
             if (ms.Kleur() == "#FFFFFFFF")
-            {
-                MessageBox.Show("Game Over! U score was: " + ScoreLabel.Content);
-                SpelGegevens gegevens = new SpelGegevens();
-                if(gegevens.HighScore[gegevens.Naam.IndexOf(Properties.Settings.Default.userName)]>Convert.ToInt32(ScoreLabel.Content))
-                {
-                    gegevens.HighScore[gegevens.Naam.IndexOf(Properties.Settings.Default.userName)] = Convert.ToInt32(ScoreLabel.Content);
-                    
-                }
-                gegevens.Levens[gegevens.Naam.IndexOf(Properties.Settings.Default.userName)] -=1;
-                gegevens.WegSchrijven();
+            {              
                 Reset();
             }
             for (int i = 0; i < csList.Count(); i++)
             {
-                csList[i].Beweeg(ballenSpel,csList,i, ms,ScoreLabel);
+                csList[i].Beweeg(ballenSpel,csList,i, ms,scoreLabel);
             }           
         }
 
@@ -70,16 +60,30 @@ namespace leren
                     if (spelKlok.IsEnabled == false)
                     {
                         //We starten het spel door de ComputerSpelers aan te maken per 10 seconden met een DispatcherTimer en ze dan ook te laten bewegen
-                        spelKlok.Start();
-                        nieuweSpeler.Start();
-                        if (csList.Count == 0)
+                        //We willen ook eerst controleren of er nog levens zijn
+                        SpelGegevens spelInfo = new SpelGegevens();
+                        levensLabel.Content = "levens: "+spelInfo.Levens[spelInfo.Naam.IndexOf(Properties.Settings.Default.userName)];
+                        if (spelInfo.Levens[spelInfo.Naam.IndexOf(Properties.Settings.Default.userName)] > 0)
                         {
-                            //Om ervoor te zorgen dat er niet pas na 10 seconden maar nu direct een ComputerSpeler wordt toegevoegd voeren we de tick ook al direct eens uit
-                            //Ook willen we niet dat wanneer men de start knop meermaals indrukt dat er geen ComputerSpelers bijkomen
-                            nieuweSpeler_Tick(sender, e); 
+                            spelInfo.Levens[spelInfo.Naam.IndexOf(Properties.Settings.Default.userName)] -= 1;
+                            ms = new MensSpeler();
+                            ms.Teken(ballenSpel, csList, ms);
+                            spelKlok.Start();
+                            nieuweSpeler.Start();
+                            if (csList.Count == 0)
+                            {
+                                //Om ervoor te zorgen dat er niet pas na 10 seconden maar nu direct een ComputerSpeler wordt toegevoegd voeren we de tick ook al direct eens uit
+                                //Ook willen we niet dat wanneer men de start knop meermaals indrukt dat er geen ComputerSpelers bijkomen
+                                nieuweSpeler_Tick(sender, e);
+                            }
+                            //zet focus op het canvas zodat de menselijke speler kan bewegen met het toetsenbord
+                            ballenSpel.Focus();
                         }
-                        //zet focus op het canvas zodat de menselijke speler kan bewegen met het toetsenbord
-                        ballenSpel.Focus();
+                        else
+                        {
+                            MessageBox.Show("U hebt 0 levens, maak een oefening om terug 1 leven te hebben");
+                        }                       
+                       
                     }
                     else
                     {
@@ -105,7 +109,7 @@ namespace leren
 
         private void OnCanvasKeyDown(object sender, KeyEventArgs e)
         {
-            //Bewegen na toets ingedrukt
+            //Bewegen van MensSpeler na toets ingedrukt
             ms.Beweeg(ballenSpel, e.Key);
         }
 
@@ -125,17 +129,23 @@ namespace leren
 
         private void Reset()
         {
+            SpelGegevens gegevens = new SpelGegevens();
+            gegevens.UpdateHighScore(Convert.ToInt32(scoreLabel.Content));
+            levensLabel.Content = "levens: " + gegevens.Levens[gegevens.Naam.IndexOf(Properties.Settings.Default.userName)];
+            gegevens.WegSchrijven();
             spelKlok.Stop();
             nieuweSpeler.Stop();
-            ScoreLabel.Content = 0;
+            scoreLabel.Content = 0;
             for (int i = 0; i < csList.Count; i++)
             {
                 csList[i].Maakvrij(ballenSpel);
             }
             csList.Clear();
-            ms.Maakvrij(ballenSpel);
-            ms = new MensSpeler();
-            ms.Teken(ballenSpel, csList, ms,ScoreLabel);
+            try
+            {
+                ms.Maakvrij(ballenSpel);
+            }
+            catch (NullReferenceException) { }
         }
     }
 }

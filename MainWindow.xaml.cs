@@ -22,7 +22,6 @@ namespace leren
             try
             {
                 gebruikers.Controle(naamTextBox.Text, wachtwoordPasswordBox.Password);
-                Hide();
                 if (_gebruiker.Equals("student"))
                 {
                     Properties.Settings.Default.userName = naamTextBox.Text;
@@ -35,6 +34,7 @@ namespace leren
                     leerkrachtVenster leerkracht = new leerkrachtVenster();
                     leerkracht.Show();
                 }
+                Close();
             }
             catch (LoginException ex)
             {
@@ -61,7 +61,7 @@ namespace leren
         {
             StudentToevoegen registreer = new StudentToevoegen(_gebruiker);
             registreer.Show();
-            Hide();
+            Close();
         }
     }
 }

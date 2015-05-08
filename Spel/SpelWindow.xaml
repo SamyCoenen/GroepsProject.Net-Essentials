@@ -14,9 +14,9 @@
             <RowDefinition Height="64"/>          
         </Grid.RowDefinitions>
         <Canvas Grid.Row="0" Background="SlateGray" Focusable="True" Name="ballenSpel" VerticalAlignment="Center" Width="1000" Height="600" KeyDown="OnCanvasKeyDown">
-            <Label Name="LevensLabel" Background="White" Content="Levens:" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
-            <Label Name="ScoreLabel" Background="White" Width="20" Content="0" HorizontalAlignment="Right" Margin="980,0,0,0" VerticalAlignment="Top"/>
-            <Label Background="White" Content="Score: " HorizontalAlignment="Right" Margin="935,0,0,0" VerticalAlignment="Top"/>
+            <Label Name="levensLabel" Background="White" Content="Levens:" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+            <Label Name="scoreLabel" Background="White" Width="30" Content="0" HorizontalAlignment="Right" Margin="970,0,0,0" VerticalAlignment="Top"/>
+            <Label Background="White" Content="Score: " HorizontalAlignment="Right" Margin="925,0,0,0" VerticalAlignment="Top" Width="45"/>
         </Canvas>
         <Button Grid.Row="1" Grid.Column="0" Focusable="False" Content="Start/Pauze" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="188" Height="56" Click="Button_Click"/>
         <Button Grid.Row="1" Grid.Column="1" Focusable="False" Content="Reset" HorizontalAlignment="Right" VerticalAlignment="Top" Width="188" Height="56" Click="Button_Click"/>
