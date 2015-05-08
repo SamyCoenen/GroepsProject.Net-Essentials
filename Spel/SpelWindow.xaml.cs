@@ -37,6 +37,10 @@ namespace leren
             ComputerSpeler cs = new ComputerSpeler();
             cs.Teken(ballenSpel,csList,ms);
             csList.Add(cs);
+            if (nieuweSpeler.Interval.Seconds > 3)
+            {
+                nieuweSpeler.Interval=new TimeSpan(0,0,nieuweSpeler.Interval.Seconds - 1);
+            }
         }
 
         void spelKlok_Tick(object sender, EventArgs e)
@@ -65,7 +69,7 @@ namespace leren
                         levensLabel.Content = "levens: "+spelInfo.Levens[spelInfo.Naam.IndexOf(Properties.Settings.Default.userName)];
                         if (spelInfo.Levens[spelInfo.Naam.IndexOf(Properties.Settings.Default.userName)] > 0)
                         {
-                            spelInfo.Levens[spelInfo.Naam.IndexOf(Properties.Settings.Default.userName)] -= 1;
+                           
                             ms = new MensSpeler();
                             ms.Teken(ballenSpel, csList, ms);
                             spelKlok.Start();
@@ -78,6 +82,10 @@ namespace leren
                             }
                             //zet focus op het canvas zodat de menselijke speler kan bewegen met het toetsenbord
                             ballenSpel.Focus();
+                            if (nieuweSpeler.Interval.Seconds < 10)
+                            {
+                                nieuweSpeler.Interval = new TimeSpan(0, 0, 10);
+                            }
                         }
                         else
                         {
@@ -131,11 +139,11 @@ namespace leren
         {
             SpelGegevens gegevens = new SpelGegevens();
             gegevens.UpdateHighScore(Convert.ToInt32(scoreLabel.Content));
+            gegevens.Levens[gegevens.Naam.IndexOf(Properties.Settings.Default.userName)] -= 1;
             levensLabel.Content = "levens: " + gegevens.Levens[gegevens.Naam.IndexOf(Properties.Settings.Default.userName)];
             gegevens.WegSchrijven();
             spelKlok.Stop();
-            nieuweSpeler.Stop();
-            scoreLabel.Content = 0;
+            nieuweSpeler.Stop();      
             for (int i = 0; i < csList.Count; i++)
             {
                 csList[i].Maakvrij(ballenSpel);
@@ -146,6 +154,8 @@ namespace leren
                 ms.Maakvrij(ballenSpel);
             }
             catch (NullReferenceException) { }
+            MessageBox.Show("Game Over! U score was: " + scoreLabel.Content + ", uw vorige highscore: " + gegevens.HighScore[gegevens.Naam.IndexOf(Properties.Settings.Default.userName)]);
+            scoreLabel.Content = 0;
         }
     }
 }

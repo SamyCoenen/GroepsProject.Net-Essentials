@@ -95,7 +95,6 @@ namespace leren.Spel
             {
                 _highScores[Naam.IndexOf(Properties.Settings.Default.userName)] = punten;
             }
-            MessageBox.Show("Game Over! U score was: " + punten + ", uw vorige highscore: " + score);
         }
 
         public void VoegLevenToe()
