@@ -117,7 +117,7 @@ namespace leren
                     resultaatWindow.Antwoorden = keuzeAntwoorden;
                     resultaatWindow.Show();
                     IODatabase resultaatTaal = new IODatabase("Taal");
-                    resultaatTaal.SchrijfResultaatTaal(keuzevragen, keuzeAntwoorden, Properties.Settings.Default.userName, graad);
+                    resultaatTaal.SchrijfResultaat(keuzevragen, keuzeAntwoorden, Properties.Settings.Default.userName, graad, "taal");
                 }
                 else if (vragenGeschiedenis.Count == 4)
                 {

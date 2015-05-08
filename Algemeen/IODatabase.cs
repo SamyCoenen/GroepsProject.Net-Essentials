@@ -52,7 +52,7 @@ namespace leren
         }
 
         // methode om resultaat van kennis weg te schrijven
-        public void SchrijfResultaatKennis(List<KeuzeVraag> keuzeVragen, List<KeuzeAntwoord> keuzeAntwoorden, string naam, int graad)
+        public void SchrijfResultaat(List<KeuzeVraag> keuzeVragen, List<KeuzeAntwoord> keuzeAntwoorden, string naam, int graad, string vak)
         {
             StringBuilder resultaat = new StringBuilder();
             resultaat.Append(naam + ":" + graad.ToString() + "(");
@@ -68,7 +68,7 @@ namespace leren
             }
             resultaat.Append(")$");
 
-            StreamWriter writeout = new StreamWriter("../../Data/kennisresultaat.txt", true);
+            StreamWriter writeout = new StreamWriter("../../Data/" + vak + "resultaat.txt", true);
 
             try
             {
@@ -114,52 +114,6 @@ namespace leren
             resultaat.Append(")$");
 
             StreamWriter writeout = new StreamWriter("../../Data/aardrijkskunderesultaat.txt", true);
-
-            try
-            {
-                writeout.WriteLine(resultaat);
-            }
-            catch (System.IO.IOException)
-            {
-                string messageBoxText = "Error: System.IO.IOException";
-                string caption = "Geen antwoord";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBox.Show(messageBoxText, caption, button, icon);
-            }
-            catch (System.ObjectDisposedException)
-            {
-                string messageBoxText = "Error: System.ObjectDisposedException";
-                string caption = "Geen antwoord";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBox.Show(messageBoxText, caption, button, icon);
-            }
-            finally
-            {
-                writeout.Close();
-            }
-        }
-
-        // methode om resultaat van taal weg te schrijven
-        public void SchrijfResultaatTaal(List<KeuzeVraag> keuzeVragen, List<KeuzeAntwoord> keuzeAntwoorden, string naam, int graad)
-        {
-            StringBuilder resultaat = new StringBuilder();
-            resultaat.Append(naam + ":" + graad.ToString() + "(");
-
-            foreach (KeuzeAntwoord antwoord in keuzeAntwoorden)
-            {
-                KeuzeVraag keuzeVraag = keuzeVragen[antwoord.Index];
-                int juist = 0;
-                if (antwoord.Antwoord == keuzeVraag.JuistIndex)
-                {
-                    juist = 1;
-                }
-                resultaat.Append(keuzeVraag.Vraag + ":" + keuzeVraag.Keuzes[keuzeVraag.JuistIndex] + ":" + juist + "$");
-            }
-            resultaat.Append(")$");
-
-            StreamWriter writeout = new StreamWriter("../../Data/taalresultaat.txt", true);
 
             try
             {

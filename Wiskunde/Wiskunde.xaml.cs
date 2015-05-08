@@ -30,6 +30,7 @@ namespace leren
             Loaded += Wiskunde_Loaded;
 
         }
+
         private void Wiskunde_Loaded(object sender, RoutedEventArgs e)
         {
             if (graad == 0)
@@ -40,11 +41,12 @@ namespace leren
             {
                 IODatabase database = new IODatabase("wiskunde");
                 keuzevragen = database.ReadKeuzeVragenByGraad(graad);
-                Moeilijk();
+                VolgendeVraag();
                 moeilijk.Visibility = Visibility.Visible;
                 makkelijk.Visibility = Visibility.Hidden;
             }
         }
+
         public void Makkelijk()
         {
             int Min = 0;
@@ -66,13 +68,15 @@ namespace leren
             vraag5.Content = (getal[8] + " " + symbool[0] + " " + getal[9]);
 
         }
-        public void Moeilijk()
+
+        // Volgende vraag nemen
+        private void VolgendeVraag()
         {
             index = 0;
             Random rnd = new Random();
             do
             {
-                index = rnd.Next(0, keuzevragen.Count - 1);
+                index = rnd.Next(0, keuzevragen.Count);
             } while (vragenGeschiedenis.Contains(index));
             vragenGeschiedenis.Add(index);
 
@@ -94,6 +98,8 @@ namespace leren
                 radioBtnGrid.Children.Add(antwoordbtn);
             }
         }
+
+        // Return gegeven antwoord index
         private int getAntwoord()
         {
             foreach (RadioButton button in radioBtnGrid.Children)
@@ -131,16 +137,17 @@ namespace leren
                     resultaatWindow.Vragen = keuzevragen;
                     resultaatWindow.Antwoorden = keuzeAntwoorden;
                     resultaatWindow.Show();
-                    IODatabase resultaatKennis = new IODatabase("Wiskunde");
+                    IODatabase wiskundeResultaat = new IODatabase("Wiskunde");
+                    wiskundeResultaat.SchrijfResultaat(keuzevragen, keuzeAntwoorden, Properties.Settings.Default.userName, graad, "wiskunde");
                 }
                 else if (vragenGeschiedenis.Count == 4)
                 {
                     volgendeBtn.Content = "Resultaat";
-                    Moeilijk();
+                    VolgendeVraag();
                 }
                 else
                 {
-                    Moeilijk();
+                    VolgendeVraag();
                 }
             }
         }

@@ -249,6 +249,7 @@
     <Resource Include="Data\kennisresultaat.txt" />
     <Resource Include="Data\taalresultaat.txt" />
     <Resource Include="Data\taalvragen_0.txt" />
+    <Resource Include="Data\wiskunderesultaat.txt" />
     <Content Include="Kernkraft.wav" />
   </ItemGroup>
   <ItemGroup>
