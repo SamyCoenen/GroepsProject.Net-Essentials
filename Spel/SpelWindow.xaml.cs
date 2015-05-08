@@ -16,14 +16,19 @@ namespace leren
     //Author: Samy Coenen
     public partial class SpelWindow : Window
     {
-        private List<ComputerSpeler> csList = new List<ComputerSpeler>();
+        private List<ComputerSpeler> csLijst;
         private MensSpeler ms;
-        private SoundPlayer sp = new SoundPlayer("../../Kernkraft.wav");
-        private DispatcherTimer spelKlok = new DispatcherTimer();
-        private DispatcherTimer nieuweSpeler = new DispatcherTimer();
+        private SoundPlayer sp;
+        private DispatcherTimer spelKlok;
+        private DispatcherTimer nieuweSpeler;
+
         public SpelWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            csLijst = new List<ComputerSpeler>();
+            sp = new SoundPlayer("../../Kernkraft.wav");
+            spelKlok = new DispatcherTimer();
+            nieuweSpeler = new DispatcherTimer();
             spelKlok.Tick += spelKlok_Tick;
             spelKlok.Interval = new TimeSpan(10000000 / 60);            
             nieuweSpeler.Tick += nieuweSpeler_Tick;
@@ -35,9 +40,9 @@ namespace leren
         void nieuweSpeler_Tick(object sender, EventArgs e)
         {
             ComputerSpeler cs = new ComputerSpeler();
-            cs.Teken(ballenSpel,csList,ms);
-            csList.Add(cs);
-            if (nieuweSpeler.Interval.Seconds > 3)
+            cs.Teken(ballenSpel,csLijst,ms);
+            csLijst.Add(cs);
+            if (nieuweSpeler.Interval.Seconds > 2)
             {
                 nieuweSpeler.Interval=new TimeSpan(0,0,nieuweSpeler.Interval.Seconds - 1);
             }
@@ -50,9 +55,11 @@ namespace leren
             {              
                 Reset();
             }
-            for (int i = 0; i < csList.Count(); i++)
+            List<ComputerSpeler> oudeComputerSpelers = new List<ComputerSpeler>();
+            oudeComputerSpelers.AddRange(csLijst);
+            for (int i = 0; i < csLijst.Count(); i++)
             {
-                csList[i].Beweeg(ballenSpel,csList,i, ms,scoreLabel);
+                csLijst[i].Beweeg(ballenSpel,csLijst,oudeComputerSpelers,i, ms,scoreLabel);
             }           
         }
 
@@ -60,20 +67,20 @@ namespace leren
         {
             switch (((Button)sender).Content.ToString())
             {
+                //We starten het spel door de ComputerSpelers aan te maken per 10 seconden met een DispatcherTimer en ze dan ook te laten bewegen
+                //We willen ook eerst controleren of er nog levens zijn
                 case "Start/Pauze":
                     if (spelKlok.IsEnabled == false)
                     {
-                        //We starten het spel door de ComputerSpelers aan te maken per 10 seconden met een DispatcherTimer en ze dan ook te laten bewegen
-                        //We willen ook eerst controleren of er nog levens zijn
                         SpelGegevens spelInfo = new SpelGegevens();
                         levensLabel.Content = "levens: "+spelInfo.Levens[spelInfo.Naam.IndexOf(Properties.Settings.Default.userName)];
                         if (spelInfo.Levens[spelInfo.Naam.IndexOf(Properties.Settings.Default.userName)] > 0)
                         {            
                             ms = new MensSpeler();
-                            ms.Teken(ballenSpel, csList, ms);
+                            ms.Teken(ballenSpel, csLijst, ms);
                             spelKlok.Start();
                             nieuweSpeler.Start();
-                            if (csList.Count == 0)
+                            if (csLijst.Count == 0)
                             {
                                 //Om ervoor te zorgen dat er niet pas na 10 seconden maar nu direct een ComputerSpeler wordt toegevoegd voeren we de tick ook al direct eens uit
                                 //Ook willen we niet dat wanneer men de start knop meermaals indrukt dat er geen ComputerSpelers bijkomen
@@ -142,11 +149,11 @@ namespace leren
             gegevens.WegSchrijven();
             spelKlok.Stop();
             nieuweSpeler.Stop();      
-            for (int i = 0; i < csList.Count; i++)
+            for (int i = 0; i < csLijst.Count; i++)
             {
-                csList[i].Maakvrij(ballenSpel);
+                csLijst[i].Maakvrij(ballenSpel);
             }
-            csList.Clear();
+            csLijst.Clear();
             try
             {
                 ms.Maakvrij(ballenSpel);
