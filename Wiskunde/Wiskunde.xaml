@@ -1,7 +1,7 @@
 ﻿<Window x:Class="leren.Wiskunde"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Wiskunde" Height="500" Width="500">
+        Title="Wiskunde" Height="400" Width="600">
     <Grid>
         <Grid Name="makkelijk" HorizontalAlignment="Left" Height="263" Margin="34,41,0,0" VerticalAlignment="Top" Width="431">
             <Label Content="Wiskunde" HorizontalAlignment="Left" Height="54" Margin="10,0,0,0" VerticalAlignment="Top" Width="207" FontSize="20"/>
@@ -17,8 +17,8 @@
             <TextBox HorizontalAlignment="Left" Height="23" Margin="163,66,0,0"  Name="antwoord5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="104"/>
             <Button Content="Resultaat" HorizontalAlignment="Left" Margin="67,194,0,0" VerticalAlignment="Top" Width="130"/>
         </Grid>
-        <Grid Name="moeilijk" Visibility="Hidden">
-            <Label Content="" Name="lblVraag" HorizontalAlignment="Stretch" Margin="10,10,0,0" FontSize="22" VerticalAlignment="Top"/>
+        <Grid Name="moeilijk" Visibility="Visible">
+            <Label Content="" Name="lblVraag" HorizontalAlignment="Stretch" Margin="10,10,-0.4,0" FontSize="22" VerticalAlignment="Top" Height="108"/>
             <Grid Name="radioBtnGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15,70,10,51"  />
             <Button Content="Volgende" Name = "volgendeBtn" HorizontalAlignment="Left" Margin="485,323,0,0" VerticalAlignment="Top" Width="75"/>
 
