@@ -154,7 +154,7 @@ namespace leren
         {
             if (vakkenComboBox.SelectedIndex < 0)
             {
-                string messageBoxText = "U hebt geen vak aangeduid, gelieve een vak aanteduiden!";
+                string messageBoxText = "U hebt geen vak aangeduid, gelieve een vak aan te duiden!";
                 string caption = "Geen vak geselecteerd";
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Warning;
@@ -163,6 +163,7 @@ namespace leren
             else
             {
                 ClearElements();
+                EnableElements();
             }
         }
 
