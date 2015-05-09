@@ -59,9 +59,16 @@ namespace leren
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            StudentToevoegen registreer = new StudentToevoegen(_gebruiker);
-            registreer.Show();
-            Close();
+            if (_gebruiker == "student")
+            {
+                StudentToevoegen registreer = new StudentToevoegen(_gebruiker);
+                registreer.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Een leekracht registreren gaat enkel via het leerkrachten venster");
+            }            
         }
     }
 }

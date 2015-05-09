@@ -287,5 +287,16 @@ namespace leren
             antwoordTextBox.Clear();
             juisteTextBox.Clear();
         }
+
+
+        //Een leerkracht toevoegen
+        //Author: Samy Coenen
+        //Date: 08/05/2015 14:54
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            StudentToevoegen leerkrachtToevoegen = new StudentToevoegen("leerkracht");
+            leerkrachtToevoegen.Show();
+            Close();
+        }
     }
 }
