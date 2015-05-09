@@ -69,6 +69,7 @@ namespace leren
                 if (antwoord.Antwoord == vragen[antwoord.Index].JuistIndex)
                 {
                     Label vraaglbl = new Label();
+                    vraaglbl.FontSize = 15;
                     vraaglbl.Content = vragen[antwoord.Index].Vraag +
                         Environment.NewLine + "Uw antwoord: " + vragen[antwoord.Index].Keuzes[antwoord.Antwoord];
                     vraaglbl.Foreground = Brushes.Green;
@@ -82,6 +83,7 @@ namespace leren
                 else
                 {
                     Label vraaglbl = new Label();
+                    vraaglbl.FontSize = 15;
                     vraaglbl.Content = vragen[antwoord.Index].Vraag +
                         Environment.NewLine + "Uw antwoord: " + vragen[antwoord.Index].Keuzes[antwoord.Antwoord] +
                         Environment.NewLine + "Het juiste antwoord: " + vragen[antwoord.Index].getAntwoord();
@@ -105,6 +107,7 @@ namespace leren
                 if (antwoorden[i] == oplossingen[i])
                 {
                     Label vraaglbl = new Label();
+                    vraaglbl.FontSize = 15;
                     vraaglbl.Content = "Oplossing " + oplossingen[i] +
                         Environment.NewLine + "Uw antwoord: " + antwoorden[i];
                     vraaglbl.Foreground = Brushes.Green;
@@ -118,6 +121,7 @@ namespace leren
                 else
                 {
                     Label vraaglbl = new Label();
+                    vraaglbl.FontSize = 15;
                     vraaglbl.Content = "Oplossing " + oplossingen[i] +
                         Environment.NewLine + "Uw antwoord: " + antwoorden[i];
                     vraaglbl.Foreground = Brushes.Red;

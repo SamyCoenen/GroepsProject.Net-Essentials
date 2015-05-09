@@ -71,6 +71,7 @@ namespace leren
                 RadioButton antwoordbtn = new RadioButton();
                 antwoordbtn.Tag = i;
                 antwoordbtn.Content = keuzevraag.Keuzes[i];
+                antwoordbtn.FontSize = 15;
                 RowDefinition row = new RowDefinition();
                 row.Height = new GridLength(45);
                 radioBtnGrid.RowDefinitions.Add(row);

@@ -5,7 +5,7 @@
     <Grid>
         <Label Content="" Name="lblVraag" HorizontalAlignment="Stretch" Margin="10,10,0,0" FontSize="22" VerticalAlignment="Top"/>
         <Grid Name="radioBtnGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15,70,10,51"  />
-        <Button Content="Volgende" Name="volgendeBtn" HorizontalAlignment="Left" Margin="485,323,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="Volgende" FontSize="15" Name="volgendeBtn" HorizontalAlignment="Left" Margin="485,323,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
     </Grid>
 </Window>
