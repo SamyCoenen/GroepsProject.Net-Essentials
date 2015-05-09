@@ -91,17 +91,23 @@ namespace leren
         private void land_Drop(object sender, DragEventArgs e)
         {
             ListBox lb = (ListBox)sender;
+            string oldText = "";
+            if (lb.Items.Count > 0)
+            {
+                oldText = lb.Items[0].ToString();
+            }
             lb.Items.Clear();
             error.Content = "";
             string tstring;
             tstring = e.Data.GetData(DataFormats.StringFormat).ToString();
             lb.Items.Add(tstring.ToString());
-            GebruikteItems(lb, "land");
+            GebruikteItems(lb, "land", oldText);
             for (int i = 0; i < stedenList.Length; i++) {
-                if (lb.Items.Contains(stedenList[i].ToString()))
+                while (lb.Items.Contains(stedenList[i].ToString()))
                 {
                     lb.Items.Clear();
                     error.Content = "Dit is geen land!";
+                    break;
                 }
             }
         }
@@ -110,18 +116,24 @@ namespace leren
         private void stad_Drop(object sender, DragEventArgs e)
         {
             ListBox lb = (ListBox)sender;
+            string oldText = "";
+            if (lb.Items.Count > 0)
+            {
+                oldText = lb.Items[0].ToString();
+            }
             lb.Items.Clear();
             error.Content = "";
             string tstring;
             tstring = e.Data.GetData(DataFormats.StringFormat).ToString();
             lb.Items.Add(tstring.ToString());
-            GebruikteItems(lb, "stad");
+            GebruikteItems(lb, "stad", oldText);
                 for (int i = 0; i < landenList.Length; i++)
                 {
-                    if (lb.Items.Contains(landenList[i].ToString()))
+                    while(lb.Items.Contains(landenList[i].ToString()))
                     {
                         lb.Items.Clear();
                         error.Content = "Dit is geen stad!";
+                        break;
                     }
                 }
         }
@@ -283,17 +295,24 @@ namespace leren
             }
         }
 
-
-        public void GebruikteItems(ListBox lb, string type)
+        // Gebruikte items een andere kleur geven
+        public void GebruikteItems(ListBox lb, string type, string oldText)
         {
             if (type == "land")
             {
                 for (int i = 0; i < landen.Items.Count; i++)
                 {
-                    if (lb.Items.Contains(landenList[i].ToString()))
+                    while(lb.Items.Contains(landenList[i].ToString()))
                     {
                         ListBoxItem selectedItem = landen.Items[i] as ListBoxItem;
                         selectedItem.Foreground = Brushes.Gray;
+                        break;
+                    }
+                    while(oldText.Contains(landenList[i].ToString()))
+                    {
+                        ListBoxItem oldItem = landen.Items[i] as ListBoxItem;
+                        oldItem.Foreground = Brushes.Black;
+                        break;
                     }
                 }
             }
@@ -301,10 +320,17 @@ namespace leren
             {
                 for (int i = 0; i < steden.Items.Count; i++)
                 {
-                    if (lb.Items.Contains(stedenList[i].ToString()))
+                    while (lb.Items.Contains(stedenList[i].ToString()))
                     {
                         ListBoxItem selectedItem = steden.Items[i] as ListBoxItem;
                         selectedItem.Foreground = Brushes.Gray;
+                        break;
+                    }
+                    while (oldText.Contains(stedenList[i].ToString()))
+                    {
+                        ListBoxItem oldItem = steden.Items[i] as ListBoxItem;
+                        oldItem.Foreground = Brushes.Black;
+                        break;
                     }
                 }
             }
