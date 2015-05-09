@@ -118,7 +118,7 @@ namespace leren
                     resultaatWindow.Antwoorden = keuzeAntwoorden;
                     resultaatWindow.Show();
                     IODatabase resultaatKennis = new IODatabase("Kennis");
-                    resultaatKennis.SchrijfResultaatKennis(keuzevragen, keuzeAntwoorden, Properties.Settings.Default.userName, graad);
+                    resultaatKennis.SchrijfResultaat(keuzevragen, keuzeAntwoorden, Properties.Settings.Default.userName, graad, "kennis");
                 }
                 else if (vragenGeschiedenis.Count == 4)
                 {

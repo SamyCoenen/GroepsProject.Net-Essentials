@@ -59,14 +59,14 @@ namespace leren
             set { _snelheid = value; }
         }
 
-        public bool Geraakt(List<ComputerSpeler> csLijst, int indexInLijst, MensSpeler msSpeler, Canvas spelCanvas, Label scoreLabel)
+        public bool Geraakt(List<ComputerSpeler> csLijst,List<ComputerSpeler> oudeComputerSpelers, int indexInLijst, MensSpeler msSpeler, Canvas spelCanvas, Label scoreLabel)
         {
             Point positieHuidig = Positie();
             Rect rect1 = new Rect(positieHuidig.X + _xChange, positieHuidig.Y + _yChange, _grootte, _grootte);
-            for (int i = 0; i < csLijst.Count; i++)
+            for (int i = 0; i < oudeComputerSpelers.Count; i++)
             {
-                Point positieComputer = csLijst[i].Positie();
-                Rect rect2 = new Rect(positieComputer.X + csLijst[i].XVerplaatsing, positieComputer.Y + csLijst[i].YVerplaatsing, _grootte, _grootte);
+                Point positieComputer = oudeComputerSpelers[i].Positie();
+                Rect rect2 = new Rect(positieComputer.X + oudeComputerSpelers[i].XVerplaatsing, positieComputer.Y + oudeComputerSpelers[i].YVerplaatsing, _grootte, _grootte);
                 //Bepalen of huidige SpelEntiteit met een vierhoek ComputerSpeler botst behalve zichzelf
                 if (rect1.IntersectsWith(rect2) && positieHuidig != positieComputer)
                 {
