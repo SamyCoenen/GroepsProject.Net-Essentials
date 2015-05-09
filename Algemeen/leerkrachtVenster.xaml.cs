@@ -27,7 +27,7 @@ namespace leren
         {
             InitializeComponent();
             GebruikersLijst lijst = new GebruikersLijst("student");           
-            Combobox1.ItemsSource = lijst.Naam;
+            leerlingCombobox.ItemsSource = lijst.Naam;
             vakkenComboBox.Items.Add("Talen - Makkelijk");
             vakkenComboBox.Items.Add("Talen - Moeilijk");
             vakkenComboBox.Items.Add("Kennis - Makkelijk");
