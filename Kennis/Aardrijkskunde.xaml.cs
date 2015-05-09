@@ -12,11 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using leren.Spel;
 
 namespace leren
 {
     // Aardrijkskunde window
-    // Date: 08/04/15 - Last edit: 28/04/15
+    // Date: 08/04/15 - Last edit: 09/05/15
     // Author: Timothy Vanderaerden
 
     public partial class Aardrijkskunde : Window
@@ -34,12 +35,16 @@ namespace leren
         // Bij het laden van het scherm de graad aanpassen
         private void Aarderijkskunde_Loaded(object sender, RoutedEventArgs e)
         {
-            Moeilijk(graad);
+            Randomizer.Randomize(landenList);
             for (int i = 0; i < landenList.Length; i++)
             {
                 ListBoxItem itm = new ListBoxItem();
                 itm.Content = landenList[i].ToString();
                 landen.Items.Add(itm);
+            }
+            if (graad == 1)
+            {
+                Moeilijk();
             }
         }
 
@@ -67,7 +72,6 @@ namespace leren
                 {
                     DragDrop.DoDragDrop(steden, mySelectedItem.Content.ToString(), DragDropEffects.Copy);
                 }
-
             }
         }
 
@@ -83,7 +87,7 @@ namespace leren
             e.Handled = true;
         }
 
-        // Drap land
+        // Drop land
         private void land_Drop(object sender, DragEventArgs e)
         {
             ListBox lb = (ListBox)sender;
@@ -92,7 +96,7 @@ namespace leren
             string tstring;
             tstring = e.Data.GetData(DataFormats.StringFormat).ToString();
             lb.Items.Add(tstring.ToString());
-
+            GebruikteItems(lb, "land");
             for (int i = 0; i < stedenList.Length; i++) {
                 if (lb.Items.Contains(stedenList[i].ToString()))
                 {
@@ -111,15 +115,15 @@ namespace leren
             string tstring;
             tstring = e.Data.GetData(DataFormats.StringFormat).ToString();
             lb.Items.Add(tstring.ToString());
-
-            for (int i = 0; i < landenList.Length; i++)
-            {
-                if (lb.Items.Contains(landenList[i].ToString()))
+            GebruikteItems(lb, "stad");
+                for (int i = 0; i < landenList.Length; i++)
                 {
-                    lb.Items.Clear();
-                    error.Content = "Dit is geen stad!";
+                    if (lb.Items.Contains(landenList[i].ToString()))
+                    {
+                        lb.Items.Clear();
+                        error.Content = "Dit is geen stad!";
+                    }
                 }
-            }
         }
 
         // drop land en stad
@@ -129,17 +133,15 @@ namespace leren
         }
 
         // Visibility uitzetten voor moeilijk
-        private void Moeilijk(int graad)
+        private void Moeilijk()
         {
-            if (graad == 1)
+            Randomizer.Randomize(stedenList);
+            stedenGrid.Visibility = Visibility.Visible;
+            for (int i = 0; i < stedenList.Length; i++)
             {
-                stedenGrid.Visibility = Visibility.Visible;
-                for (int i = 0; i < stedenList.Length; i++)
-                {
-                    ListBoxItem itm = new ListBoxItem();
-                    itm.Content = stedenList[i].ToString();
-                    steden.Items.Add(itm);
-                }
+                ListBoxItem itm = new ListBoxItem();
+                itm.Content = stedenList[i].ToString(); 
+                steden.Items.Add(itm);
             }
         }
 
@@ -234,9 +236,12 @@ namespace leren
         private void Resultaat_Makkelijk()
         {
             List<string> antwoorden = new List<string>{land1box.Items[0].ToString(), land2box.Items[0].ToString(), land3box.Items[0].ToString(), land4box.Items[0].ToString(), land5box.Items[0].ToString() };
-            List<string> oplossingen = new List<string>(landenList);
+            List<string> oplossingen = new List<string>{"België", "Nederland", "Spanje", "Duitsland", "Frankrijk"};
             IODatabase database = new IODatabase("Aardrijkskunde");
             database.SchrijfResultaatAarderijkskunde(antwoorden, oplossingen, Properties.Settings.Default.userName.ToString(), graad);
+            SpelGegevens infoSpel = new SpelGegevens();
+            infoSpel.VoegLevenToe();
+            infoSpel.WegSchrijven();
             Resultaat resultaatWindow = new Resultaat("Aardrijkskunde");
             resultaatWindow.AntwoordenAarderijkskunde = antwoorden;
             resultaatWindow.OplossingenAarderijkskunde = oplossingen;
@@ -248,15 +253,61 @@ namespace leren
         private void Resultaat_Moeilijk()
         {
             List<string> antwoorden = new List<string> { land1box.Items[0].ToString(), land2box.Items[0].ToString(), land3box.Items[0].ToString(), land4box.Items[0].ToString(), land5box.Items[0].ToString(), stad1box.Items[0].ToString(), stad2box.Items[0].ToString(), stad3box.Items[0].ToString(), stad4box.Items[0].ToString(), stad5box.Items[0].ToString() };
-            List<string> oplossingen = new List<string>(landenList);
-            oplossingen.AddRange(stedenList);
+            List<string> oplossingen = new List<string>{"België", "Nederland", "Spanje", "Duitsland", "Frankrijk", "Brussel", "Amsterdam", "Madrid", "Berlijn", "Parijs"}; // Opnieuw declareren nadat Randomize is opgeroepen
             IODatabase database = new IODatabase("Aardrijkskunde");
             database.SchrijfResultaatAarderijkskunde(antwoorden, oplossingen, Properties.Settings.Default.userName.ToString(), graad);
+            SpelGegevens infoSpel = new SpelGegevens();
+            infoSpel.VoegLevenToe();
+            infoSpel.WegSchrijven();
             Resultaat resultaatWindow = new Resultaat("Aardrijkskunde");
             resultaatWindow.AntwoordenAarderijkskunde = antwoorden;
             resultaatWindow.OplossingenAarderijkskunde = oplossingen;
             resultaatWindow.Graad = graad;
             resultaatWindow.Show();
+        }
+
+        // Randomize steden en landen
+        public class Randomizer
+        {
+            public static void Randomize<T>(T[] items)
+            {
+                Random rand = new Random();
+
+                for (int i = 0; i < items.Length - 1; i++)
+                {
+                    int j = rand.Next(i, items.Length);
+                    T temp = items[i];
+                    items[i] = items[j];
+                    items[j] = temp;
+                }
+            }
+        }
+
+
+        public void GebruikteItems(ListBox lb, string type)
+        {
+            if (type == "land")
+            {
+                for (int i = 0; i < landen.Items.Count; i++)
+                {
+                    if (lb.Items.Contains(landenList[i].ToString()))
+                    {
+                        ListBoxItem selectedItem = landen.Items[i] as ListBoxItem;
+                        selectedItem.Foreground = Brushes.Gray;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < steden.Items.Count; i++)
+                {
+                    if (lb.Items.Contains(stedenList[i].ToString()))
+                    {
+                        ListBoxItem selectedItem = steden.Items[i] as ListBoxItem;
+                        selectedItem.Foreground = Brushes.Gray;
+                    }
+                }
+            }
         }
 
         public int Graad
