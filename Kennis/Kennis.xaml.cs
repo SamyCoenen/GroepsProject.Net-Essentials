@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using leren.Spel;
 
 namespace leren
 {
@@ -113,6 +114,9 @@ namespace leren
                 keuzeAntwoorden.Add(antwoord);
                 if (vragenGeschiedenis.Count >= 5)
                 {
+                    SpelGegevens infoSpel = new SpelGegevens();
+                    infoSpel.VoegLevenToe();
+                    infoSpel.WegSchrijven();
                     Resultaat resultaatWindow = new Resultaat("Kennis");
                     resultaatWindow.Vragen = keuzevragen;
                     resultaatWindow.Antwoorden = keuzeAntwoorden;
