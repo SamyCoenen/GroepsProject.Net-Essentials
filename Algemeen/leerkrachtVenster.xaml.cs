@@ -34,38 +34,16 @@ namespace leren
             vakkenComboBox.Items.Add("Kennis - Moeilijk");
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        
             
-        }
+        
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void combobox1(object sender, RoutedEventArgs e)
-        {
-        //    try
-        //    {
-               
-        //      StreamReader sr = new StreamReader ("C:\Users\11400126\Desktop");
 
-        //        string line = sr.ReadLine();
-
-        //        while (line != null)
-        //        {
-        //            Console.WriteLine(line);
-        //        }
-        //    }
-                
-               
-        //        catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error: " + ex.Message);
-        //    }
-            
-        }
 
         // Vakken Listbox + declareren oefeninglistbox
         // Author: Timothy Vanderaerden - Date: 07/05/15 
@@ -297,6 +275,96 @@ namespace leren
             StudentToevoegen leerkrachtToevoegen = new StudentToevoegen("leerkracht");
             leerkrachtToevoegen.Show();
             Close();
+        }
+
+        private void algemKennisMakkelijk_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int counter = 0;
+            string line;
+
+            // Read the file and display it line by line.
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(@"kennisresultaat.txt");
+            while ((line = file.ReadLine()) != null)
+            {
+                System.Console.WriteLine(line);
+                counter++;
+            }
+
+        }
+
+        private void geefPuntenWeer_Click(object sender, RoutedEventArgs e)
+        {
+            if (leerlingCombobox.SelectedIndex < 0)
+            {
+                string messageBoxText = "U hebt geen leerling aangeduid, gelieve een leerling aan te duiden!";
+                string caption = "Geen leerling geselecteerd";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            else
+    
+            {
+                ClearElements();
+                EnableElements();
+            }
+        }
+
+        private void kennisMakkelijk_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+                    //var importantLines = 
+                    // File.ReadLines("../..Data/kennisresultaat.txt")
+                    //  .TakeWhile(line => !line.Contains("ik"));
+
+                    //System.Console.WriteLine(kennisMakkelijk);
+
+                    int counter = 0;
+                    string line;
+
+                    // Read the file and display it line by line.
+                    System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\11400126\Source\Repos\leren\Data\kennisresultaat.txt");
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        if (line.Contains("bollen"))
+                        {
+                            Console.WriteLine(counter.ToString() + ": " + kennisMakkelijk);
+                        }
+
+                        counter++;
+                    }
+
+                    file.Close();
+
+
+
+
+
+            //List<List<string>> groups = new List<List<string>>();
+            //List<string> current = null;
+            //foreach (var line in File.ReadAllLines(@"C:\Users11400126\Source\Repos\leren\Data\kennisresultaat.txt"))
+            //{
+            //    if (line.Contains("ik") && current == null)
+            //        current = new List<string>();
+                //else if (line.Contains("CustomerCh") && current != null)
+                //{
+                //    groups.Add(current);
+                //    current = null;
+                //}
+                //if (current != null)
+                //    current.Add(line);
+
+                //System.Console.WriteLine(kennisMakkelijk);
+            
+
+
+        }
+    
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

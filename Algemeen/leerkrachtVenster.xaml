@@ -3,15 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="768" Width="1024" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,3.4,0.4">
-        <ComboBox x:Name="Combobox1" HorizontalAlignment="Left" Margin="48,45,0,0" VerticalAlignment="Top" Width="333"  SelectionChanged="ComboBox_SelectionChanged" Height="29" Background="Black" Loaded="combobox1">
+        <ComboBox x:Name="leerlingCombobox" HorizontalAlignment="Left" Margin="48,45,0,0" VerticalAlignment="Top" Width="333"  SelectionChanged="ComboBox_SelectionChanged" Height="29" Background="Black"/>
 
 
-        </ComboBox>
-        <Button Content="Geef punten weer" HorizontalAlignment="Left" Margin="48,107,0,0" VerticalAlignment="Top" Width="128" Height="22" Click="Button_Click"/>
+
+        <Button Name = "geefPuntenWeer" Content="Geef punten weer" HorizontalAlignment="Left" Margin="48,107,0,0" VerticalAlignment="Top" Width="128" Height="22" Click="geefPuntenWeer_Click"/>
         <Label Content="Selecteer leerling" HorizontalAlignment="Left" Margin="48,10,0,0" VerticalAlignment="Top" Width="333" FontSize="15"/>
-        <Button Content="Verwijderen" HorizontalAlignment="Left" Margin="208,107,0,0" VerticalAlignment="Top" Width="129" Height="22"/>
-        <ListBox Name="leerlingListBox" HorizontalAlignment="Left" Height="305" Margin="471,22,0,0" VerticalAlignment="Top" Width="485" RenderTransformOrigin="0.5,0.5">
-        </ListBox>
+        <Button Content="Verwijderen" HorizontalAlignment="Left" Margin="208,107,0,0" VerticalAlignment="Top" Width="129" Height="22" Click="Button_Click"/>
+
         <Label Content="Selecteer een vak" HorizontalAlignment="Left" Margin="48,363,0,0" VerticalAlignment="Top" FontSize="15"/>
         <ComboBox Name="vakkenComboBox" HorizontalAlignment="Left" Margin="56,398,0,0" VerticalAlignment="Top" Width="281" SelectionChanged="vakkenComboBox_SelectionChanged"/>
         <Button Name="nieuwButton" Content="Nieuw" HorizontalAlignment="Left" Margin="262,447,0,0" VerticalAlignment="Top" Width="75" Click="nieuwButton_Click"/>
@@ -31,6 +30,12 @@
         <Button Name="antwoordToevoegenButton" IsEnabled="False" Content="Toevoegen" HorizontalAlignment="Left" Margin="881,426,0,0" VerticalAlignment="Top" Width="75" Click="antwoordToevoegenButton_Click"/>
         <Button Name="addButton" IsEnabled="False" Content="Toevoegen" HorizontalAlignment="Left" Margin="780,691,0,0" VerticalAlignment="Top" Width="75" Click="addButton_Click"/>
         <Button Name="deleteButton" IsEnabled="False" Content="Verwijderen" HorizontalAlignment="Left" Margin="881,691,0,0" VerticalAlignment="Top" Width="75" Click="deleteButton_Click"/>
-        <Button Content="Voeg leerkracht toe" HorizontalAlignment="Left" Margin="56,691,0,0" VerticalAlignment="Top" Width="234" Height="37" Click="Button_Click_1"/>
+        <Label Name="kennisMakkelijk" Content="" HorizontalAlignment="Left" Margin="568,45,0,0" VerticalAlignment="Top" Height="38" Width="179"/>
+        <Label Name="kennisMoeilijk" Content="" HorizontalAlignment="Left" Margin="752,45,0,0" VerticalAlignment="Top" Height="38" Width="179"/>
+        <Label Name="wiskundeMakkelijk" Content="" HorizontalAlignment="Left" Margin="568,93,0,0" VerticalAlignment="Top" Height="38" Width="179"/>
+        <Label Name="wiskundeMoeilijk" Content="" HorizontalAlignment="Left" Margin="752,93,0,0" VerticalAlignment="Top" Height="38" Width="179"/>
+        <Label Name="taalMakkelijk" Content="" HorizontalAlignment="Left" Margin="568,136,0,0" VerticalAlignment="Top" Height="38" Width="179"/>
+        <Label Name="taalMoeilijk" Content="" HorizontalAlignment="Left" Margin="752,136,0,0" VerticalAlignment="Top" Height="38" Width="179"/>
+        <Label Name="aardrijkskunde" Content="" HorizontalAlignment="Left" Margin="568,179,0,0" VerticalAlignment="Top" Height="38" Width="179"/>
     </Grid>
 </Window>
