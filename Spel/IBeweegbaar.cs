@@ -3,6 +3,7 @@ using System.Windows.Controls;
 
 namespace leren.Spel
 {
+
     //Een interface dient om andere classen te verplichten methodes the implementeren
     //Date: 16/04/2014 20:55
     //Author: Samy Coenen

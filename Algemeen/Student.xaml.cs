@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace leren
 {
+
     //Dit is het inlogscherm
     //Date: 27/03/2014 21:40
     //Author: Samy Coenen
+
     public partial class Student : Window
     {
 
@@ -65,12 +62,9 @@ namespace leren
 
                     break;
                 case "Afsluiten":
-                    this.Close();
+                    Close();
                     break;
             }
         }
-
-
-
     }
 }

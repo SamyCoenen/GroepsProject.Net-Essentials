@@ -6,19 +6,17 @@ using System.Windows.Media;
 
 namespace leren.Spel
 {
+
+    //Aanmaak van een blokje dat de gebruiker kan besturen
+    //Date: 25/04/2014 15:03
+    //Author: Samy Coenen    
+
     class MensSpeler: SpelEntiteit,IBeweegbaar
     {
-
-        //Aanmaak van een blokje dat de gebruiker kan besturen
-        //Date: 25/04/2014 15:03
-        //Author: Samy Coenen     
-
-        private int _score;
 
         public MensSpeler()
         {
             VeranderKleur(new SolidColorBrush(Colors.Blue));
-            _score = 0;
         }
 
         //Deze methode wordt niet gebruikt maar kan gebruikt worden om de MensSpeler automatisch te laten bewegen
@@ -34,7 +32,7 @@ namespace leren.Spel
             {
                 YVerplaatsing = -YVerplaatsing;
             }
-            se.Margin = new Thickness(positie.X, positie.Y, 0, 0);
+            rechthoek.Margin = new Thickness(positie.X, positie.Y, 0, 0);
         }
 
         public void Beweeg(Canvas spelCanvas, Key ingedrukteKnop)
@@ -43,16 +41,16 @@ namespace leren.Spel
             switch (ingedrukteKnop)
             {
                 case Key.Left:
-                    if (positie1.X - XVerplaatsing * Snelheid >= 0) se.Margin = new Thickness(positie1.X - XVerplaatsing * Snelheid, positie1.Y, 0, 0);
+                    if (positie1.X - XVerplaatsing * Snelheid >= 0) rechthoek.Margin = new Thickness(positie1.X - XVerplaatsing * Snelheid, positie1.Y, 0, 0);
                     break;
                 case Key.Right:
-                    if (positie1.X + XVerplaatsing * Snelheid +Grootte <= spelCanvas.Width) se.Margin = new Thickness(positie1.X + XVerplaatsing * Snelheid, positie1.Y, 0, 0);
+                    if (positie1.X + XVerplaatsing * Snelheid +Grootte <= spelCanvas.Width) rechthoek.Margin = new Thickness(positie1.X + XVerplaatsing * Snelheid, positie1.Y, 0, 0);
                     break;
                 case Key.Up:
-                    if (positie1.Y - YVerplaatsing * Snelheid >= 0) se.Margin = new Thickness(positie1.X, positie1.Y - YVerplaatsing * Snelheid, 0, 0);
+                    if (positie1.Y - YVerplaatsing * Snelheid >= 0) rechthoek.Margin = new Thickness(positie1.X, positie1.Y - YVerplaatsing * Snelheid, 0, 0);
                     break;
                 case Key.Down:
-                    if (positie1.Y + YVerplaatsing * Snelheid+Grootte <= spelCanvas.Height) se.Margin = new Thickness(positie1.X, positie1.Y + YVerplaatsing * Snelheid, 0, 0);
+                    if (positie1.Y + YVerplaatsing * Snelheid+Grootte <= spelCanvas.Height) rechthoek.Margin = new Thickness(positie1.X, positie1.Y + YVerplaatsing * Snelheid, 0, 0);
                     break;
                 default:
                     return;
@@ -61,7 +59,7 @@ namespace leren.Spel
 
         public void Maakvrij(Canvas spelCanvas)
         {
-            spelCanvas.Children.Remove(se);   
+            spelCanvas.Children.Remove(rechthoek);   
         }
     }
 }

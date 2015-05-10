@@ -253,7 +253,6 @@
     <Resource Include="Data\taalresultaat.txt" />
     <Resource Include="Data\taalvragen_0.txt" />
     <Resource Include="Data\wiskunderesultaat.txt" />
-    <Content Include="Kernkraft.wav" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
