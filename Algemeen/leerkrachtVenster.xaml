@@ -1,7 +1,7 @@
 ﻿<Window x:Class="leren.leerkrachtVenster"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="768" Width="1024" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="768" Width="1024" WindowStartupLocation="CenterScreen" FontFamily="Candara">
     <Grid Margin="0,0,3.4,0.4">
         <ComboBox Name="leerlingCombobox" HorizontalAlignment="Left" Margin="48,45,0,0" VerticalAlignment="Top" Width="333"  SelectionChanged="ComboBox_SelectionChanged" Height="29" Background="Black" >
 

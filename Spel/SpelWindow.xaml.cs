@@ -29,7 +29,7 @@ namespace leren
             csLijst = new List<ComputerSpeler>();
             ms = new MensSpeler();
             ms.Teken(ballenSpel, csLijst, ms);
-            sp = new SoundPlayer("../../Kernkraft.wav");
+            sp = new SoundPlayer("../../SPEL_shortversion.wav");
             spelKlok = new DispatcherTimer();
             nieuweSpeler = new DispatcherTimer();
             spelKlok.Tick += spelKlok_Tick;
@@ -122,7 +122,7 @@ namespace leren
 
         private void OnCanvasKeyDown(object sender, KeyEventArgs e)
         {
-            //Bewegen van MensSpeler na toets ingedrukt
+            //Bewegen van MensSpeler na er een toets is ingedrukt
             ms.Beweeg(ballenSpel, e.Key);
         }
 
