@@ -5,6 +5,7 @@ namespace leren
     //Dit is het inlogscherm
     //Date: 27/03/2014 20:03
     //Author: Samy Coenen
+
     public partial class MainWindow : Window
     {
 
