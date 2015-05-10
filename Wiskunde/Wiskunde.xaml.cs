@@ -169,9 +169,14 @@ namespace leren
       
             public void Uitkomst()
         {
-            int[] uitkomst=  int[]
+      
             
         }
+
+            private void Button_Click_1(object sender, RoutedEventArgs e)
+            {
+
+            }
     }
 
 }
