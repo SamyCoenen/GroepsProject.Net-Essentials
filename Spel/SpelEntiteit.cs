@@ -14,34 +14,35 @@ namespace leren
 
     abstract class SpelEntiteit
     {
+
         private double _snelheid = 5.0;
         private double _xChange = 5;
         private double _yChange = 5;
-        protected Rectangle se;
+        protected Rectangle rechthoek;
         private int _grootte = 20;
         private static readonly Random r1 = new Random();
 
         public SpelEntiteit()
         {
-            se = new Rectangle();
-            se.Height = _grootte;
-            se.Width = _grootte;
+            rechthoek = new Rectangle();
+            rechthoek.Height = _grootte;
+            rechthoek.Width = _grootte;
         }
 
         public void Teken(Canvas spelCanvas, double x, double y)
         {
-            se.Margin = new Thickness(x, y, 0, 0);
-            spelCanvas.Children.Add(se);
+            rechthoek.Margin = new Thickness(x, y, 0, 0);
+            spelCanvas.Children.Add(rechthoek);
         }
 
         public void Teken(Canvas spelCanvas, List<ComputerSpeler> csLijst, MensSpeler msSpeler)
         {
-            se.Margin = new Thickness(0, r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0);
+            rechthoek.Margin = new Thickness(0, r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0);
             while (Geraakt(csLijst, msSpeler))
             {
-                se.Margin = new Thickness(0, r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0);  
+                rechthoek.Margin = new Thickness(0, r1.Next(0, Convert.ToInt32(spelCanvas.Height - _grootte)), 0, 0);  
             }
-            spelCanvas.Children.Add(se);
+            spelCanvas.Children.Add(rechthoek);
         }
 
         //We controleren of een SpelEntiteit botst tegen een andere SpelEntiteit
@@ -80,7 +81,7 @@ namespace leren
                 else if (Kleur() == "#FF000000")
                 {                
                     scoreLabel.Content = Convert.ToString(Convert.ToInt32(scoreLabel.Content) + 1);
-                    spelCanvas.Children.Remove(se);
+                    spelCanvas.Children.Remove(rechthoek);
                     csLijst.RemoveAt(indexInLijst);
                 }
                 return true;
@@ -113,17 +114,17 @@ namespace leren
 
         public void VeranderKleur(SolidColorBrush kleur)
         {
-            se.Fill = kleur;
+            rechthoek.Fill = kleur;
         }
 
         public string Kleur()
         {
-            return Convert.ToString(se.Fill);
+            return Convert.ToString(rechthoek.Fill);
         }
 
         public Point Positie()
         {
-            return new Point(se.Margin.Left, se.Margin.Top);
+            return new Point(rechthoek.Margin.Left, rechthoek.Margin.Top);
         }
 
         public double Snelheid

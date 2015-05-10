@@ -3,9 +3,11 @@ using leren.Spel;
 
 namespace leren.Algemeen
 {
+
     //Gebruikers kunnen zicht hier registreren 
     //Date: 07/05/2014 00:03
     //Author: Samy Coenen
+
     public partial class StudentToevoegen : Window
     {
         private string gebruiker;

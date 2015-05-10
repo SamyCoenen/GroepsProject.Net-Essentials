@@ -28,12 +28,12 @@ namespace leren.Spel
             {
                 YVerplaatsing = -YVerplaatsing;
             }         
-            se.Margin = new Thickness(positie.X, positie.Y, 0, 0);
+            rechthoek.Margin = new Thickness(positie.X, positie.Y, 0, 0);
         }
 
         public void Maakvrij(Canvas spelCanvas)
         {
-            spelCanvas.Children.Remove(se);          
+            spelCanvas.Children.Remove(rechthoek);          
         }
     }
 }
