@@ -28,12 +28,6 @@ namespace leren
         private List<KeuzeAntwoord> keuzeAntwoorden = new List<KeuzeAntwoord>();
         private int index;
 
-        public int Graad
-        {
-            get { return graad; }
-            set { graad = value; }
-        }
-
         public Taal()
         {
             InitializeComponent();
@@ -71,6 +65,7 @@ namespace leren
                 RadioButton antwoordbtn = new RadioButton();
                 antwoordbtn.Tag = i;
                 antwoordbtn.Content = keuzevraag.Keuzes[i];
+                antwoordbtn.FontSize = 15;
                 RowDefinition row = new RowDefinition();
                 row.Height = new GridLength(45);
                 radioBtnGrid.RowDefinitions.Add(row);
@@ -134,5 +129,12 @@ namespace leren
                 }
             }
         }
+
+        public int Graad
+        {
+            get { return graad; }
+            set { graad = value; }
+        }
+
     }
 }

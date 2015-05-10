@@ -46,6 +46,7 @@ namespace leren
             {
                 Moeilijk();
             }
+            landen.FontSize = 15;
         }
 
         // Selecteren van een land
@@ -53,10 +54,10 @@ namespace leren
         {
                 if (landen.SelectedItems.Count > 0)
                 {
-                    ListBoxItem mySelectedItem = landen.SelectedItem as ListBoxItem;
-                    if (mySelectedItem != null)
+                    ListBoxItem geselecteerdeItem = landen.SelectedItem as ListBoxItem;
+                    if (geselecteerdeItem != null)
                     {
-                        DragDrop.DoDragDrop(landen, mySelectedItem.Content.ToString(), DragDropEffects.Copy);
+                        DragDrop.DoDragDrop(landen, geselecteerdeItem.Content.ToString(), DragDropEffects.Copy);
                     }
 
                 }
@@ -67,10 +68,10 @@ namespace leren
         {
             if (steden.SelectedItems.Count > 0)
             {
-                ListBoxItem mySelectedItem = steden.SelectedItem as ListBoxItem;
-                if (mySelectedItem != null)
+                ListBoxItem geselecteerdeItem = steden.SelectedItem as ListBoxItem;
+                if (geselecteerdeItem != null)
                 {
-                    DragDrop.DoDragDrop(steden, mySelectedItem.Content.ToString(), DragDropEffects.Copy);
+                    DragDrop.DoDragDrop(steden, geselecteerdeItem.Content.ToString(), DragDropEffects.Copy);
                 }
             }
         }
@@ -90,22 +91,22 @@ namespace leren
         // Drop land
         private void land_Drop(object sender, DragEventArgs e)
         {
-            ListBox lb = (ListBox)sender;
+            ListBox listBoxSender = (ListBox)sender;
             string oldText = "";
-            if (lb.Items.Count > 0)
+            if (listBoxSender.Items.Count > 0)
             {
-                oldText = lb.Items[0].ToString();
+                oldText = listBoxSender.Items[0].ToString();
             }
-            lb.Items.Clear();
+            listBoxSender.Items.Clear();
             error.Content = "";
             string tstring;
             tstring = e.Data.GetData(DataFormats.StringFormat).ToString();
-            lb.Items.Add(tstring.ToString());
-            GebruikteItems(lb, "land", oldText);
+            listBoxSender.Items.Add(tstring.ToString());
+            GebruikteItems(listBoxSender, "land", oldText);
             for (int i = 0; i < stedenList.Length; i++) {
-                while (lb.Items.Contains(stedenList[i].ToString()))
+                while (listBoxSender.Items.Contains(stedenList[i].ToString()))
                 {
-                    lb.Items.Clear();
+                    listBoxSender.Items.Clear();
                     error.Content = "Dit is geen land!";
                     break;
                 }
@@ -115,23 +116,23 @@ namespace leren
         // Drop stad
         private void stad_Drop(object sender, DragEventArgs e)
         {
-            ListBox lb = (ListBox)sender;
+            ListBox listBoxSender = (ListBox)sender;
             string oldText = "";
-            if (lb.Items.Count > 0)
+            if (listBoxSender.Items.Count > 0)
             {
-                oldText = lb.Items[0].ToString();
+                oldText = listBoxSender.Items[0].ToString();
             }
-            lb.Items.Clear();
+            listBoxSender.Items.Clear();
             error.Content = "";
             string tstring;
             tstring = e.Data.GetData(DataFormats.StringFormat).ToString();
-            lb.Items.Add(tstring.ToString());
-            GebruikteItems(lb, "stad", oldText);
+            listBoxSender.Items.Add(tstring.ToString());
+            GebruikteItems(listBoxSender, "stad", oldText);
                 for (int i = 0; i < landenList.Length; i++)
                 {
-                    while(lb.Items.Contains(landenList[i].ToString()))
+                    while(listBoxSender.Items.Contains(landenList[i].ToString()))
                     {
-                        lb.Items.Clear();
+                        listBoxSender.Items.Clear();
                         error.Content = "Dit is geen stad!";
                         break;
                     }
@@ -152,9 +153,10 @@ namespace leren
             for (int i = 0; i < stedenList.Length; i++)
             {
                 ListBoxItem itm = new ListBoxItem();
-                itm.Content = stedenList[i].ToString(); 
+                itm.Content = stedenList[i].ToString();
                 steden.Items.Add(itm);
             }
+            steden.FontSize = 15;
         }
 
         // Toon resultaat
@@ -198,48 +200,46 @@ namespace leren
         // Terug naar het menu gaan
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
+            if (land1box.Items.Count == 0 && land2box.Items.Count == 0 && land3box.Items.Count == 0 && land4box.Items.Count == 0 && land5box.Items.Count == 0)
             {
-                if (land1box.Items.Count == 0 && land2box.Items.Count == 0 && land3box.Items.Count == 0 && land4box.Items.Count == 0 && land5box.Items.Count == 0)
+                if (graad == 1)
                 {
-                    if (graad == 1)
+                    if (stad1box.Items.Count == 0 && stad2box.Items.Count == 0 && stad3box.Items.Count == 0 && stad4box.Items.Count == 0 && stad5box.Items.Count == 0)
                     {
-                        if (stad1box.Items.Count == 0 && stad2box.Items.Count == 0 && stad3box.Items.Count == 0 && stad4box.Items.Count == 0 && stad5box.Items.Count == 0)
+                        WindowHelper close = new WindowHelper();
+                        close.CloseWindows();
+                    }
+                    else
+                    {
+                        MessageBoxResult result = MessageBox.Show("Bent u zeker dat u wilt stoppen? Je gegeven antwoorden worden niet opgeslagen!", "Je data zal verloren gaan", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                        if (result == MessageBoxResult.Yes)
                         {
                             WindowHelper close = new WindowHelper();
                             close.CloseWindows();
                         }
                         else
                         {
-                            MessageBoxResult result = MessageBox.Show("Bent u zeker dat u wilt stoppen? Je gegeven antwoorden worden niet opgeslagen!", "Je data zal verloren gaan", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                            if (result == MessageBoxResult.Yes)
-                            {
-                                WindowHelper close = new WindowHelper();
-                                close.CloseWindows();
-                            }
-                            else
-                            {
-                                result = MessageBoxResult.No;
-                            }
+                            result = MessageBoxResult.No;
                         }
-                    }
-                    else
-                    {
-                        WindowHelper close = new WindowHelper();
-                        close.CloseWindows();
                     }
                 }
                 else
                 {
-                    MessageBoxResult result = MessageBox.Show("Bent u zeker dat u wilt stoppen? Je gegeven antwoorden worden niet opgeslagen!", "Je data zal verloren gaan", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        WindowHelper close = new WindowHelper();
-                        close.CloseWindows();
-                    }
-                    else
-                    {
-                        result = MessageBoxResult.No;
-                    }
+                    WindowHelper close = new WindowHelper();
+                    close.CloseWindows();
+                }
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Bent u zeker dat u wilt stoppen? Je gegeven antwoorden worden niet opgeslagen!", "Je data zal verloren gaan", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    WindowHelper close = new WindowHelper();
+                    close.CloseWindows();
+                }
+                else
+                {
+                    result = MessageBoxResult.No;
                 }
             }
         }

@@ -2,3 +2,5 @@
 ik:0(België:Nederland:0$Nederland:België:0$Spanje:Frankrijk:0$Duitsland:Spanje:0$Frankrijk:Duitsland:0$)$
 ik:1(België:Nederland:0$Nederland:België:0$Spanje:Frankrijk:0$Duitsland:Spanje:0$Frankrijk:Duitsland:0$)$
 ik:1(België:Nederland:0$Nederland:België:0$Spanje:Frankrijk:0$Duitsland:Duitsland:1$Frankrijk:Spanje:0$Brussel:Brussel:1$Amsterdam:Amsterdam:1$Madrid:Parijs:0$Berlijn:Berlijn:1$Parijs:Madrid:0$)$
+ik:1(België:Frankrijk:0$Nederland:Duitsland:0$Spanje:Nederland:0$Duitsland:België:0$Frankrijk:Spanje:0$Brussel:Amsterdam:0$Amsterdam:Berlijn:0$Madrid:Parijs:0$Berlijn:Madrid:0$Parijs:Brussel:0$)$
+ik:0(België:België:1$Nederland:Spanje:0$Spanje:Nederland:0$Duitsland:Duitsland:1$Frankrijk:Frankrijk:1$)$

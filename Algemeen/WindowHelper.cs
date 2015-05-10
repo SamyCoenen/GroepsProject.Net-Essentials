@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace leren
 
-    // Window helper, sluiten van meerdere schermen
+    // Window helper
     // Date: 29/04/15 - Last edit: 07/05/15
     // Author: Timothy Vanderaerden
 
@@ -18,6 +18,7 @@ namespace leren
 
         }
 
+        // sluiten van meerdere forms
         public void CloseWindows()
         {
             for (int intCounter = App.Current.Windows.Count - 1; intCounter > 0; intCounter--)

@@ -27,45 +27,17 @@ namespace leren
         {
             InitializeComponent();
             GebruikersLijst lijst = new GebruikersLijst("student");           
-            Combobox1.ItemsSource = lijst.Naam;
+            leerlingCombobox.ItemsSource = lijst.Naam;
             vakkenComboBox.Items.Add("Talen - Makkelijk");
             vakkenComboBox.Items.Add("Talen - Moeilijk");
             vakkenComboBox.Items.Add("Kennis - Makkelijk");
             vakkenComboBox.Items.Add("Kennis - Moeilijk");
+            vakkenComboBox.Items.Add("Wiskunde - Moeilijk");
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        
             
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void combobox1(object sender, RoutedEventArgs e)
-        {
-        //    try
-        //    {
-               
-        //      StreamReader sr = new StreamReader ("C:\Users\11400126\Desktop");
-
-        //        string line = sr.ReadLine();
-
-        //        while (line != null)
-        //        {
-        //            Console.WriteLine(line);
-        //        }
-        //    }
-                
-               
-        //        catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error: " + ex.Message);
-        //    }
-            
-        }
+        
 
         // Vakken Listbox + declareren oefeninglistbox
         // Author: Timothy Vanderaerden - Date: 07/05/15 
@@ -81,6 +53,11 @@ namespace leren
                     ToonOefeningen();
                     break;
                 case 1:
+                    selectionChanged = false;
+                    oefeningComboBox.Items.Clear();
+                    selectionChanged = true;
+                    fileName = "taalvragen_1.txt";
+                    ToonOefeningen();
                     break;
                 case 2:
                     selectionChanged = false;
@@ -90,6 +67,18 @@ namespace leren
                     ToonOefeningen();
                     break;
                 case 3:
+                    selectionChanged = false;
+                    oefeningComboBox.Items.Clear();
+                    selectionChanged = true;
+                    fileName = "kennisvragen_1.txt";
+                    ToonOefeningen();
+                    break;
+                case 4:
+                    selectionChanged = false;
+                    oefeningComboBox.Items.Clear();
+                    selectionChanged = true;
+                    fileName = "wiskundevragen_1.txt";
+                    ToonOefeningen();
                     break;
             }
             DisableElements();
@@ -99,8 +88,7 @@ namespace leren
         // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void oefeningComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Wanneer er een vak en een oefening is aangeduid en het vak wijzigd wordt de selectionchanged
-            // opgeroepen. Waardoor ToonVakOefening() aangesproken wordt en ervoor zorg dat het programma crasht
+            // Zorgt ervoor dat selectionchanged niet wordt opgeroepen wanneer niet nodig
             // Author: Timothy Vanderaerden - Date: 07/05/15 
             if (selectionChanged == false)
             {
@@ -297,6 +285,93 @@ namespace leren
             StudentToevoegen leerkrachtToevoegen = new StudentToevoegen("leerkracht");
             leerkrachtToevoegen.Show();
             Close();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (vakkenComboBox.SelectedIndex)
+            {
+                case 0:
+                    selectionChanged = false;
+                    oefeningComboBox.Items.Clear();
+                    selectionChanged = true;
+                    fileName = "kennisresultaat.txt";
+                    ToonResultaten();
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    selectionChanged = false;
+                    oefeningComboBox.Items.Clear();
+                    selectionChanged = true;
+                    fileName = "taalresultaat.txt";
+                    ToonResultaten();
+                    break;
+                case 3:
+                    break;
+            }
+        }
+
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //int counter = 0;
+            string line;
+
+            //// Read the file and display it line by line.
+            //System.IO.StreamReader file =
+            //    new System.IO.StreamReader("../.../Data/kennisresultaat.txt");
+            //while ((line = file.ReadLine()) != null)
+            //{
+            //    if (line.Contains("bollen"))
+            //    {
+            //        Console.WriteLine(counter.ToString() + ": " + leerlingListBox);
+            //    }
+
+            //    counter++;
+            //}
+
+            //file.Close();
+
+            if (leerlingCombobox.SelectedIndex < 0)
+            {
+                string messageBoxText = "U hebt geen leerling aangeduid, gelieve een leerling aan te duiden!";
+                string caption = "Geen leerling geselecteerd";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            else
+            {
+                // Read the file and display it line by line.
+                System.IO.StreamReader file = new System.IO.StreamReader("../../Data/kennisresultaat.txt");
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (line.Substring(0, leerlingCombobox.SelectedItem.ToString().Length).Contains(leerlingCombobox.SelectedItem.ToString()))
+                    {
+                        leerlingListBox.Items.Add(line);
+                    }
+
+                }
+            }
+        }
+
+        private void leerlingListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+    
+        private void ToonResultaten()
+        {
+            string[] lines = File.ReadAllLines("../../Data/" + fileName);
+            foreach (string line in lines)
+        {
+                int deelEinde = line.IndexOf(":");
+                string oefening = line.Substring(0, deelEinde);
+                oefeningComboBox.Items.Add(oefening.ToString());
+            }
+
         }
     }
 }
