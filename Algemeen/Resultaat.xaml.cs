@@ -35,6 +35,7 @@ namespace leren
             vak = v;
         }
 
+        // printResultaat oproepen bij het laden van de form
         private void Resultaat_Loaded(object sender, RoutedEventArgs e)
         {
             if (vak.Equals("Kennis") || vak.Equals("Taal") || vak.Equals("Wiskunde"))
@@ -47,18 +48,7 @@ namespace leren
             }
         }
 
-        internal List<KeuzeVraag> Vragen
-        {
-            get { return vragen; }
-            set { vragen = value; }
-        }
-
-        internal List<KeuzeAntwoord> Antwoorden
-        {
-            get { return antwoorden; }
-            set { antwoorden = value; }
-        }
-
+        // Methode om het resultaat te printen
         private void printResultaat()
         {
             resultatenGrid.Children.Clear();
@@ -98,6 +88,7 @@ namespace leren
             }
         }
 
+        // Methode om het resultaat van aardrijksunde te tonen
         private void printResultaatAardrijkskunde(List<string> antwoorden, List<string> oplossingen, int graad) 
         {
             resultatenGrid.Children.Clear();
@@ -165,6 +156,18 @@ namespace leren
         {
             get { return graad; }
             set { graad = value; }
+        }
+
+        internal List<KeuzeVraag> Vragen
+        {
+            get { return vragen; }
+            set { vragen = value; }
+        }
+
+        internal List<KeuzeAntwoord> Antwoorden
+        {
+            get { return antwoorden; }
+            set { antwoorden = value; }
         }
 
     }

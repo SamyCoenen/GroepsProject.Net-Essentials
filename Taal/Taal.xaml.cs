@@ -28,12 +28,6 @@ namespace leren
         private List<KeuzeAntwoord> keuzeAntwoorden = new List<KeuzeAntwoord>();
         private int index;
 
-        public int Graad
-        {
-            get { return graad; }
-            set { graad = value; }
-        }
-
         public Taal()
         {
             InitializeComponent();
@@ -135,5 +129,12 @@ namespace leren
                 }
             }
         }
+
+        public int Graad
+        {
+            get { return graad; }
+            set { graad = value; }
+        }
+
     }
 }

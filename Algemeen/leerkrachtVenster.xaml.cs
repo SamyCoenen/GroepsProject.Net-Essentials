@@ -77,8 +77,7 @@ namespace leren
         // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void oefeningComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Wanneer er een vak en een oefening is aangeduid en het vak wijzigd wordt de selectionchanged
-            // opgeroepen. Waardoor ToonVakOefening() aangesproken wordt en ervoor zorg dat het programma crasht
+            // Zorgt ervoor dat selectionchanged niet wordt opgeroepen wanneer niet nodig
             // Author: Timothy Vanderaerden - Date: 07/05/15 
             if (selectionChanged == false)
             {
@@ -284,7 +283,7 @@ namespace leren
 
             // Read the file and display it line by line.
             System.IO.StreamReader file =
-                new System.IO.StreamReader(@"kennisresultaat.txt");
+                new System.IO.StreamReader("../../Data/kennisresultaat.txt");
             while ((line = file.ReadLine()) != null)
             {
                 System.Console.WriteLine(line);
@@ -324,7 +323,7 @@ namespace leren
                     string line;
 
                     // Read the file and display it line by line.
-                    System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\11400126\Source\Repos\leren\Data\kennisresultaat.txt");
+                    System.IO.StreamReader file = new System.IO.StreamReader("../../Data/kennisresultaat.txt");
                     while ((line = file.ReadLine()) != null)
                     {
                         if (line.Contains("bollen"))
