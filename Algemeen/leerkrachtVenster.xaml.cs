@@ -32,6 +32,7 @@ namespace leren
             vakkenComboBox.Items.Add("Talen - Moeilijk");
             vakkenComboBox.Items.Add("Kennis - Makkelijk");
             vakkenComboBox.Items.Add("Kennis - Moeilijk");
+            vakkenComboBox.Items.Add("Wiskunde - Moeilijk");
         }
 
         
@@ -52,6 +53,11 @@ namespace leren
                     ToonOefeningen();
                     break;
                 case 1:
+                    selectionChanged = false;
+                    oefeningComboBox.Items.Clear();
+                    selectionChanged = true;
+                    fileName = "taalvragen_1.txt";
+                    ToonOefeningen();
                     break;
                 case 2:
                     selectionChanged = false;
@@ -61,6 +67,18 @@ namespace leren
                     ToonOefeningen();
                     break;
                 case 3:
+                    selectionChanged = false;
+                    oefeningComboBox.Items.Clear();
+                    selectionChanged = true;
+                    fileName = "kennisvragen_1.txt";
+                    ToonOefeningen();
+                    break;
+                case 4:
+                    selectionChanged = false;
+                    oefeningComboBox.Items.Clear();
+                    selectionChanged = true;
+                    fileName = "wiskundevragen_1.txt";
+                    ToonOefeningen();
                     break;
             }
             DisableElements();
@@ -330,7 +348,7 @@ namespace leren
                 System.IO.StreamReader file = new System.IO.StreamReader("../../Data/kennisresultaat.txt");
                 while ((line = file.ReadLine()) != null)
                 {
-                    if (line.Contains(leerlingCombobox.SelectedItem.ToString()))
+                    if (line.Substring(0, leerlingCombobox.SelectedItem.ToString().Length).Contains(leerlingCombobox.SelectedItem.ToString()))
                     {
                         leerlingListBox.Items.Add(line);
                     }

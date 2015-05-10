@@ -243,6 +243,7 @@
     <Resource Include="images\europe_map_hulp.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Data\taalvragen_1.txt" />
     <Content Include="SPEL_longversion.wav" />
     <Content Include="SPEL_shortversion.wav" />
     <Resource Include="Data\spelgegevens.txt" />
