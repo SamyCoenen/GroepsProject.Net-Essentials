@@ -5,6 +5,7 @@ using System.Windows;
 
 namespace leren.Spel
 {
+
     //Met deze klasse kunnen gegevens in verband met het spel bekomen worden en ze ook veranderen door weg te schrijven
     //Date: 06/05/2014 23:03
     //Author: Samy Coenen

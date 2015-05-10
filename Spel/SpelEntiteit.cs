@@ -11,6 +11,7 @@ namespace leren
     //De abstracte superklasse voor alle bewegenden objecten van het spel
     //Date: 30/03/2014 20:03
     //Author: Samy Coenen
+
     abstract class SpelEntiteit
     {
         private double _snelheid = 5.0;
@@ -43,31 +44,17 @@ namespace leren
             spelCanvas.Children.Add(se);
         }
 
-        public void VeranderKleur(SolidColorBrush kleur)
-        {
-            se.Fill = kleur;
-        }
-
-        public string Kleur()
-        {
-            return Convert.ToString(se.Fill);
-        }
-
-        public double Snelheid
-        {
-            get { return _snelheid; }
-            set { _snelheid = value; }
-        }
-
+        //We controleren of een SpelEntiteit botst tegen een andere SpelEntiteit
         public bool Geraakt(List<ComputerSpeler> csLijst,List<ComputerSpeler> oudeComputerSpelers, int indexInLijst, MensSpeler msSpeler, Canvas spelCanvas, Label scoreLabel)
         {
             Point positieHuidig = Positie();
+            //We maken een Rect object om de methode IntersectsWith te kunnen gebruiken
             Rect rect1 = new Rect(positieHuidig.X + _xChange, positieHuidig.Y + _yChange, _grootte, _grootte);
             for (int i = 0; i < oudeComputerSpelers.Count; i++)
             {
                 Point positieComputer = oudeComputerSpelers[i].Positie();
                 Rect rect2 = new Rect(positieComputer.X + oudeComputerSpelers[i].XVerplaatsing, positieComputer.Y + oudeComputerSpelers[i].YVerplaatsing, _grootte, _grootte);
-                //Bepalen of huidige SpelEntiteit met een vierhoek ComputerSpeler botst behalve zichzelf
+                //IntersectsWith is een methode die bepaalt of de huidige SpelEntiteit ComputerSpeler botst behalve zichzelf
                 if (rect1.IntersectsWith(rect2) && positieHuidig != positieComputer)
                 {
                     if (Kleur() == "#FF008000")
@@ -87,10 +74,11 @@ namespace leren
             {
                 if (Kleur() == "#FF008000")
                 {
+                    //De SpelEntiteit is tegen de MensSpeler gebotst terwijl hij groen was en daarom verandert de msSpeler van kleur waardoor het spel stopt
                     msSpeler.VeranderKleur(new SolidColorBrush(Colors.White));
                 }
                 else if (Kleur() == "#FF000000")
-                {
+                {                
                     scoreLabel.Content = Convert.ToString(Convert.ToInt32(scoreLabel.Content) + 1);
                     spelCanvas.Children.Remove(se);
                     csLijst.RemoveAt(indexInLijst);
@@ -100,6 +88,7 @@ namespace leren
             return false;
         }
 
+        //Deze geraakt methode wordt gebruikt om te controleren of de plaats al bezet is wanneer er nieuwe SpelEntiteiten worden aangemaakt
         public bool Geraakt(List<ComputerSpeler> csLijst, MensSpeler msSpeler)
         {
             Point positieHuidig = Positie();
@@ -119,13 +108,28 @@ namespace leren
             {
                 return true;
             }
-
             return false;
+        }
+
+        public void VeranderKleur(SolidColorBrush kleur)
+        {
+            se.Fill = kleur;
+        }
+
+        public string Kleur()
+        {
+            return Convert.ToString(se.Fill);
         }
 
         public Point Positie()
         {
             return new Point(se.Margin.Left, se.Margin.Top);
+        }
+
+        public double Snelheid
+        {
+            get { return _snelheid; }
+            set { _snelheid = value; }
         }
 
         public int Grootte

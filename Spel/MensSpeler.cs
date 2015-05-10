@@ -8,21 +8,17 @@ namespace leren.Spel
 {
     class MensSpeler: SpelEntiteit,IBeweegbaar
     {
+
         //Aanmaak van een blokje dat de gebruiker kan besturen
         //Date: 25/04/2014 15:03
         //Author: Samy Coenen     
 
         private int _score;
+
         public MensSpeler()
         {
             VeranderKleur(new SolidColorBrush(Colors.Blue));
             _score = 0;
-        }
-
-        private int Score
-        {
-            get { return _score; }
-            set { _score = value; }
         }
 
         //Deze methode wordt niet gebruikt maar kan gebruikt worden om de MensSpeler automatisch te laten bewegen
