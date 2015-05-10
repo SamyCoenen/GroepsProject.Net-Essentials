@@ -16,7 +16,6 @@ namespace leren.Spel
         private List<string> _namen;
         private List<int> _levens;
         private string _bestand = "../../Data/spelgegevens.txt";
-        private string _documentKennis = "../../Data/kennisresultaat.txt;";
 
         public SpelGegevens()
         {

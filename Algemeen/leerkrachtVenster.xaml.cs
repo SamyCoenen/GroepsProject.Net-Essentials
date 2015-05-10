@@ -38,13 +38,6 @@ namespace leren
             
         
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-
-
         // Vakken Listbox + declareren oefeninglistbox
         // Author: Timothy Vanderaerden - Date: 07/05/15 
         private void vakkenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -276,24 +269,54 @@ namespace leren
             Close();
         }
 
-        private void algemKennisMakkelijk_TextChanged(object sender, TextChangedEventArgs e)
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (vakkenComboBox.SelectedIndex)
+            {
+                case 0:
+                    selectionChanged = false;
+                    oefeningComboBox.Items.Clear();
+                    selectionChanged = true;
+                    fileName = "kennisresultaat.txt";
+                    ToonResultaten();
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    selectionChanged = false;
+                    oefeningComboBox.Items.Clear();
+                    selectionChanged = true;
+                    fileName = "taalresultaat.txt";
+                    ToonResultaten();
+                    break;
+                case 3:
+                    break;
+            }
+            DisableElements();
+        }
+
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             int counter = 0;
             string line;
 
             // Read the file and display it line by line.
             System.IO.StreamReader file =
-                new System.IO.StreamReader("../../Data/kennisresultaat.txt");
+                new System.IO.StreamReader(@"kennisresultaat.txt");
             while ((line = file.ReadLine()) != null)
             {
-                System.Console.WriteLine(line);
+                if (line.Contains("bollen"))
+                {
+                    Console.WriteLine(counter.ToString() + ": " + leerlingListBox);
+                }
+
                 counter++;
             }
 
-        }
+            file.Close();
 
-        private void geefPuntenWeer_Click(object sender, RoutedEventArgs e)
-        {
             if (leerlingCombobox.SelectedIndex < 0)
             {
                 string messageBoxText = "U hebt geen leerling aangeduid, gelieve een leerling aan te duiden!";
@@ -303,66 +326,41 @@ namespace leren
                 MessageBox.Show(messageBoxText, caption, button, icon);
             }
             else
-    
             {
                 ClearElements();
                 EnableElements();
             }
+
+
+
+
+
+        //    // Read the file and display it line by line.
+        //    System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\11400126\Source\Repos\leren\Data\kennisresultaat.txt");
+        //    while ((line = file.ReadLine()) != null)
+        //    {
+        //        if (line.Contains("bollen"))
+        //        {
+        //            Console.WriteLine(counter.ToString() + ": " + kennisMakkelijk);
+        //        }
+
+        //    }
         }
 
-        private void kennisMakkelijk_TextChanged(object sender, TextChangedEventArgs e)
+        private void leerlingListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-                    //var importantLines = 
-                    // File.ReadLines("../..Data/kennisresultaat.txt")
-                    //  .TakeWhile(line => !line.Contains("ik"));
-
-                    //System.Console.WriteLine(kennisMakkelijk);
-
-                    int counter = 0;
-                    string line;
-
-                    // Read the file and display it line by line.
-                    System.IO.StreamReader file = new System.IO.StreamReader("../../Data/kennisresultaat.txt");
-                    while ((line = file.ReadLine()) != null)
-                    {
-                        if (line.Contains("bollen"))
-                        {
-                            Console.WriteLine(counter.ToString() + ": " + kennisMakkelijk);
-                        }
-
-                        counter++;
-                    }
-
-                    file.Close();
-
-
-
-
-
-            //List<List<string>> groups = new List<List<string>>();
-            //List<string> current = null;
-            //foreach (var line in File.ReadAllLines(@"C:\Users11400126\Source\Repos\leren\Data\kennisresultaat.txt"))
-            //{
-            //    if (line.Contains("ik") && current == null)
-            //        current = new List<string>();
-                //else if (line.Contains("CustomerCh") && current != null)
-                //{
-                //    groups.Add(current);
-                //    current = null;
-                //}
-                //if (current != null)
-                //    current.Add(line);
-
-                //System.Console.WriteLine(kennisMakkelijk);
-            
-
 
         }
     
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ToonResultaten()
         {
+            string[] lines = File.ReadAllLines("../../Data/" + fileName);
+            foreach (string line in lines)
+        {
+                int deelEinde = line.IndexOf(":");
+                string oefening = line.Substring(0, deelEinde);
+                oefeningComboBox.Items.Add(oefening.ToString());
+            }
 
         }
     }

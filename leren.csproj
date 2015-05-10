@@ -97,8 +97,8 @@
     <Compile Include="Kennis\KennisMenu.xaml.cs">
       <DependentUpon>KennisMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Kennis\KeuzeAntwoord.cs" />
-    <Compile Include="Kennis\KeuzeVraag.cs" />
+    <Compile Include="Algemeen\KeuzeAntwoord.cs" />
+    <Compile Include="Algemeen\KeuzeVraag.cs" />
     <Compile Include="Spel\IBeweegbaar.cs" />
     <Compile Include="Spel\MensSpeler.cs" />
     <Compile Include="Algemeen\Resultaat.xaml.cs">
