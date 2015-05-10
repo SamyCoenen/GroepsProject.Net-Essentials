@@ -26,7 +26,7 @@ namespace leren
         public leerkrachtVenster()
         {
             InitializeComponent();
-            GebruikersLijst lijst = new GebruikersLijst("student");           
+            GebruikersLijst lijst = new GebruikersLijst("student");
             leerlingCombobox.ItemsSource = lijst.Naam;
             vakkenComboBox.Items.Add("Talen - Makkelijk");
             vakkenComboBox.Items.Add("Talen - Moeilijk");
@@ -35,9 +35,9 @@ namespace leren
             vakkenComboBox.Items.Add("Wiskunde - Moeilijk");
         }
 
-        
-            
-        
+
+
+
 
         // Vakken Listbox + declareren oefeninglistbox
         // Author: Timothy Vanderaerden - Date: 07/05/15 
@@ -147,7 +147,7 @@ namespace leren
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Warning;
                 MessageBox.Show(messageBoxText, caption, button, icon);
-            } 
+            }
             else
             {
                 ClearElements();
@@ -213,7 +213,7 @@ namespace leren
             if (vraagTextBox.Text.Count() > 0 && antwoordenListBox.Items.IsEmpty != true && juisteTextBox.Text.Count() > 0)
             {
                 string[] antwoorden = new string[antwoordenListBox.Items.Count];
-                for (int i = 0; i < antwoordenListBox.Items.Count; i++) 
+                for (int i = 0; i < antwoordenListBox.Items.Count; i++)
                 {
                     antwoorden[i] = antwoordenListBox.Items[i].ToString();
                 }
@@ -229,7 +229,7 @@ namespace leren
             }
             else
             {
-                string messageBoxText = "U hebt niet alles ingevuld. Gelieve alles intevullen";
+                string messageBoxText = "U hebt niet alles ingevuld. Gelieve alles in te vullen";
                 string caption = "Lege velden";
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Warning;
@@ -355,23 +355,143 @@ namespace leren
 
                 }
             }
+            if (leerlingCombobox.SelectedIndex < 0)
+            {
+                string messageBoxText = "U hebt geen leerling aangeduid, gelieve een leerling aan te duiden!";
+                string caption = "Geen leerling geselecteerd";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            else
+            {
+                // Read the file and display it line by line.
+                System.IO.StreamReader file = new System.IO.StreamReader("../../Data/taalresultaat.txt");
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (line.Substring(0, leerlingCombobox.SelectedItem.ToString().Length).Contains(leerlingCombobox.SelectedItem.ToString()))
+                    {
+                        leerlingListBox.Items.Add(line);
+                    }
+
+                }
+            }
+            if (leerlingCombobox.SelectedIndex < 0)
+            {
+                string messageBoxText = "U hebt geen leerling aangeduid, gelieve een leerling aan te duiden!";
+                string caption = "Geen leerling geselecteerd";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            else
+            {
+                // Read the file and display it line by line.
+                System.IO.StreamReader file = new System.IO.StreamReader("../../Data/wiskunderesultaat.txt");
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (line.Substring(0, leerlingCombobox.SelectedItem.ToString().Length).Contains(leerlingCombobox.SelectedItem.ToString()))
+                    {
+                        leerlingListBox.Items.Add(line);
+                    }
+
+                }
+            }
+            if (leerlingCombobox.SelectedIndex < 0)
+            {
+                string messageBoxText = "U hebt geen leerling aangeduid, gelieve een leerling aan te duiden!";
+                string caption = "Geen leerling geselecteerd";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBox.Show(messageBoxText, caption, button, icon);
+            }
+            else
+            {
+                // Read the file and display it line by line.
+                System.IO.StreamReader file = new System.IO.StreamReader("../../Data/aardrijkskunderesultaat.txt");
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (line.Substring(0, leerlingCombobox.SelectedItem.ToString().Length).Contains(leerlingCombobox.SelectedItem.ToString()))
+                    {
+                        leerlingListBox.Items.Add(line);
+                    }
+
+                }
+            }
+
+
         }
 
         private void leerlingListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
-    
+            private void ShowResultaten()
+        {
+            string[] lines = File.ReadAllLines("../../Data/" + fileName);
+            foreach (string line in lines)
+            {
+                int deelEinde = line.IndexOf("-");
+                string oefening = line.Substring(0, deelEinde);
+                oefeningComboBox.Items.Add(oefening.ToString());
+            }
+
+        
+        }
+
+
         private void ToonResultaten()
         {
             string[] lines = File.ReadAllLines("../../Data/" + fileName);
             foreach (string line in lines)
-        {
+            {
                 int deelEinde = line.IndexOf(":");
                 string oefening = line.Substring(0, deelEinde);
                 oefeningComboBox.Items.Add(oefening.ToString());
             }
 
         }
-    }
-}
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+         
+            //string line = null;
+            //int selectedIndex = leerlingCombobox.SelectedIndex;
+            //object selectedItem = leerlingCombobox.SelectedItem;
+            //string line_to_delete = leerlingCombobox.Items.ToString();
+
+            //using (StreamReader reader = new StreamReader("../../Data/studentlogins.txt"))
+            //{
+            //    using (StreamWriter writer = new StreamWriter("../../Data/studentlogins.txt"))
+            //    {
+            //        while ((line = reader.ReadLine()) != null)
+            //        {
+            //            if (String.Compare(line, line_to_delete) == 0)
+            //                continue;
+
+            //            writer.WriteLine(line);
+            //        }
+            //    }
+            //}
+        }
+            
+             public void VerwijderLeerling(int index, string file)
+              {
+            string[] lines = File.ReadAllLines("../../Data/" + file);
+            string[] newLines = new string[lines.Length -1];
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i] != lines[index])
+                {
+                    newLines[i] = lines[i].ToString();
+                }
+            }
+            File.WriteAllLines("../../Data/" + file, newLines);
+            }
+        }
+        }
+        
+
+      
+    
