@@ -292,30 +292,29 @@ namespace leren
                 case 3:
                     break;
             }
-            DisableElements();
         }
 
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int counter = 0;
+            //int counter = 0;
             string line;
 
-            // Read the file and display it line by line.
-            System.IO.StreamReader file =
-                new System.IO.StreamReader(@"kennisresultaat.txt");
-            while ((line = file.ReadLine()) != null)
-            {
-                if (line.Contains("bollen"))
-                {
-                    Console.WriteLine(counter.ToString() + ": " + leerlingListBox);
-                }
+            //// Read the file and display it line by line.
+            //System.IO.StreamReader file =
+            //    new System.IO.StreamReader("../.../Data/kennisresultaat.txt");
+            //while ((line = file.ReadLine()) != null)
+            //{
+            //    if (line.Contains("bollen"))
+            //    {
+            //        Console.WriteLine(counter.ToString() + ": " + leerlingListBox);
+            //    }
 
-                counter++;
-            }
+            //    counter++;
+            //}
 
-            file.Close();
+            //file.Close();
 
             if (leerlingCombobox.SelectedIndex < 0)
             {
@@ -327,24 +326,17 @@ namespace leren
             }
             else
             {
-                ClearElements();
-                EnableElements();
+                // Read the file and display it line by line.
+                System.IO.StreamReader file = new System.IO.StreamReader("../../Data/kennisresultaat.txt");
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (line.Contains(leerlingCombobox.SelectedItem.ToString()))
+                    {
+                        leerlingListBox.Items.Add(line);
+                    }
+
+                }
             }
-
-
-
-
-
-        //    // Read the file and display it line by line.
-        //    System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\11400126\Source\Repos\leren\Data\kennisresultaat.txt");
-        //    while ((line = file.ReadLine()) != null)
-        //    {
-        //        if (line.Contains("bollen"))
-        //        {
-        //            Console.WriteLine(counter.ToString() + ": " + kennisMakkelijk);
-        //        }
-
-        //    }
         }
 
         private void leerlingListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
