@@ -46,6 +46,7 @@ namespace leren
             {
                 Moeilijk();
             }
+            landen.FontSize = 15;
         }
 
         // Selecteren van een land
@@ -152,9 +153,10 @@ namespace leren
             for (int i = 0; i < stedenList.Length; i++)
             {
                 ListBoxItem itm = new ListBoxItem();
-                itm.Content = stedenList[i].ToString(); 
+                itm.Content = stedenList[i].ToString();
                 steden.Items.Add(itm);
             }
+            steden.FontSize = 15;
         }
 
         // Toon resultaat

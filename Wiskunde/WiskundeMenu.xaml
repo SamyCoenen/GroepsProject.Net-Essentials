@@ -1,12 +1,23 @@
 ﻿<Window x:Class="leren.WiskundeMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Wiskunde" Height="450" Width="500" Icon="/leren;component/images/favicon.ico" WindowStartupLocation="CenterScreen"><Grid>
+        Title="Wiskunde" Height="450" Width="500" Icon="/leren;component/images/favicon.ico" WindowStartupLocation="CenterScreen" FontFamily="Candara">
+    <Grid>
     <Label Content="Test je wiskunde kennis" HorizontalAlignment="Left" FontSize="22" Margin="10,10,0,0" VerticalAlignment="Top"/>
-    <Image Source="../images/wiskunde.jpg" Name="wiskunde" Height="106" Width="139" Margin="159,123,194,190" MouseDown="Image_MouseDown"/>
-    <Slider HorizontalAlignment="Left" Margin="204,343,0,0" Minimum="0" Maximum="1" VerticalAlignment="Top" Width="60" Name="graadSlider"/>
-    <Label Content="Makkelijk" HorizontalAlignment="Left" FontSize="10" Margin="141,338,0,0" VerticalAlignment="Top" Width="61"/>
-    <Label Content="Moeilijk" HorizontalAlignment="Left" FontSize="10" Margin="267,338,0,0" VerticalAlignment="Top"/>
-    <Label Content="Wiskunde oefeningen" HorizontalAlignment="Left" Margin="154,238,0,0" VerticalAlignment="Top" Height="28" Width="144"/>
+    <Image Source="../images/wiskunde.jpg" Name="wiskunde" Height="106" Width="139" Margin="159,123,194,190" MouseDown="Image_MouseDown">
+            <Image.Style>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.7"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Slider HorizontalAlignment="Left" Margin="204,343,0,0" Minimum="0" Maximum="1" VerticalAlignment="Top" Width="60" Name="graadSlider"/>
+    <Label Content="Makkelijk" HorizontalAlignment="Left" FontSize="13" Margin="141,338,0,0" VerticalAlignment="Top" Width="61"/>
+    <Label Content="Moeilijk" HorizontalAlignment="Left" FontSize="13" Margin="267,338,0,0" VerticalAlignment="Top"/>
+    <Label Content="Wiskunde oefeningen" HorizontalAlignment="Left" FontSize="15" Margin="154,238,0,0" VerticalAlignment="Top" Height="28" Width="156"/>
 </Grid>
 </Window>
