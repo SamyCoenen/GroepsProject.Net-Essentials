@@ -160,6 +160,18 @@ namespace leren
             get { return graad; }
             set { graad = value; }
         }
+
+        private void antwoord1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+      
+            public void Uitkomst()
+        {
+            int[] uitkomst=  int[]
+            
+        }
     }
 
 }

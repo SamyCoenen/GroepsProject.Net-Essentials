@@ -316,24 +316,12 @@ namespace leren
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //int counter = 0;
+          
             string line;
 
-            //// Read the file and display it line by line.
-            //System.IO.StreamReader file =
-            //    new System.IO.StreamReader("../.../Data/kennisresultaat.txt");
-            //while ((line = file.ReadLine()) != null)
-            //{
-            //    if (line.Contains("bollen"))
-            //    {
-            //        Console.WriteLine(counter.ToString() + ": " + leerlingListBox);
-            //    }
 
-            //    counter++;
-            //}
-
-            //file.Close();
-
+            //Enable elements wanneer er een oefening is aangeduid / kennisresultaat schrijven
+            //Marnic Broux
             if (leerlingCombobox.SelectedIndex < 0)
             {
                 string messageBoxText = "U hebt geen leerling aangeduid, gelieve een leerling aan te duiden!";
@@ -354,6 +342,8 @@ namespace leren
                     }
 
                 }
+                //Enable elements wanneer er een oefening is aangeduid / taalresultaat schrijven
+                //Marnic Broux
             }
             if (leerlingCombobox.SelectedIndex < 0)
             {
@@ -375,6 +365,8 @@ namespace leren
                     }
 
                 }
+                //Enable elements wanneer er een oefening is aangeduid / wiskunderesultaat schrijven
+                //Marnic Broux
             }
             if (leerlingCombobox.SelectedIndex < 0)
             {
@@ -396,6 +388,8 @@ namespace leren
                     }
 
                 }
+                //Enable elements wanneer er een oefening is aangeduid / aardrijkskundeesultaat schrijven
+                //Marnic Broux
             }
             if (leerlingCombobox.SelectedIndex < 0)
             {
@@ -421,7 +415,8 @@ namespace leren
 
 
         }
-
+        //resultaten weergeven in listbox
+        //Marnic Broux
         private void leerlingListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -455,27 +450,9 @@ namespace leren
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
-         
-            //string line = null;
-            //int selectedIndex = leerlingCombobox.SelectedIndex;
-            //object selectedItem = leerlingCombobox.SelectedItem;
-            //string line_to_delete = leerlingCombobox.Items.ToString();
-
-            //using (StreamReader reader = new StreamReader("../../Data/studentlogins.txt"))
-            //{
-            //    using (StreamWriter writer = new StreamWriter("../../Data/studentlogins.txt"))
-            //    {
-            //        while ((line = reader.ReadLine()) != null)
-            //        {
-            //            if (String.Compare(line, line_to_delete) == 0)
-            //                continue;
-
-            //            writer.WriteLine(line);
-            //        }
-            //    }
-            //}
         }
-            
+            // leerling verwijderen uit document
+            // Marnic Broux
              public void VerwijderLeerling(int index, string file)
               {
             string[] lines = File.ReadAllLines("../../Data/" + file);
